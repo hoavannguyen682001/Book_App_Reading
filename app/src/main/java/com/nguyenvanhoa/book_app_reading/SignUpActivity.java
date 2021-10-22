@@ -4,20 +4,27 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class SignUpActivity extends AppCompatActivity {
 
     private TextView btnLogin;
-    private EditText txtEmail, txtFullName, txtPassword, txtGender;
+    private EditText txtEmail, txtFullName, txtPassword;
+    private Spinner spnGender;
     private LinearLayout lnF_G, lnLogin;
     private Button btnSignUp;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,6 +32,7 @@ public class SignUpActivity extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         AnhXa();
+        InitSpinner();
         Animation();
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
@@ -36,18 +44,18 @@ public class SignUpActivity extends AppCompatActivity {
         });
     }
 
-    private void AnhXa(){
+    private void AnhXa() {
         btnLogin = findViewById(R.id.txtLogin);
         txtEmail = findViewById(R.id.txtEmail_SignUp);
         txtFullName = findViewById(R.id.txtFullName_SignUp);
         txtPassword = findViewById(R.id.txtPassword_SignUp);
-        txtGender = findViewById(R.id.txtGender_SignUp);
+        spnGender = findViewById(R.id.spnGender_SignUp);
         lnF_G = findViewById(R.id.lnName_Gender);
         btnSignUp = findViewById(R.id.btnSignUp_SignUpAT);
         lnLogin = findViewById(R.id.lnLogIn);
     }
 
-    private void Animation(){
+    private void Animation() {
         txtEmail.setTranslationX(1000);
         txtFullName.setTranslationX(1000);
         lnF_G.setTranslationX(1000);
@@ -69,4 +77,15 @@ public class SignUpActivity extends AppCompatActivity {
         btnSignUp.animate().translationX(0).alpha(1).setDuration(1000).setStartDelay(1200).start();
         lnLogin.animate().translationX(0).alpha(1).setDuration(1000).setStartDelay(1400).start();
     }
+
+    private void InitSpinner() {
+        ArrayList<String> listGender = new ArrayList<>();
+        listGender.add("Male");
+        listGender.add("Female");
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, listGender);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spnGender.setAdapter(adapter);
+    }
+
 }
