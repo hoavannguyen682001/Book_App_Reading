@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Book_App_Reading">
         <activity
-            android:name=".Activity.SearchActivity"
+            android:name=".Activity.LibraryActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -18,7 +18,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
+        <activity android:name=".Activity.BookshelfActivity"></activity>
+<!--        <activity android:name=".Activity.SearchActivity"></activity>-->
 <!--        <activity android:name=".Activity.HomeActivity"></activity>-->
 
 <!--        <activity android:name=".Activity.Book_Detail_Activity">-->
