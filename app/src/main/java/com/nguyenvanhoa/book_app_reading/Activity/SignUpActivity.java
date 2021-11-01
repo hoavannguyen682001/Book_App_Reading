@@ -1,4 +1,4 @@
-package com.nguyenvanhoa.book_app_reading;
+package com.nguyenvanhoa.book_app_reading.Activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,8 +14,9 @@ import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.nguyenvanhoa.book_app_reading.R;
+
 import java.util.ArrayList;
-import java.util.List;
 
 public class SignUpActivity extends AppCompatActivity {
 

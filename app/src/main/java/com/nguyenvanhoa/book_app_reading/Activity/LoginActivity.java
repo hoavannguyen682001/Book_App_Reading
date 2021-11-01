@@ -1,4 +1,4 @@
-package com.nguyenvanhoa.book_app_reading;
+package com.nguyenvanhoa.book_app_reading.Activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,6 +11,8 @@ import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.nguyenvanhoa.book_app_reading.R;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -27,14 +29,7 @@ public class LoginActivity extends AppCompatActivity {
 
         AnhXa();
         Animation();
-
-        txtSignUp.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(LoginActivity.this, SignUpActivity.class);
-                startActivity(intent);
-            }
-        });
+        setClick();
 
     }
 
@@ -61,5 +56,22 @@ public class LoginActivity extends AppCompatActivity {
         txtPassword.animate().translationX(0).alpha(1).setDuration(1000).setStartDelay(600).start();
         btnLogin.animate().translationX(0).alpha(1).setDuration(1000).setStartDelay(800).start();
         ln.animate().translationX(0).alpha(1).setDuration(1000).setStartDelay(1000).start();
+    }
+
+    private void setClick() {
+        btnLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+                startActivity(intent);
+            }
+        });
+        txtSignUp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(LoginActivity.this, SignUpActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 }

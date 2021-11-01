@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".Activity.MainActivity">
 
     <ImageView
         android:id="@+id/img_Center_Main"
@@ -54,6 +54,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/button_login"
+            app:backgroundTint="@null"
             android:text="LOGIN"
             android:textColor="@color/white"
             android:textStyle="bold" />
@@ -64,6 +65,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:background="@drawable/button_signup"
+            app:backgroundTint="@null"
             android:text="SIGN UP"
             android:textColor="@color/white"
             android:textStyle="bold" />
