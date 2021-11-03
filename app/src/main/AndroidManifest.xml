@@ -9,53 +9,33 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Book_App_Reading">
-        <activity
-            android:name=".Activity.LibraryActivity"
-            android:exported="false">
-<!--            <intent-filter>-->
-<!--                <action android:name="android.intent.action.MAIN" />-->
 
-<!--                <category android:name="android.intent.category.LAUNCHER" />-->
-<!--            </intent-filter>-->
-        </activity>
-        <activity android:name=".ProfileActivity"
+        <activity android:name=".Activity.MainActivity"
             android:exported="true">
-           <intent-filter>
-              <action android:name="android.intent.action.MAIN" />
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-<!--        <activity android:name=".Activity.SearchActivity"></activity>-->
-<!--        <activity android:name=".Activity.HomeActivity"></activity>-->
 
-<!--        <activity android:name=".Activity.Book_Detail_Activity">-->
-<!--        </activity>-->
 
-<!--        <activity android:name=".Activity.MainActivity"-->
-<!--            android:exported="true">-->
-<!--            <intent-filter>-->
-<!--                <action android:name="android.intent.action.MAIN" />-->
+        <activity android:name=".Activity.SignUpActivity">
+        </activity>
 
-<!--                <category android:name="android.intent.category.LAUNCHER" />-->
-<!--            </intent-filter>-->
-<!--        </activity>-->
+        <activity android:name=".Activity.LoginActivity"></activity>
+        <activity android:name=".Activity.HomeActivity"></activity>
+        <activity android:name=".Activity.BookshelfActivity"></activity>
+        <activity
+            android:name=".Activity.LibraryActivity">
 
-<!--        <activity android:name=".Activity.LoginActivity"-->
-<!--            android:exported="false">-->
-<!--&lt;!&ndash;                        <intent-filter>&ndash;&gt;-->
-<!--&lt;!&ndash;                            <action android:name="android.intent.action.MAIN" />&ndash;&gt;-->
+        </activity>
+        <activity android:name=".Activity.ProfileActivity">
+        </activity>
+        <activity android:name=".Activity.SearchActivity"></activity>
 
-<!--&lt;!&ndash;                            <category android:name="android.intent.category.LAUNCHER" />&ndash;&gt;-->
-<!--&lt;!&ndash;                        </intent-filter>&ndash;&gt;-->
-<!--        </activity>-->
-        <activity android:name=".Activity.SignUpActivity"
-            android:exported="true">
-        <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
 
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter>
+        <activity android:name=".Activity.Book_Detail_Activity">
         </activity>
 
     </application>

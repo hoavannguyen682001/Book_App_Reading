@@ -1,13 +1,17 @@
 package com.nguyenvanhoa.book_app_reading.Activity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.WindowManager;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.tabs.TabLayout;
 import com.nguyenvanhoa.book_app_reading.Adapter.MainRecyclerAdapter;
 import com.nguyenvanhoa.book_app_reading.Adapter.SliderPagerAdapter;
@@ -27,6 +31,8 @@ public class HomeActivity extends AppCompatActivity {
     private ViewPager slide_pager;
     private SliderPagerAdapter adapter;
     private TabLayout indicator;
+    private BottomNavigationView navigationView;
+
 
     MainRecyclerAdapter mainRecyclerAdapter;
     RecyclerView mainRecycler;
@@ -39,6 +45,7 @@ public class HomeActivity extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         InitView_Slide();
         InitView_RecyclerView();
+        Naviagation_bar();
     }
     private void InitView_Slide() {
         slide_pager = findViewById(R.id.vpSlider);
@@ -124,5 +131,40 @@ public class HomeActivity extends AppCompatActivity {
             });
         }
     }
+    public void Naviagation_bar(){
+        navigationView = findViewById(R.id.bottom_nav);
+        navigationView.setSelectedItemId(R.id.nav_home);
 
+        navigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            Intent intent;
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.nav_home:
+                        break;
+                    case R.id.nav_bookshelf:
+                        intent = new Intent(getApplicationContext(), BookshelfActivity.class);
+                        startActivity(intent);
+                        overridePendingTransition(R.anim.slide_in_left,R.anim.slide_out_left);
+                        break;
+                    case R.id.nav_library:
+                        intent = new Intent(getApplicationContext(), LibraryActivity.class);
+                        startActivity(intent);
+                        overridePendingTransition(R.anim.slide_in_left,R.anim.slide_out_left);
+                        break;
+                    case R.id.nav_person:
+                        intent = new Intent(getApplicationContext(), ProfileActivity.class);
+                        startActivity(intent);
+                        overridePendingTransition(R.anim.slide_in_left,R.anim.slide_out_left);
+                        break;
+                    case R.id.nav_search:
+                        intent = new Intent(getApplicationContext(), SearchActivity.class);
+                        startActivity(intent);
+                        overridePendingTransition(R.anim.slide_in_left,R.anim.slide_out_left);
+                        break;
+                }
+                return false;
+            }
+        });
+    }
 }

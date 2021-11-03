@@ -23,10 +23,26 @@
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"/>
 
-    <androidx.viewpager.widget.ViewPager
-        android:id="@+id/viewpaper"
+    <LinearLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="2"
-        android:background="@drawable/custom_viewpaper" />
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/viewpaper"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="2"
+            android:background="@drawable/custom_viewpaper" />
+
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/bottom_nav"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#6E399E"
+            app:itemIconTint="@drawable/item_selected"
+            app:itemTextColor="@color/white"
+            app:menu="@menu/item_menu"/>
+
+    </LinearLayout>
 </LinearLayout>

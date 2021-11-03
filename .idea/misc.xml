@@ -28,6 +28,22 @@
         <entry key="..\:/121/MOBILE/test/app/src/main/res/layout/item_recycler.xml" value="0.25416666666666665" />
         <entry key="..\:/SET_UP/DATA/Android/Sdk/platforms/android-31/data/res/layout/simple_spinner_dropdown_item.xml" value="0.20854700854700856" />
         <entry key="..\:/documents/HK1_Nam_3/LTAndroid/LyThuyet/AndroidStuidoProjectS/Book_App_Reading/app/src/main/res/layout/activity_main.xml" value="0.24728260869565216" />
+        <entry key="..\:/documents/HK1_Nam_3/LTAndroid/project/Book_App_Reading/app/src/main/res/drawable/custom_account.xml" value="0.26481481481481484" />
+        <entry key="..\:/documents/HK1_Nam_3/LTAndroid/project/Book_App_Reading/app/src/main/res/drawable/ic_account.xml" value="0.26481481481481484" />
+        <entry key="..\:/documents/HK1_Nam_3/LTAndroid/project/Book_App_Reading/app/src/main/res/drawable/ic_library.xml" value="0.26481481481481484" />
+        <entry key="..\:/documents/HK1_Nam_3/LTAndroid/project/Book_App_Reading/app/src/main/res/drawable/ic_outline_back.xml" value="0.15989583333333332" />
+        <entry key="..\:/documents/HK1_Nam_3/LTAndroid/project/Book_App_Reading/app/src/main/res/drawable/item_selected.xml" value="0.26481481481481484" />
+        <entry key="..\:/documents/HK1_Nam_3/LTAndroid/project/Book_App_Reading/app/src/main/res/drawable/profile_edit.xml" value="0.26481481481481484" />
+        <entry key="..\:/documents/HK1_Nam_3/LTAndroid/project/Book_App_Reading/app/src/main/res/layout/activity_bookshelf.xml" value="0.2463768115942029" />
+        <entry key="..\:/documents/HK1_Nam_3/LTAndroid/project/Book_App_Reading/app/src/main/res/layout/activity_content_story.xml" value="0.24230072463768115" />
+        <entry key="..\:/documents/HK1_Nam_3/LTAndroid/project/Book_App_Reading/app/src/main/res/layout/activity_content_story2.xml" value="0.24230072463768115" />
+        <entry key="..\:/documents/HK1_Nam_3/LTAndroid/project/Book_App_Reading/app/src/main/res/layout/activity_content_story3.xml" value="0.24230072463768115" />
+        <entry key="..\:/documents/HK1_Nam_3/LTAndroid/project/Book_App_Reading/app/src/main/res/layout/activity_home.xml" value="0.2463768115942029" />
+        <entry key="..\:/documents/HK1_Nam_3/LTAndroid/project/Book_App_Reading/app/src/main/res/layout/activity_library.xml" value="0.2463768115942029" />
+        <entry key="..\:/documents/HK1_Nam_3/LTAndroid/project/Book_App_Reading/app/src/main/res/layout/activity_main.xml" value="0.2463768115942029" />
+        <entry key="..\:/documents/HK1_Nam_3/LTAndroid/project/Book_App_Reading/app/src/main/res/layout/activity_profile.xml" value="0.2463768115942029" />
+        <entry key="..\:/documents/HK1_Nam_3/LTAndroid/project/Book_App_Reading/app/src/main/res/layout/activity_search.xml" value="0.2463768115942029" />
+        <entry key="..\:/documents/HK1_Nam_3/LTAndroid/project/Book_App_Reading/app/src/main/res/menu/item_menu.xml" value="0.27447916666666666" />
       </map>
     </option>
   </component>

@@ -1,19 +1,24 @@
 package com.nguyenvanhoa.book_app_reading.Activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.MenuItem;
 import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.Spinner;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.nguyenvanhoa.book_app_reading.Adapter.CategoryAdapter;
 import com.nguyenvanhoa.book_app_reading.Adapter.SachsearchAdapter;
+import com.nguyenvanhoa.book_app_reading.Model.Book;
 import com.nguyenvanhoa.book_app_reading.Model.Category;
 import com.nguyenvanhoa.book_app_reading.Model.Sach_search;
 import com.nguyenvanhoa.book_app_reading.R;
@@ -28,11 +33,15 @@ public class SearchActivity extends AppCompatActivity {
     private SachsearchAdapter sachadapter;
     private RecyclerView.LayoutManager mLayoutManager;
     private EditText editText;
+    private BottomNavigationView navigationView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_search);
+
+        Navigation_bar();
+
         createlist();
         buildRecycleView();
         spnCategory = findViewById(R.id.spn_catory);
@@ -97,5 +106,41 @@ public class SearchActivity extends AppCompatActivity {
             }
         }
         sachadapter.filterList(ab);
+    }
+    public void Navigation_bar(){
+        navigationView = findViewById(R.id.bottom_nav);
+        navigationView.setSelectedItemId(R.id.nav_search);
+        navigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            Intent intent;
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.nav_home:
+                        intent = new Intent(getApplicationContext(), HomeActivity.class);
+                        startActivity(intent);
+                        overridePendingTransition(R.anim.slide_in_right,R.anim.slide_out_right);
+                        break;
+                    case R.id.nav_bookshelf:
+                        intent = new Intent(getApplicationContext(), BookshelfActivity.class);
+                        startActivity(intent);
+                        overridePendingTransition(R.anim.slide_in_right,R.anim.slide_out_right);
+                        break;
+                    case R.id.nav_library:
+                        intent = new Intent(getApplicationContext(), LibraryActivity.class);
+                        startActivity(intent);
+                        overridePendingTransition(R.anim.slide_in_right,R.anim.slide_out_right);
+                        break;
+                    case R.id.nav_person:
+                        intent = new Intent(getApplicationContext(), ProfileActivity.class);
+                        startActivity(intent);
+                        overridePendingTransition(R.anim.slide_in_right,R.anim.slide_out_right);
+                        break;
+                    case R.id.nav_search:
+
+                        break;
+                }
+                return false;
+            }
+        });
     }
 }
