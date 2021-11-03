@@ -81,12 +81,6 @@ public class SignUpActivity extends AppCompatActivity {
     }
 
     private void InitSpinner() {
-//        ArrayList<String> listGender = new ArrayList<>();
-//        listGender.add("Male");
-//        listGender.add("Female");
-//        ArrayAdapter<CharSequence> adapter = new ArrayAdapter<CharSequence>(this, android.R.layout., listGender);
-//        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-//        spnGender.setAdapter(adapter);
         String[] arrGender = new String[]{"Male", "Female", "Other"};
         ArrayAdapter<CharSequence> GenderAdapter = new ArrayAdapter<CharSequence>(this, R.layout.custom_spinner, arrGender);
         spnGender.setAdapter(GenderAdapter);

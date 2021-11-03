@@ -118,22 +118,22 @@ public class SearchActivity extends AppCompatActivity {
                     case R.id.nav_home:
                         intent = new Intent(getApplicationContext(), HomeActivity.class);
                         startActivity(intent);
-                        overridePendingTransition(R.anim.slide_in_right,R.anim.slide_out_right);
+                        overridePendingTransition(0,0);
                         break;
                     case R.id.nav_bookshelf:
                         intent = new Intent(getApplicationContext(), BookshelfActivity.class);
                         startActivity(intent);
-                        overridePendingTransition(R.anim.slide_in_right,R.anim.slide_out_right);
+                        overridePendingTransition(0,0);
                         break;
                     case R.id.nav_library:
                         intent = new Intent(getApplicationContext(), LibraryActivity.class);
                         startActivity(intent);
-                        overridePendingTransition(R.anim.slide_in_right,R.anim.slide_out_right);
+                        overridePendingTransition(0,0);
                         break;
                     case R.id.nav_person:
                         intent = new Intent(getApplicationContext(), ProfileActivity.class);
                         startActivity(intent);
-                        overridePendingTransition(R.anim.slide_in_right,R.anim.slide_out_right);
+                        overridePendingTransition(0,0);
                         break;
                     case R.id.nav_search:
 
