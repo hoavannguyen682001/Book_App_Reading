@@ -11,7 +11,8 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
             <View
                 android:layout_width="3dp"
@@ -22,13 +23,22 @@
 
             <TextView
                 android:id="@+id/profile_account"
-                android:layout_width="match_parent"
+                android:layout_width="300dp"
                 android:layout_height="30dp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="20dp"
                 android:text="Profile Account"
                 android:textSize="20sp"
                 android:textStyle="bold" />
+
+
+            <ImageButton
+                android:id="@+id/btnlogout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/ic_login"
+                android:background="#00000000"/>
+
         </LinearLayout>
 
         <ImageView
@@ -65,52 +75,56 @@
             android:gravity="center"
             android:orientation="horizontal">
 
-            <LinearLayout
+            <RelativeLayout
                 android:id="@+id/name"
                 android:layout_width="130dp"
                 android:layout_height="110dp"
-                android:background="@drawable/profile_button"
-                android:orientation="vertical">
+                android:background="@drawable/profile_button">
+
+                <TextView
+                    android:id="@+id/tvname"
+                    android:layout_width="wrap_content"
+                    android:layout_height="20dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="16dp"
+                    android:drawableLeft="@drawable/ic_person"
+                    android:text="Name" />
 
                 <LinearLayout
-                    android:layout_width="130dp"
-                    android:layout_height="wrap_content">
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:orientation="horizontal">
 
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="30dp"
-                        android:layout_marginTop="5dp"
-                        android:src="@drawable/ic_name" />
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                        android:layout_width="110dp"
+                        android:layout_height="30dp"
+                        app:boxStrokeColor="#EAEFEF"
+                        app:hintTextColor="@color/black">
 
-                    <TextView
-                        android:layout_width="50dp"
+                        <AutoCompleteTextView
+                            android:id="@+id/tvGender_SignUp"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:inputType="none"
+                            android:paddingLeft="10dp"
+                            android:text="abcasca"/>
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <CheckBox
+                        android:id="@+id/cbEdit_name"
+                        android:layout_width="20dp"
                         android:layout_height="20dp"
-                        android:layout_alignParentLeft="true"
-                        android:layout_marginTop="5dp"
-                        android:gravity="center_horizontal|top"
-                        android:text="Name"
-                        android:textAllCaps="false" />
+                        android:layout_gravity="center"
+                        android:layout_toRightOf="@+id/input_name"
+                        android:background="@color/white"
+                        android:button="@drawable/edit_checkbox" />
                 </LinearLayout>
 
-                <EditText
-                    android:id="@+id/input_name"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="10dp"
-                    android:text="User name"
-                    android:textSize="14sp" />
 
-                <ImageButton
-                    android:id="@+id/edit_name"
-                    android:layout_width="100dp"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="center"
-                    android:background="@color/white"
-                    android:src="@drawable/ic_edit" />
-
-            </LinearLayout>
+            </RelativeLayout>
 
             <LinearLayout
                 android:id="@+id/gender"
@@ -147,10 +161,11 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginTop="10dp"
+                    android:inputType="none"
                     android:text="Male/Female"
                     android:textSize="14sp" />
 
-                <ImageButton
+                <CheckBox
                     android:id="@+id/edit_gender"
                     android:layout_width="100dp"
                     android:layout_height="match_parent"
@@ -202,10 +217,11 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginTop="10dp"
+                    android:inputType="none"
                     android:text="0901-XXXXX"
                     android:textSize="14sp" />
 
-                <ImageButton
+                <CheckBox
                     android:id="@+id/edit_phone"
                     android:layout_width="100dp"
                     android:layout_height="match_parent"
@@ -250,18 +266,19 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginTop="10dp"
+                    android:inputType="none"
                     android:text="HKLNT@gmail."
                     android:textSize="14sp" />
 
-                <ImageButton
+                <CheckBox
                     android:id="@+id/edit_email"
                     android:layout_width="100dp"
                     android:layout_height="match_parent"
                     android:layout_gravity="center"
                     android:background="@color/white"
                     android:src="@drawable/ic_edit" />
-
             </LinearLayout>
+
         </LinearLayout>
 
         <Button

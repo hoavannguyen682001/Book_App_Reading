@@ -3,6 +3,10 @@ package com.nguyenvanhoa.book_app_reading.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.CheckBox;
+import android.widget.ImageButton;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,11 +16,25 @@ import com.nguyenvanhoa.book_app_reading.R;
 
 public class ProfileActivity extends AppCompatActivity {
     BottomNavigationView navigationView;
+    private ImageButton btnlogout;
+    private CheckBox editname, editphone, editemail, gender;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
+        btnlogout = findViewById(R.id.btnlogout);
+        editemail = findViewById(R.id.edit_email);
+//        editname = findViewById(R.id.cbEdit_name);
+        editphone = findViewById(R.id.edit_phone);
+        gender = findViewById(R.id.edit_gender);
         Navigation_bar();
+        btnlogout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+                startActivity(intent);
+            }
+        });
     }
     public void Navigation_bar(){
         navigationView = findViewById(R.id.bottom_nav);

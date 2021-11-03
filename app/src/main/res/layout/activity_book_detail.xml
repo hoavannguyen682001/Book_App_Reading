@@ -97,8 +97,7 @@
                 android:layout_alignTop="@+id/btnRead"
                 android:layout_alignBottom="@+id/btnRead"
                 android:layout_alignParentRight="true"
-                android:button="@drawable/favorite_checkbox"
-                android:gravity="center_vertical"/>
+                android:button="@drawable/favorite_checkbox" />
 
         </RelativeLayout>
     </LinearLayout>

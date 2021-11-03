@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -22,7 +23,7 @@ public class SignUpActivity extends AppCompatActivity {
 
     private TextView btnLogin;
     private EditText txtEmail, txtFullName, txtPassword;
-    private Spinner spnGender;
+    private AutoCompleteTextView spnGender;
     private LinearLayout lnF_G, lnLogin;
     private Button btnSignUp;
 
@@ -50,7 +51,7 @@ public class SignUpActivity extends AppCompatActivity {
         txtEmail = findViewById(R.id.txtEmail_SignUp);
         txtFullName = findViewById(R.id.txtFullName_SignUp);
         txtPassword = findViewById(R.id.txtPassword_SignUp);
-        spnGender = findViewById(R.id.spnGender_SignUp);
+        spnGender = findViewById(R.id.tvGender_SignUp);
         lnF_G = findViewById(R.id.lnName_Gender);
         btnSignUp = findViewById(R.id.btnSignUp_SignUpAT);
         lnLogin = findViewById(R.id.lnLogIn);
@@ -86,7 +87,7 @@ public class SignUpActivity extends AppCompatActivity {
 //        ArrayAdapter<CharSequence> adapter = new ArrayAdapter<CharSequence>(this, android.R.layout., listGender);
 //        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 //        spnGender.setAdapter(adapter);
-        String[] arrGender = new String[]{"Male", "Female"};
+        String[] arrGender = new String[]{"Male", "Female", "Other"};
         ArrayAdapter<CharSequence> GenderAdapter = new ArrayAdapter<CharSequence>(this, R.layout.custom_spinner, arrGender);
         spnGender.setAdapter(GenderAdapter);
     }
