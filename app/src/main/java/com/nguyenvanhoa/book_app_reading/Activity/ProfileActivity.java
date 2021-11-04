@@ -4,7 +4,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
@@ -17,17 +20,46 @@ import com.nguyenvanhoa.book_app_reading.R;
 public class ProfileActivity extends AppCompatActivity {
     BottomNavigationView navigationView;
     private ImageButton btnlogout;
-    private CheckBox editname, editphone, editemail, gender;
+    private CheckBox editname, editphone, editemail, editgender;
+    private AutoCompleteTextView gender;
+    private EditText inputname, inputphone, inputemail;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
         btnlogout = findViewById(R.id.btnlogout);
-        editemail = findViewById(R.id.edit_email);
-//        editname = findViewById(R.id.cbEdit_name);
-        editphone = findViewById(R.id.edit_phone);
-        gender = findViewById(R.id.edit_gender);
         Navigation_bar();
+
+        inputname = findViewById(R.id.input_name);
+        editname = findViewById(R.id.cbEdit_name);
+
+        inputphone = findViewById(R.id.input_phone);
+        editphone = findViewById(R.id.cbEdit_phone);
+
+        inputemail = findViewById(R.id.input_email);
+        editemail = findViewById(R.id.cbEdit_email);
+
+        gender = findViewById(R.id.Gender_Profile);
+        editgender = findViewById(R.id.cbEdit_Gender);
+
+        setEditClick(inputname, editname);
+        setEditClick(inputphone, editphone);
+        setEditClick(inputemail, editemail);
+
+        editgender.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(editgender.isChecked()){
+                    gender.setEnabled(true);
+                    InitGender(gender);
+                }else{
+                    gender.setEnabled(false);
+                    gender.setText(gender.getText());
+                }
+            }
+        });
         btnlogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -35,6 +67,32 @@ public class ProfileActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
+
+    private void setEditClick(EditText input, CheckBox checkBox){
+        checkBox.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (checkBox.isChecked()){
+                    input.setEnabled(true);
+                }else{
+                    input.setEnabled(false);
+                    input.setText(input.getText());
+                    Toast.makeText(getApplication(), "Edit Successfully!", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+    }
+    private void InitGender(AutoCompleteTextView gender) {
+//        ArrayList<String> listGender = new ArrayList<>();
+//        listGender.add("Male");
+//        listGender.add("Female");
+//        ArrayAdapter<CharSequence> adapter = new ArrayAdapter<CharSequence>(this, android.R.layout., listGender);
+//        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+//        spnGender.setAdapter(adapter);
+        String[] arrGender = new String[]{"Male", "Female", "Other"};
+        ArrayAdapter<CharSequence> GenderAdapter = new ArrayAdapter<CharSequence>(this, R.layout.custom_spinner, arrGender);
+        gender.setAdapter(GenderAdapter);
     }
     public void Navigation_bar(){
         navigationView = findViewById(R.id.bottom_nav);

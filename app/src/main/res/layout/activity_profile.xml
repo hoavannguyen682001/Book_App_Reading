@@ -68,17 +68,19 @@
         android:paddingLeft="30dp"
         android:paddingRight="30dp">
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="120dp"
             android:layout_marginTop="30dp"
             android:gravity="center"
-            android:orientation="horizontal">
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp">
 
             <RelativeLayout
-                android:id="@+id/name"
+                android:id="@+id/layout_name"
                 android:layout_width="130dp"
                 android:layout_height="110dp"
+                android:layout_alignParentLeft="true"
                 android:background="@drawable/profile_button">
 
                 <TextView
@@ -86,39 +88,33 @@
                     android:layout_width="wrap_content"
                     android:layout_height="20dp"
                     android:layout_centerHorizontal="true"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginTop="5dp"
                     android:drawableLeft="@drawable/ic_person"
                     android:text="Name" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:orientation="horizontal">
+                    android:layout_below="@id/tvname"
+                    android:orientation="horizontal"
+                    android:paddingLeft="8dp">
 
-                    <com.google.android.material.textfield.TextInputLayout
-                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
-                        android:layout_width="110dp"
-                        android:layout_height="30dp"
-                        app:boxStrokeColor="#EAEFEF"
-                        app:hintTextColor="@color/black">
-
-                        <AutoCompleteTextView
-                            android:id="@+id/tvGender_SignUp"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:inputType="none"
-                            android:paddingLeft="10dp"
-                            android:text="abcasca"/>
-
-                    </com.google.android.material.textfield.TextInputLayout>
+                    <EditText
+                        android:id="@+id/input_name"
+                        android:layout_width="100dp"
+                        android:layout_height="45dp"
+                        android:layout_centerHorizontal="true"
+                        android:layout_centerVertical="true"
+                        android:enabled="false"
+                        android:singleLine="true"
+                        android:text="Tran van khanh"
+                        android:textSize="14sp" />
 
                     <CheckBox
                         android:id="@+id/cbEdit_name"
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="24dp"
                         android:layout_gravity="center"
-                        android:layout_toRightOf="@+id/input_name"
                         android:background="@color/white"
                         android:button="@drawable/edit_checkbox" />
                 </LinearLayout>
@@ -126,190 +122,278 @@
 
             </RelativeLayout>
 
-            <LinearLayout
-                android:id="@+id/gender"
-                android:layout_width="130dp"
+            <RelativeLayout
+                android:id="@+id/layout_Gender"
+                android:layout_width="140dp"
                 android:layout_height="110dp"
-                android:layout_marginLeft="30dp"
+                android:layout_alignParentRight="true"
                 android:background="@drawable/profile_button"
-                android:orientation="vertical">
+                android:paddingLeft="8dp">
+
+                <TextView
+                    android:id="@+id/tvGender_Profile"
+                    android:layout_width="wrap_content"
+                    android:layout_height="20dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="5dp"
+                    android:drawableLeft="@drawable/ic_gender"
+                    android:text="Gender" />
 
                 <LinearLayout
-                    android:layout_width="130dp"
-                    android:layout_height="wrap_content">
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tvGender_Profile"
+                    android:orientation="horizontal">
 
-                    <ImageView
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="30dp"
-                        android:layout_marginTop="5dp"
-                        android:src="@drawable/ic_gender" />
+                        android:layout_height="40dp"
+                        app:hintTextColor="@color/black"
+                        app:boxBackgroundMode="filled"
+                        android:enabled="false">
 
-                    <TextView
-                        android:layout_width="50dp"
-                        android:layout_height="20dp"
-                        android:layout_alignParentLeft="true"
-                        android:layout_marginTop="5dp"
-                        android:gravity="center_horizontal|top"
-                        android:text="Gender"
-                        android:textAllCaps="false" />
+                        <AutoCompleteTextView
+                            android:id="@+id/Gender_Profile"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:textAlignment="center"
+                            android:inputType="none"
+                            android:text="Male"/>
+
+                    </com.google.android.material.textfield.TextInputLayout>
+                    <!--                    <EditText-->
+                    <!--                        android:id="@+id/input_gender"-->
+                    <!--                        android:layout_width="100dp"-->
+                    <!--                        android:layout_height="wrap_content"-->
+                    <!--                        android:layout_centerHorizontal="true"-->
+                    <!--                        android:layout_centerVertical="true"-->
+                    <!--                        android:enabled="false"-->
+                    <!--                        android:singleLine="true"-->
+                    <!--                        android:text="Male"-->
+                    <!--                        android:textSize="14sp" />-->
+
+                    <CheckBox
+                        android:id="@+id/cbEdit_Gender"
+                        android:layout_width="match_parent"
+                        android:layout_height="24dp"
+                        android:layout_gravity="center"
+                        android:background="@color/white"
+                        android:button="@drawable/edit_checkbox" />
                 </LinearLayout>
 
-                <EditText
-                    android:id="@+id/input_gender"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="10dp"
-                    android:inputType="none"
-                    android:text="Male/Female"
-                    android:textSize="14sp" />
 
-                <CheckBox
-                    android:id="@+id/edit_gender"
-                    android:layout_width="100dp"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="center"
-                    android:background="@color/white"
-                    android:src="@drawable/ic_edit" />
+            </RelativeLayout>
 
-            </LinearLayout>
-        </LinearLayout>
+        </RelativeLayout>
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="120dp"
-            android:layout_marginTop="10dp"
-            android:gravity="center"
-            android:orientation="horizontal">
-
-            <LinearLayout
-                android:id="@+id/Phone"
-                android:layout_width="130dp"
-                android:layout_height="110dp"
-                android:background="@drawable/profile_button"
-                android:orientation="vertical">
-
-                <LinearLayout
-                    android:layout_width="130dp"
-                    android:layout_height="wrap_content">
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp"
-                        android:layout_marginTop="5dp"
-                        android:src="@drawable/ic_phone" />
-
-                    <TextView
-                        android:layout_width="100dp"
-                        android:layout_height="20dp"
-                        android:layout_alignParentLeft="true"
-                        android:layout_marginTop="5dp"
-                        android:gravity="center_horizontal|top"
-                        android:text="Phone number"
-                        android:textAllCaps="false" />
-                </LinearLayout>
-
-                <EditText
-                    android:id="@+id/input_phone"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="10dp"
-                    android:inputType="none"
-                    android:text="0901-XXXXX"
-                    android:textSize="14sp" />
-
-                <CheckBox
-                    android:id="@+id/edit_phone"
-                    android:layout_width="100dp"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="center"
-                    android:background="@color/white"
-                    android:src="@drawable/ic_edit" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/Email"
-                android:layout_width="130dp"
-                android:layout_height="110dp"
-                android:layout_marginLeft="30dp"
-                android:background="@drawable/profile_button"
-                android:orientation="vertical">
-
-                <LinearLayout
-                    android:layout_width="130dp"
-                    android:layout_height="wrap_content">
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="30dp"
-                        android:layout_marginTop="5dp"
-                        android:src="@drawable/ic_email" />
-
-                    <TextView
-                        android:layout_width="50dp"
-                        android:layout_height="20dp"
-                        android:layout_alignParentLeft="true"
-                        android:layout_marginTop="5dp"
-                        android:gravity="center_horizontal|top"
-                        android:text="Email"
-                        android:textAllCaps="false" />
-                </LinearLayout>
-
-                <EditText
-                    android:id="@+id/input_email"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="10dp"
-                    android:inputType="none"
-                    android:text="HKLNT@gmail."
-                    android:textSize="14sp" />
-
-                <CheckBox
-                    android:id="@+id/edit_email"
-                    android:layout_width="100dp"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="center"
-                    android:background="@color/white"
-                    android:src="@drawable/ic_edit" />
-            </LinearLayout>
-
-        </LinearLayout>
-
-        <Button
-            android:id="@+id/bookshefl"
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
             android:layout_marginTop="30dp"
-            android:background="@drawable/profile_button"
-            android:drawableLeft="@drawable/ic_book"
-            android:drawablePadding="10dp"
-            android:gravity="left|center_vertical"
-            android:paddingLeft="30dp"
-            android:text="Bookshelf"
-            android:textAllCaps="false"
-            android:textColor="@color/black"
-            app:backgroundTint="@null" />
+            android:gravity="center"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp">
 
-        <Button
-            android:id="@+id/feedback"
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/profile_button"
-            android:drawableLeft="@drawable/ic_feedback"
-            android:drawablePadding="10dp"
-            android:gravity="left|center_vertical"
-            android:paddingLeft="30dp"
-            android:text="Your feedback"
-            android:textAllCaps="false"
-            android:textColor="@color/black"
-            app:backgroundTint="@null" />
+            <RelativeLayout
+                android:id="@+id/layout_phone"
+                android:layout_width="130dp"
+                android:layout_height="110dp"
+                android:layout_alignParentLeft="true"
+                android:background="@drawable/profile_button"
+                android:paddingLeft="8dp">
+
+                <TextView
+                    android:id="@+id/tvphone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="20dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="5dp"
+                    android:drawableLeft="@drawable/ic_phone"
+                    android:text="Phone-Number" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tvphone"
+
+                    android:orientation="horizontal">
+
+                    <EditText
+                        android:id="@+id/input_phone"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_centerVertical="true"
+                        android:enabled="false"
+                        android:singleLine="true"
+                        android:text="0376822362"
+                        android:textSize="14sp" />
+
+                    <CheckBox
+                        android:id="@+id/cbEdit_phone"
+                        android:layout_width="match_parent"
+                        android:layout_height="24dp"
+                        android:layout_gravity="center"
+                        android:background="@color/white"
+                        android:button="@drawable/edit_checkbox" />
+                </LinearLayout>
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/layout_Email"
+                android:layout_width="130dp"
+                android:layout_height="110dp"
+                android:layout_alignParentRight="true"
+                android:background="@drawable/profile_button"
+                android:paddingLeft="8dp">
+
+                <TextView
+                    android:id="@+id/tvEmail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="20dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="5dp"
+                    android:drawableLeft="@drawable/ic_gender"
+                    android:text="Email" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tvEmail"
+                    android:orientation="horizontal">
+
+                    <EditText
+                        android:id="@+id/input_email"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_centerVertical="true"
+                        android:enabled="false"
+                        android:singleLine="true"
+                        android:text="HKLNT@gmail.com"
+                        android:textSize="14sp" />
+
+                    <CheckBox
+                        android:id="@+id/cbEdit_email"
+                        android:layout_width="match_parent"
+                        android:layout_height="24dp"
+                        android:layout_gravity="center"
+                        android:background="@color/white"
+                        android:button="@drawable/edit_checkbox" />
+                </LinearLayout>
+
+
+            </RelativeLayout>
+
+        </RelativeLayout>
+
+        <!--        <LinearLayout-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="120dp"-->
+        <!--            android:layout_marginTop="10dp"-->
+        <!--            android:gravity="center"-->
+        <!--            android:orientation="horizontal">-->
+
+        <!--            <LinearLayout-->
+        <!--                android:id="@+id/Phone"-->
+        <!--                android:layout_width="130dp"-->
+        <!--                android:layout_height="110dp"-->
+        <!--                android:background="@drawable/profile_button"-->
+        <!--                android:orientation="vertical">-->
+
+        <!--                <LinearLayout-->
+        <!--                    android:layout_width="130dp"-->
+        <!--                    android:layout_height="wrap_content">-->
+
+        <!--                    <ImageView-->
+        <!--                        android:layout_width="wrap_content"-->
+        <!--                        android:layout_height="wrap_content"-->
+        <!--                        android:layout_marginLeft="5dp"-->
+        <!--                        android:layout_marginTop="5dp"-->
+        <!--                        android:src="@drawable/ic_phone" />-->
+
+        <!--                    <TextView-->
+        <!--                        android:layout_width="100dp"-->
+        <!--                        android:layout_height="20dp"-->
+        <!--                        android:layout_alignParentLeft="true"-->
+        <!--                        android:layout_marginTop="5dp"-->
+        <!--                        android:gravity="center_horizontal|top"-->
+        <!--                        android:text="Phone number"-->
+        <!--                        android:textAllCaps="false" />-->
+        <!--                </LinearLayout>-->
+
+        <!--                <EditText-->
+        <!--                    android:id="@+id/input_phone"-->
+        <!--                    android:layout_width="wrap_content"-->
+        <!--                    android:layout_height="wrap_content"-->
+        <!--                    android:layout_gravity="center"-->
+        <!--                    android:layout_marginTop="10dp"-->
+        <!--                    android:inputType="none"-->
+        <!--                    android:text="0901-XXXXX"-->
+        <!--                    android:textSize="14sp" />-->
+
+        <!--                <CheckBox-->
+        <!--                    android:id="@+id/edit_phone"-->
+        <!--                    android:layout_width="100dp"-->
+        <!--                    android:layout_height="match_parent"-->
+        <!--                    android:layout_gravity="center"-->
+        <!--                    android:background="@color/white"-->
+        <!--                    android:src="@drawable/ic_edit" />-->
+
+        <!--            </LinearLayout>-->
+
+        <!--            <LinearLayout-->
+        <!--                android:id="@+id/Email"-->
+        <!--                android:layout_width="130dp"-->
+        <!--                android:layout_height="110dp"-->
+        <!--                android:layout_marginLeft="30dp"-->
+        <!--                android:background="@drawable/profile_button"-->
+        <!--                android:orientation="vertical">-->
+
+        <!--                <LinearLayout-->
+        <!--                    android:layout_width="130dp"-->
+        <!--                    android:layout_height="wrap_content">-->
+
+        <!--                    <ImageView-->
+        <!--                        android:layout_width="wrap_content"-->
+        <!--                        android:layout_height="wrap_content"-->
+        <!--                        android:layout_marginLeft="30dp"-->
+        <!--                        android:layout_marginTop="5dp"-->
+        <!--                        android:src="@drawable/ic_email" />-->
+
+        <!--                    <TextView-->
+        <!--                        android:layout_width="50dp"-->
+        <!--                        android:layout_height="20dp"-->
+        <!--                        android:layout_alignParentLeft="true"-->
+        <!--                        android:layout_marginTop="5dp"-->
+        <!--                        android:gravity="center_horizontal|top"-->
+        <!--                        android:text="Email"-->
+        <!--                        android:textAllCaps="false" />-->
+        <!--                </LinearLayout>-->
+
+        <!--                <EditText-->
+        <!--                    android:id="@+id/input_email"-->
+        <!--                    android:layout_width="wrap_content"-->
+        <!--                    android:layout_height="wrap_content"-->
+        <!--                    android:layout_gravity="center"-->
+        <!--                    android:layout_marginTop="10dp"-->
+        <!--                    android:inputType="none"-->
+        <!--                    android:text="HKLNT@gmail."-->
+        <!--                    android:textSize="14sp" />-->
+
+        <!--                <CheckBox-->
+        <!--                    android:id="@+id/edit_email"-->
+        <!--                    android:layout_width="100dp"-->
+        <!--                    android:layout_height="match_parent"-->
+        <!--                    android:layout_gravity="center"-->
+        <!--                    android:background="@color/white"-->
+        <!--                    android:src="@drawable/ic_edit" />-->
+        <!--            </LinearLayout>-->
+
+        <!--        </LinearLayout>-->
 
         <Button
             android:id="@+id/introduce"
@@ -337,3 +421,52 @@
         app:itemTextColor="@color/white"
         app:menu="@menu/item_menu" />
 </RelativeLayout>
+
+    <!--            <LinearLayout-->
+    <!--                android:id="@+id/gender"-->
+    <!--                android:layout_width="130dp"-->
+    <!--                android:layout_height="110dp"-->
+    <!--                android:layout_marginLeft="30dp"-->
+    <!--                android:background="@drawable/profile_button"-->
+    <!--                android:orientation="vertical">-->
+
+    <!--                <LinearLayout-->
+    <!--                    android:layout_width="130dp"-->
+    <!--                    android:layout_height="wrap_content">-->
+
+    <!--                    <ImageView-->
+    <!--                        android:layout_width="wrap_content"-->
+    <!--                        android:layout_height="wrap_content"-->
+    <!--                        android:layout_marginLeft="30dp"-->
+    <!--                        android:layout_marginTop="5dp"-->
+    <!--                        android:src="@drawable/ic_gender" />-->
+
+    <!--                    <TextView-->
+    <!--                        android:layout_width="50dp"-->
+    <!--                        android:layout_height="20dp"-->
+    <!--                        android:layout_alignParentLeft="true"-->
+    <!--                        android:layout_marginTop="5dp"-->
+    <!--                        android:gravity="center_horizontal|top"-->
+    <!--                        android:text="Gender"-->
+    <!--                        android:textAllCaps="false" />-->
+    <!--                </LinearLayout>-->
+
+    <!--                <EditText-->
+    <!--                    android:id="@+id/input_gender"-->
+    <!--                    android:layout_width="wrap_content"-->
+    <!--                    android:layout_height="wrap_content"-->
+    <!--                    android:layout_gravity="center"-->
+    <!--                    android:layout_marginTop="10dp"-->
+    <!--                    android:inputType="none"-->
+    <!--                    android:text="Male/Female"-->
+    <!--                    android:textSize="14sp" />-->
+
+    <!--                <CheckBox-->
+    <!--                    android:id="@+id/edit_gender"-->
+    <!--                    android:layout_width="100dp"-->
+    <!--                    android:layout_height="match_parent"-->
+    <!--                    android:layout_gravity="center"-->
+    <!--                    android:background="@color/white"-->
+    <!--                    android:src="@drawable/ic_edit" />-->
+
+    <!--            </LinearLayout>-->
