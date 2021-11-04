@@ -16,7 +16,6 @@
         <entry key="..\:/121/MOBILE/test/app/src/main/res/drawable-mdpi/default_indicator.xml" value="0.26615384615384613" />
         <entry key="..\:/121/MOBILE/test/app/src/main/res/drawable/edit_checkbox.xml" value="0.22179487179487178" />
         <entry key="..\:/121/MOBILE/test/app/src/main/res/drawable/favorite_checkbox.xml" value="0.22179487179487178" />
-        <entry key="..\:/121/MOBILE/test/app/src/main/res/drawable/ic_baseline_save_24.xml" value="0.22179487179487178" />
         <entry key="..\:/121/MOBILE/test/app/src/main/res/drawable/ic_edit.xml" value="0.22179487179487178" />
         <entry key="..\:/121/MOBILE/test/app/src/main/res/drawable/ic_login.xml" value="0.22179487179487178" />
         <entry key="..\:/121/MOBILE/test/app/src/main/res/drawable/ic_person.xml" value="0.22179487179487178" />
@@ -30,7 +29,7 @@
         <entry key="..\:/121/MOBILE/test/app/src/main/res/layout/activity_bookshelf.xml" value="0.20854700854700856" />
         <entry key="..\:/121/MOBILE/test/app/src/main/res/layout/activity_home.xml" value="0.25416666666666665" />
         <entry key="..\:/121/MOBILE/test/app/src/main/res/layout/activity_main.xml" value="0.25416666666666665" />
-        <entry key="..\:/121/MOBILE/test/app/src/main/res/layout/activity_profile.xml" value="0.2" />
+        <entry key="..\:/121/MOBILE/test/app/src/main/res/layout/activity_profile.xml" value="0.4" />
         <entry key="..\:/121/MOBILE/test/app/src/main/res/layout/activity_search.xml" value="0.20854700854700856" />
         <entry key="..\:/121/MOBILE/test/app/src/main/res/layout/activity_signup.xml" value="0.264" />
         <entry key="..\:/121/MOBILE/test/app/src/main/res/layout/activivy_login.xml" value="0.25416666666666665" />
@@ -38,6 +37,8 @@
         <entry key="..\:/121/MOBILE/test/app/src/main/res/layout/fragment_chapter__book.xml" value="0.25416666666666665" />
         <entry key="..\:/121/MOBILE/test/app/src/main/res/layout/fragment_description__book.xml" value="0.165625" />
         <entry key="..\:/121/MOBILE/test/app/src/main/res/layout/item_recycler.xml" value="0.25416666666666665" />
+        <entry key="..\:/Nam3/LapTrinhDiDong/LyThuyet/BaiTap/Book_App_Reading/app/src/main/res/layout/activity_book_detail.xml" value="0.1334853090172239" />
+        <entry key="..\:/Nam3/LapTrinhDiDong/LyThuyet/BaiTap/Book_App_Reading/app/src/main/res/layout/item_book_vote.xml" value="0.1334853090172239" />
         <entry key="..\:/SET_UP/DATA/Android/Sdk/platforms/android-31/data/res/layout/simple_spinner_dropdown_item.xml" value="0.20854700854700856" />
         <entry key="..\:/documents/HK1_Nam_3/LTAndroid/LyThuyet/AndroidStuidoProjectS/Book_App_Reading/app/src/main/res/layout/activity_main.xml" value="0.24728260869565216" />
       </map>

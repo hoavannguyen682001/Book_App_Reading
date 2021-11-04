@@ -1,16 +1,20 @@
 package com.nguyenvanhoa.book_app_reading.RecyclerView_Book;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.nguyenvanhoa.book_app_reading.Activity.Book_Detail_Activity;
 import com.nguyenvanhoa.book_app_reading.Model.Book2;
 import com.nguyenvanhoa.book_app_reading.R;
 
@@ -36,7 +40,7 @@ public class BookAdapterVote extends RecyclerView.Adapter<BookAdapterVote.BookHo
     }
 
     @Override
-    public void onBindViewHolder(@NonNull BookHolder holder, int position) {
+    public void onBindViewHolder(@NonNull BookHolder holder, @SuppressLint("RecyclerView") int position) {
         Book2 book = Books.get(position);
         if(book == null){
             return;
@@ -46,6 +50,17 @@ public class BookAdapterVote extends RecyclerView.Adapter<BookAdapterVote.BookHo
         holder.author.setText(book.getAuthor());
         holder.date.setText(book.getDate());
         holder.category.setText(book.getCategory());
+        holder.imgBook.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(context, "successfully!", Toast.LENGTH_LONG).show();
+
+                Intent intent = new Intent(context, Book_Detail_Activity.class);
+                intent.putExtra("bookName", Books.get(position).getName());
+                intent.putExtra("bookImg", Books.get(position).getImg());
+                context.startActivity(intent);
+            }
+        });
         holder.checkbox.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
