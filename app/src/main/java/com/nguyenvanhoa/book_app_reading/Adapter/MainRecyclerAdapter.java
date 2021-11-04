@@ -22,6 +22,11 @@ public class MainRecyclerAdapter extends RecyclerView.Adapter<MainRecyclerAdapte
     private Context context;
     private List<AllCategory> allCategories;
 
+    public void setData (List<AllCategory> list) {
+        this.allCategories = list;
+        notifyDataSetChanged ();
+    }
+
     public MainRecyclerAdapter(Context context, List<AllCategory> allCategories) {
         this.context = context;
         this.allCategories = allCategories;
@@ -35,6 +40,9 @@ public class MainRecyclerAdapter extends RecyclerView.Adapter<MainRecyclerAdapte
 
     @Override
     public void onBindViewHolder(@NonNull MainRecyclerHolder holder, int position) {
+        if (allCategories == null){
+            return;
+        }
         holder.categoryName.setText(allCategories.get(position).getCategorytitle());
         SetItemRecycler(holder.itemRecycler, allCategories.get(position).getBookList());
     }
@@ -54,7 +62,6 @@ public class MainRecyclerAdapter extends RecyclerView.Adapter<MainRecyclerAdapte
             itemRecycler = itemView.findViewById(R.id.item_recycler);
         }
     }
-
     private void SetItemRecycler(RecyclerView recyclerView, List<Book> bookList){
         ItemCategoryAdapter itemCategoryAdapter = new ItemCategoryAdapter(context, bookList);
         recyclerView.setLayoutManager(new LinearLayoutManager(context, RecyclerView.HORIZONTAL, false));

@@ -15,9 +15,11 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.tabs.TabLayout;
 import com.nguyenvanhoa.book_app_reading.Adapter.MainRecyclerAdapter;
 import com.nguyenvanhoa.book_app_reading.Adapter.SliderPagerAdapter;
+import com.nguyenvanhoa.book_app_reading.Adapter.TopAuthorsAdapter;
 import com.nguyenvanhoa.book_app_reading.Model.AllCategory;
 import com.nguyenvanhoa.book_app_reading.Model.Book;
 import com.nguyenvanhoa.book_app_reading.Model.Slide_Show;
+import com.nguyenvanhoa.book_app_reading.Model.TopAuthor;
 import com.nguyenvanhoa.book_app_reading.R;
 
 import java.util.ArrayList;
@@ -33,10 +35,12 @@ public class HomeActivity extends AppCompatActivity {
     private TabLayout indicator;
     private BottomNavigationView navigationView;
 
-
     MainRecyclerAdapter mainRecyclerAdapter;
-    RecyclerView mainRecycler;
+    TopAuthorsAdapter topAuthorsAdapter;
+    RecyclerView rcv_mainRecycler;
+    RecyclerView rcv_topAuthors;
     List<AllCategory> allCategoryList;
+
     
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,10 +74,53 @@ public class HomeActivity extends AppCompatActivity {
 
 
     private void InitView_RecyclerView(){
-        setMainRecycler(SetListRecycler());
+        setMainRecycler();
     }
 
-    private List<AllCategory> SetListRecycler(){
+
+    public void setMainRecycler(){
+        RecyclerView.LayoutManager layoutManager_Horizontal = new LinearLayoutManager(this, RecyclerView.HORIZONTAL, false);
+        RecyclerView.LayoutManager layoutManager_Vertical = new LinearLayoutManager(this, RecyclerView.VERTICAL, false);
+
+//        rcv_topAuthors
+        rcv_topAuthors = findViewById(R.id.rcv_topAuthors);
+        rcv_topAuthors.setLayoutManager(layoutManager_Horizontal);
+        rcv_topAuthors.setFocusable(false);
+        rcv_topAuthors.setNestedScrollingEnabled(false);
+
+        topAuthorsAdapter = new TopAuthorsAdapter();
+        topAuthorsAdapter.setData(GetListAuthors());
+        rcv_topAuthors.setAdapter(topAuthorsAdapter);
+
+//        rcv_mainRecycler
+        rcv_mainRecycler = findViewById(R.id.main_recycler);
+        rcv_mainRecycler.setLayoutManager(layoutManager_Vertical);
+        rcv_mainRecycler.setFocusable(false);
+        rcv_mainRecycler.setNestedScrollingEnabled(false);
+
+        mainRecyclerAdapter = new MainRecyclerAdapter(this, GetListCategory());
+        mainRecyclerAdapter.setData(GetListCategory());
+        rcv_mainRecycler.setAdapter(mainRecyclerAdapter);
+    }
+
+    private List<TopAuthor> GetListAuthors() {
+        List<TopAuthor> list = new ArrayList<>();
+        list.add(new TopAuthor(R.drawable.author));
+        list.add(new TopAuthor(R.drawable.author1));
+        list.add(new TopAuthor(R.drawable.author2));
+        list.add(new TopAuthor(R.drawable.author3));
+        list.add(new TopAuthor(R.drawable.author4));
+        list.add(new TopAuthor(R.drawable.author));
+        list.add(new TopAuthor(R.drawable.author1));
+        list.add(new TopAuthor(R.drawable.author2));
+        list.add(new TopAuthor(R.drawable.author3));
+        list.add(new TopAuthor(R.drawable.author4));
+        list.add(new TopAuthor(R.drawable.author2));
+        list.add(new TopAuthor(R.drawable.author4));
+        return list;
+    }
+
+    private List<AllCategory> GetListCategory(){
         List<Book> mListBook1 = new ArrayList<>();
         mListBook1.add(new Book(R.drawable.spidercover, "Spider Cover"));
         mListBook1.add(new Book(R.drawable.slide1, "Slide Version 1"));
@@ -105,14 +152,6 @@ public class HomeActivity extends AppCompatActivity {
         allCategoryList.add(new AllCategory(4, "Action & Adventure", mListBook4));
 
         return allCategoryList;
-    }
-
-    public void setMainRecycler(List<AllCategory> allCategoryList){
-        mainRecycler = findViewById(R.id.main_recycler);
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this, RecyclerView.VERTICAL, false);
-        mainRecycler.setLayoutManager(layoutManager);
-        mainRecyclerAdapter = new MainRecyclerAdapter(this, allCategoryList);
-        mainRecycler.setAdapter(mainRecyclerAdapter);
     }
 
     class SliderTimer extends TimerTask {
