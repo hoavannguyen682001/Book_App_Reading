@@ -16,6 +16,7 @@ import androidx.viewpager.widget.ViewPager;
 import com.bumptech.glide.Glide;
 import com.google.android.material.tabs.TabLayout;
 import com.nguyenvanhoa.book_app_reading.Adapter.TabDetailAdapter;
+import com.nguyenvanhoa.book_app_reading.Model.Sach_search;
 import com.nguyenvanhoa.book_app_reading.R;
 
 public class Book_Detail_Activity extends AppCompatActivity {
@@ -32,7 +33,11 @@ public class Book_Detail_Activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_book_detail);
-
+        Bundle bundle = getIntent().getExtras();
+        if(bundle == null){
+            return;
+        }
+        Sach_search sach = (Sach_search) bundle.get("object");
         imgbook = findViewById(R.id.img_book_item);
         namebook = findViewById(R.id.txtName_book);
         fav = findViewById(R.id.cbfavorite);

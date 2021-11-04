@@ -1,14 +1,19 @@
 package com.nguyenvanhoa.book_app_reading.Adapter;
 
+import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.nguyenvanhoa.book_app_reading.Activity.Book_Detail_Activity;
 import com.nguyenvanhoa.book_app_reading.Model.Sach_search;
 import com.nguyenvanhoa.book_app_reading.R;
 
@@ -16,9 +21,10 @@ import java.util.List;
 
 public class SachsearchAdapter extends RecyclerView.Adapter<SachsearchAdapter.SachViewHoder> {
     private List<Sach_search> listSach;
+    private Context mContext;
 
-    public SachsearchAdapter(List<Sach_search> listSach) {
-
+    public SachsearchAdapter(Context context ,List<Sach_search> listSach) {
+        this.mContext = context;
         this.listSach = listSach;
     }
     @NonNull
@@ -30,7 +36,7 @@ public class SachsearchAdapter extends RecyclerView.Adapter<SachsearchAdapter.Sa
     @Override
 
     public void onBindViewHolder(@NonNull SachViewHoder holder, int position) {
-        Sach_search sach = listSach.get(position);
+      Sach_search sach = listSach.get(position);
         if (sach == null){
             return;
         }
@@ -39,6 +45,19 @@ public class SachsearchAdapter extends RecyclerView.Adapter<SachsearchAdapter.Sa
         holder.tacgia.setText(sach.getTacgia());
         holder.ngay.setText(sach.getNgay());
         holder.theloai.setText(sach.getTheloai());
+        holder.layoutitem.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onClickGoToDetail(sach);
+            }
+        });
+    }
+    private void onClickGoToDetail(Sach_search sach){
+        Intent intent = new Intent(mContext, Book_Detail_Activity.class);
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("Object_sach", sach);
+        intent.putExtras(bundle);
+        mContext.startActivity(intent);
     }
     @Override
     public int getItemCount() {
@@ -49,6 +68,7 @@ public class SachsearchAdapter extends RecyclerView.Adapter<SachsearchAdapter.Sa
     }
 
     public class SachViewHoder extends RecyclerView.ViewHolder{
+        private LinearLayout layoutitem;
         private ImageView hinhanh;
         private TextView tensach;
         private TextView tacgia;
@@ -56,6 +76,7 @@ public class SachsearchAdapter extends RecyclerView.Adapter<SachsearchAdapter.Sa
         private  TextView theloai;
         public SachViewHoder(@NonNull View itemView) {
             super(itemView);
+            layoutitem= itemView.findViewById(R.id.layoutitem);
             hinhanh =itemView.findViewById(R.id.picture) ;
             tensach = itemView.findViewById(R.id.name);
             tacgia = itemView.findViewById(R.id.author);

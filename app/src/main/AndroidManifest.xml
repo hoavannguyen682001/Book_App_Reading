@@ -10,6 +10,18 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Book_App_Reading">
 
+        <activity android:name=".Activity.HomeActivity"></activity>
+
+        <activity android:name=".Activity.Book_Detail_Activity">
+        </activity>
+        <activity android:name=".Activity.LibraryActivity">
+        </activity>
+        <activity android:name=".Activity.BookshelfActivity">
+        </activity>
+        <activity android:name=".Activity.ProfileActivity">
+        </activity>
+        <activity android:name=".Activity.SignUpActivity">
+        </activity>
         <activity android:name=".Activity.MainActivity"
             android:exported="true">
             <intent-filter>
@@ -19,23 +31,15 @@
             </intent-filter>
         </activity>
 
-
-        <activity android:name=".Activity.SignUpActivity">
-        </activity>
-
         <activity android:name=".Activity.LoginActivity"></activity>
-        <activity android:name=".Activity.HomeActivity"></activity>
-        <activity android:name=".Activity.BookshelfActivity"></activity>
         <activity
-            android:name=".Activity.LibraryActivity">
+            android:name=".Activity.SearchActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
-        </activity>
-        <activity android:name=".Activity.ProfileActivity">
-        </activity>
-        <activity android:name=".Activity.SearchActivity"></activity>
-
-
-        <activity android:name=".Activity.Book_Detail_Activity">
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
 
     </application>
