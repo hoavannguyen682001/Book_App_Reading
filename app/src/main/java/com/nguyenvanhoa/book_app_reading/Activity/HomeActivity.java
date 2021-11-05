@@ -66,9 +66,8 @@ public class HomeActivity extends AppCompatActivity {
 
     private List<Slide_Show> getListSlides() {
         listSlides = new ArrayList<>();
-        listSlides.add(new Slide_Show(1, "slide1", R.drawable.slide1));
-        listSlides.add(new Slide_Show(2, "spidercover", R.drawable.slide2));
-        listSlides.add(new Slide_Show(3, "moana", R.drawable.spidercover));
+        listSlides.add(new Slide_Show(1, "The Dawn of Everything", R.drawable.banner1));
+        listSlides.add(new Slide_Show(2, "The Stranger in the Lifeboat", R.drawable.banner2));
         return listSlides;
     }
 
@@ -161,12 +160,12 @@ public class HomeActivity extends AppCompatActivity {
         mListBook3.add(new Book(R.drawable.braiding_sweetgrass, "Braiding Sweetgrass"));
         mListBook3.add(new Book(R.drawable.how_to_write_a_mystery, "How to Write a Mystery"));
         mListBook3.add(new Book(R.drawable.one_writers_beginnings, "One Writer's Beginnings"));
-        mListBook3.add(new Book(R.drawable.moana, "Moana"));
+        mListBook3.add(new Book(R.drawable.olympus_texas, "Olympus, Texas"));
 
         List<Book> mListBook4 = new ArrayList<>();
-        mListBook4.add(new Book(R.drawable.spidercover, "Spider Cover"));
-        mListBook4.add(new Book(R.drawable.slide1, "Slide Version 1"));
-        mListBook4.add(new Book(R.drawable.slide2, "Slide Version 2"));
+        mListBook4.add(new Book(R.drawable.circe, "Circe"));
+        mListBook4.add(new Book(R.drawable.ariadne, "Ariadne"));
+        mListBook4.add(new Book(R.drawable.shaping_school_culture, "Slide Version 2"));
         mListBook4.add(new Book(R.drawable.moana, "Moana"));
 
         List<AllCategory> allCategoryList = new ArrayList<>();
