@@ -18,8 +18,7 @@ public class activity_content_story3 extends AppCompatActivity {
     PDFView pdfView;
     ImageButton chapter_back;
     TextView txtChapter;
-    int index ;
-
+    String chapterIndex;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,14 +33,15 @@ public class activity_content_story3 extends AppCompatActivity {
 
         txtChapter.setText("Chapter 4 : Win");
         pdfView.fromAsset("content_story.pdf").load();
-        index = getIntent().getIntExtra("index",0);
+
+        chapterIndex = getIntent().getStringExtra("key");
 
         chapter_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                index--;
+                chapterIndex = "3.Chap 3";
                 Intent intent = new Intent(getApplicationContext(),activity_content_story2.class);
-                intent.putExtra("index",index);
+                intent.putExtra("key",chapterIndex);
                 startActivity(intent);
                 overridePendingTransition(0,0);
             }

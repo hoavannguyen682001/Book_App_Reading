@@ -37,6 +37,9 @@
 
         <activity android:name=".Activity.Book_Detail_Activity">
         </activity>
+        <activity android:name=".Activity.Content_Story.activity_content_story"></activity>
+        <activity android:name=".Activity.Content_Story.activity_content_story2"></activity>
+        <activity android:name=".Activity.Content_Story.activity_content_story3"></activity>
 
     </application>
 

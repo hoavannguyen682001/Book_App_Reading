@@ -13,6 +13,8 @@ import androidx.fragment.app.Fragment;
 
 import com.nguyenvanhoa.book_app_reading.Activity.Book_Detail_Activity;
 import com.nguyenvanhoa.book_app_reading.Activity.Content_Story.activity_content_story;
+import com.nguyenvanhoa.book_app_reading.Activity.Content_Story.activity_content_story2;
+import com.nguyenvanhoa.book_app_reading.Activity.Content_Story.activity_content_story3;
 import com.nguyenvanhoa.book_app_reading.R;
 
 public class Chapter_BookFragment extends Fragment{
@@ -37,8 +39,40 @@ public class Chapter_BookFragment extends Fragment{
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, b);
         listView.setAdapter( adapter);
 
-        return view;
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                String item = listView.getItemAtPosition(i).toString();
+                Intent intent;
+                switch (item){
+                    case "1.Chap 1":
+                        intent = new Intent(getActivity(), activity_content_story.class);
+                        intent.putExtra("key",item);
+                        startActivity(intent);
+                        break;
+                    case "2.Chap 2":
+                        intent = new Intent(getActivity(), activity_content_story2.class);
+                        intent.putExtra("key",item);
+                        startActivity(intent);
+                        break;
+                    case "3.Chap 3":
+                        intent = new Intent(getActivity(), activity_content_story2.class);
+                        intent.putExtra("key",item);
+                        startActivity(intent);
+                        break;
+                    case "4.Chap 4":
+                        intent = new Intent(getActivity(), activity_content_story3.class);
+                        intent.putExtra("key",item);
+                        startActivity(intent);
+                        break;
+                }
 
+
+
+            }
+        });
+
+        return view;
     }
 
 }
