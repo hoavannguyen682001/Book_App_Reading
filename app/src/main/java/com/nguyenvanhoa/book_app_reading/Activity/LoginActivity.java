@@ -20,6 +20,7 @@ public class LoginActivity extends AppCompatActivity {
     private EditText txtEmail, txtPassword;
     private TextView txtSignUp;
     private LinearLayout ln;
+    private TextView tvforgotpass;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -39,22 +40,26 @@ public class LoginActivity extends AppCompatActivity {
         txtPassword = findViewById(R.id.txtPassword);
         ln = findViewById(R.id.lnSignUp);
         txtSignUp = findViewById(R.id.txtSignUp);
+        tvforgotpass = findViewById(R.id.tvForgotPass);
     }
 
     private void Animation(){
-        txtEmail.setTranslationX(1000);
-        txtPassword.setTranslationX(1000);
-        btnLogin.setTranslationX(1000);
-        ln.setTranslationX(1000);
+        txtEmail.setTranslationX(800);
+        txtPassword.setTranslationX(800);
+        btnLogin.setTranslationX(800);
+        ln.setTranslationX(800);
+        tvforgotpass.setTranslationX(800);
 
         txtEmail.setAlpha(0);
         txtPassword.setAlpha(0);
         btnLogin.setAlpha(0);
         ln.setAlpha(0);
+        tvforgotpass.setAlpha(0);
 
-        txtEmail.animate().translationX(0).alpha(1).setDuration(1000).setStartDelay(400).start();
-        txtPassword.animate().translationX(0).alpha(1).setDuration(1000).setStartDelay(600).start();
-        btnLogin.animate().translationX(0).alpha(1).setDuration(1000).setStartDelay(800).start();
+        txtEmail.animate().translationX(0).alpha(1).setDuration(1000).setStartDelay(200).start();
+        txtPassword.animate().translationX(0).alpha(1).setDuration(1000).setStartDelay(400).start();
+        btnLogin.animate().translationX(0).alpha(1).setDuration(1000).setStartDelay(600).start();
+        tvforgotpass.animate().translationX(0).alpha(1).setDuration(1000).setStartDelay(800).start();
         ln.animate().translationX(0).alpha(1).setDuration(1000).setStartDelay(1000).start();
     }
 

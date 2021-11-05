@@ -34,7 +34,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/img_center_SignUp"
-        android:layout_marginTop="40dp"
         android:orientation="vertical"
         android:paddingLeft="20dp"
         android:paddingRight="20dp">
@@ -57,30 +56,13 @@
 
             <EditText
                 android:id="@+id/txtFullName_SignUp"
-                android:layout_width="210dp"
-                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
                 android:background="@drawable/radius_edittext"
                 android:drawableLeft="@drawable/ic_user"
                 android:drawablePadding="10dp"
                 android:layout_marginRight="16dp"
                 android:hint="Full Name" />
-
-            <com.google.android.material.textfield.TextInputLayout
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                app:boxStrokeColor="#EAEFEF"
-                app:hintTextColor="@color/black"
-                app:boxBackgroundMode="outline">
-
-                <AutoCompleteTextView
-                    android:id="@+id/tvGender_SignUp"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:inputType="none" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
 
 
         </LinearLayout>
@@ -107,7 +89,7 @@
             android:textColor="@color/white"/>
         <LinearLayout
             android:id="@+id/lnLogIn"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal">
@@ -125,8 +107,8 @@
                 android:layout_height="wrap_content"
                 android:text="LOGIN"
                 android:textStyle="bold"
-                android:textSize="16sp"
-                android:textColor="@color/RoyalPurple"/>
+                android:textSize="18sp"
+                android:textColor="@color/design_default_color_error"/>
         </LinearLayout>
     </LinearLayout>
 </RelativeLayout>

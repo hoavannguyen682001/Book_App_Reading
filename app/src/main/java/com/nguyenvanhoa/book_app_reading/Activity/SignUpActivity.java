@@ -34,9 +34,16 @@ public class SignUpActivity extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         AnhXa();
-        InitSpinner();
         Animation();
+//        InitSpinner();
 
+        btnSignUp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplication(), LoginActivity.class);
+                startActivity(intent);
+            }
+        });
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -51,7 +58,6 @@ public class SignUpActivity extends AppCompatActivity {
         txtEmail = findViewById(R.id.txtEmail_SignUp);
         txtFullName = findViewById(R.id.txtFullName_SignUp);
         txtPassword = findViewById(R.id.txtPassword_SignUp);
-        spnGender = findViewById(R.id.tvGender_SignUp);
         lnF_G = findViewById(R.id.lnName_Gender);
         btnSignUp = findViewById(R.id.btnSignUp_SignUpAT);
         lnLogin = findViewById(R.id.lnLogIn);
@@ -80,16 +86,16 @@ public class SignUpActivity extends AppCompatActivity {
         lnLogin.animate().translationX(0).alpha(1).setDuration(1000).setStartDelay(1400).start();
     }
 
-    private void InitSpinner() {
+//    private void InitSpinner() {
 //        ArrayList<String> listGender = new ArrayList<>();
 //        listGender.add("Male");
 //        listGender.add("Female");
 //        ArrayAdapter<CharSequence> adapter = new ArrayAdapter<CharSequence>(this, android.R.layout., listGender);
 //        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 //        spnGender.setAdapter(adapter);
-        String[] arrGender = new String[]{"Male", "Female", "Other"};
-        ArrayAdapter<CharSequence> GenderAdapter = new ArrayAdapter<CharSequence>(this, R.layout.custom_spinner, arrGender);
-        spnGender.setAdapter(GenderAdapter);
-    }
+//        String[] arrGender = new String[]{"Male", "Female", "Other"};
+//        ArrayAdapter<CharSequence> GenderAdapter = new ArrayAdapter<CharSequence>(this, R.layout.custom_spinner, arrGender);
+//        spnGender.setAdapter(GenderAdapter);
+//    }
 
 }

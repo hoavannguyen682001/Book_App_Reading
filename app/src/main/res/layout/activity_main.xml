@@ -9,8 +9,9 @@
     <ImageView
         android:id="@+id/img_Center_Main"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
+        android:layout_height="390dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="160dp"
         android:src="@drawable/ic_chat" />
 
     <ImageView
@@ -39,38 +40,44 @@
         android:textSize="25sp"
         android:textStyle="bold" />
 
-    <LinearLayout
+    <RelativeLayout
         android:id="@+id/buttonPanel"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/img_Center_Main"
+        android:layout_alignParentStart="true"
         android:gravity="center_horizontal"
         android:orientation="vertical"
         android:paddingLeft="40dp"
-        android:paddingRight="40dp">
+        android:paddingTop="8dp"
+        android:paddingRight="40dp"
+        android:paddingBottom="8dp">
+
 
         <Button
             android:id="@+id/btn_LogInLauncherAt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/button_login"
-            app:backgroundTint="@null"
-            android:text="LOGIN"
+            android:layout_marginBottom="8dp"
+            android:background="@drawable/button_radius"
+            android:text="Login"
             android:textColor="@color/white"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            app:backgroundTint="@color/RoyalPurple" />
 
         <Button
             android:id="@+id/btn_SignUpLauncherAt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/button_signup"
-            app:backgroundTint="@null"
+            android:layout_below="@id/btn_LogInLauncherAt"
+            android:background="@drawable/button_radius"
             android:text="SIGN UP"
             android:textColor="@color/white"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            app:backgroundTint="#DCCDE4"/>
 
-    </LinearLayout>
+
+    </RelativeLayout>
 
 
 </RelativeLayout>
