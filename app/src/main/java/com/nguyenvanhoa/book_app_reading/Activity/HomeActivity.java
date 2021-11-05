@@ -39,7 +39,7 @@ public class HomeActivity extends AppCompatActivity {
     TopAuthorsAdapter topAuthorsAdapter;
     RecyclerView rcv_mainRecycler;
     RecyclerView rcv_topAuthors;
-    List<AllCategory> allCategoryList;
+    RecyclerView rcv_TopTrending;
 
     
     @Override
@@ -67,8 +67,8 @@ public class HomeActivity extends AppCompatActivity {
     private List<Slide_Show> getListSlides() {
         listSlides = new ArrayList<>();
         listSlides.add(new Slide_Show(1, "slide1", R.drawable.slide1));
-        listSlides.add(new Slide_Show(1, "spidercover", R.drawable.slide2));
-        listSlides.add(new Slide_Show(1, "moana", R.drawable.spidercover));
+        listSlides.add(new Slide_Show(2, "spidercover", R.drawable.slide2));
+        listSlides.add(new Slide_Show(3, "moana", R.drawable.spidercover));
         return listSlides;
     }
 
@@ -80,7 +80,18 @@ public class HomeActivity extends AppCompatActivity {
 
     public void setMainRecycler(){
         RecyclerView.LayoutManager layoutManager_Horizontal = new LinearLayoutManager(this, RecyclerView.HORIZONTAL, false);
-        RecyclerView.LayoutManager layoutManager_Vertical = new LinearLayoutManager(this, RecyclerView.VERTICAL, false);
+        RecyclerView.LayoutManager layoutManager_Trending = new LinearLayoutManager(this, RecyclerView.VERTICAL, false);
+        RecyclerView.LayoutManager layoutManager_Category = new LinearLayoutManager(this, RecyclerView.VERTICAL, false);
+
+//        rcv_TopTrending
+        rcv_TopTrending = findViewById(R.id.rcv_TopTrending);
+        rcv_TopTrending.setLayoutManager(layoutManager_Trending);
+        rcv_TopTrending.setFocusable(false);
+        rcv_TopTrending.setNestedScrollingEnabled(false);
+
+        mainRecyclerAdapter = new MainRecyclerAdapter(this, GetListTrending());
+        mainRecyclerAdapter.setData(GetListTrending());
+        rcv_TopTrending.setAdapter(mainRecyclerAdapter);
 
 //        rcv_topAuthors
         rcv_topAuthors = findViewById(R.id.rcv_topAuthors);
@@ -94,13 +105,26 @@ public class HomeActivity extends AppCompatActivity {
 
 //        rcv_mainRecycler
         rcv_mainRecycler = findViewById(R.id.main_recycler);
-        rcv_mainRecycler.setLayoutManager(layoutManager_Vertical);
+        rcv_mainRecycler.setLayoutManager(layoutManager_Category);
         rcv_mainRecycler.setFocusable(false);
         rcv_mainRecycler.setNestedScrollingEnabled(false);
 
         mainRecyclerAdapter = new MainRecyclerAdapter(this, GetListCategory());
         mainRecyclerAdapter.setData(GetListCategory());
         rcv_mainRecycler.setAdapter(mainRecyclerAdapter);
+    }
+
+    private List<AllCategory> GetListTrending() {
+        List<Book> bookTrending = new ArrayList<>();
+        bookTrending.add(new Book(R.drawable.the_dawn, "The Dawn of Everything"));
+        bookTrending.add(new Book(R.drawable.dune, "Dune"));
+        bookTrending.add(new Book(R.drawable.the_story_of_schit_creek, "The Story of Schitt's Creek"));
+        bookTrending.add(new Book(R.drawable.the_1619_project, "The 1619 Project"));
+        bookTrending.add(new Book(R.drawable.poems, "Poems"));
+
+        List<AllCategory> trending_list = new ArrayList<>();
+        trending_list.add(new AllCategory(1, "Trending Books ", bookTrending));
+        return trending_list;
     }
 
     private List<TopAuthor> GetListAuthors() {
@@ -121,22 +145,22 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     private List<AllCategory> GetListCategory(){
-        List<Book> mListBook1 = new ArrayList<>();
-        mListBook1.add(new Book(R.drawable.spidercover, "Spider Cover"));
-        mListBook1.add(new Book(R.drawable.slide1, "Slide Version 1"));
-        mListBook1.add(new Book(R.drawable.slide2, "Slide Version 2"));
-        mListBook1.add(new Book(R.drawable.moana, "Moana"));
+        List<Book> mListBookEducation = new ArrayList<>();
+        mListBookEducation.add(new Book(R.drawable.school_leaders, "School Leaders"));
+        mListBookEducation.add(new Book(R.drawable.shaping_school_culture, "Shaping School Culture"));
+        mListBookEducation.add(new Book(R.drawable.our_country_friends, "Our Country Friends"));
+        mListBookEducation.add(new Book(R.drawable.pedagogy, "Pedagogy"));
 
         List<Book> mListBook2 = new ArrayList<>();
-        mListBook2.add(new Book(R.drawable.themartian, "Spider Cover"));
+        mListBook2.add(new Book(R.drawable.the_stranger, "The Stranger in the Lifeboat"));
         mListBook2.add(new Book(R.drawable.bigfish_begonia, "Big Fish & Begonia"));
         mListBook2.add(new Book(R.drawable.tales_from_earthsea, "Tales from Earthsea"));
         mListBook2.add(new Book(R.drawable.when_marnie_was_there, "When Marnie Was There"));
 
         List<Book> mListBook3 = new ArrayList<>();
-        mListBook3.add(new Book(R.drawable.spidercover, "Spider Cover"));
-        mListBook3.add(new Book(R.drawable.slide1, "Slide Version 1"));
-        mListBook3.add(new Book(R.drawable.slide2, "Slide Version 2"));
+        mListBook3.add(new Book(R.drawable.braiding_sweetgrass, "Braiding Sweetgrass"));
+        mListBook3.add(new Book(R.drawable.how_to_write_a_mystery, "How to Write a Mystery"));
+        mListBook3.add(new Book(R.drawable.one_writers_beginnings, "One Writer's Beginnings"));
         mListBook3.add(new Book(R.drawable.moana, "Moana"));
 
         List<Book> mListBook4 = new ArrayList<>();
@@ -145,11 +169,11 @@ public class HomeActivity extends AppCompatActivity {
         mListBook4.add(new Book(R.drawable.slide2, "Slide Version 2"));
         mListBook4.add(new Book(R.drawable.moana, "Moana"));
 
-        allCategoryList = new ArrayList<>();
-        allCategoryList.add(new AllCategory(1, "Action ", mListBook1));
-        allCategoryList.add(new AllCategory(2, "Family", mListBook2));
-        allCategoryList.add(new AllCategory(3, "Dramas", mListBook3));
-        allCategoryList.add(new AllCategory(4, "Action & Adventure", mListBook4));
+        List<AllCategory> allCategoryList = new ArrayList<>();
+        allCategoryList.add(new AllCategory(1, "Education ", mListBookEducation));
+        allCategoryList.add(new AllCategory(2, "Detective and Mystery", mListBook2));
+        allCategoryList.add(new AllCategory(3, "Fantasy", mListBook3));
+        allCategoryList.add(new AllCategory(4, "Historical Fiction", mListBook4));
 
         return allCategoryList;
     }

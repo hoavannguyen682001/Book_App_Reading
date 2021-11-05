@@ -15,7 +15,8 @@
         app:layout_constraintTop_toTopOf="parent"
         android:textStyle="bold"
         android:textColor="@color/black"
-        android:textSize="20sp"/>
+        android:textSize="20sp"
+        android:padding="8dp"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/item_recycler"
