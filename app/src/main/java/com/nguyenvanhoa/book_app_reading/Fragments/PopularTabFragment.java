@@ -36,11 +36,10 @@ public class PopularTabFragment extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         books = new ArrayList<>();
+        books.add(new Book2("Themartian", "by John Grisham", "August 19, 2014", "Horror", R.drawable.themartian));
         books.add(new Book2("Sycamore Row", "by John Grisham", "August 19, 2014", "Horror", R.drawable.title_book));
-        books.add(new Book2("Sycamore Row", "by John Grisham", "August 19, 2014", "Horror", R.drawable.title_book));
-        books.add(new Book2("Sycamore Row", "by John Grisham", "August 19, 2014", "Horror", R.drawable.title_book));
-        books.add(new Book2("Sycamore Row", "by John Grisham", "August 19, 2014", "Horror", R.drawable.title_book));
-        books.add(new Book2("Sycamore Row", "by John Grisham", "August 19, 2014", "Horror", R.drawable.title_book));
-        books.add(new Book2("Sycamore Row", "by John Grisham", "August 19, 2014", "Horror", R.drawable.title_book));
+        books.add(new Book2("Werewolves", "by John Grisham", "August 19, 2014", "Horror", R.drawable.slide1));
+        books.add(new Book2("GrindelWall Row", "by John Grisham", "August 19, 2014", "Horror", R.drawable.slide2));
+        books.add(new Book2("Spider Cover", "by John Grisham", "August 19, 2014", "Horror", R.drawable.spidercover)); books.add(new Book2("Moana", "by John Grisham", "August 19, 2014", "Horror", R.drawable.when_marnie_was_there));
     }
 }

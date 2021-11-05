@@ -88,7 +88,7 @@ public class SearchActivity extends AppCompatActivity {
         rcvSach = findViewById(R.id.rcv_book);
         rcvSach.setHasFixedSize(true);
         mLayoutManager = new LinearLayoutManager(this);
-        sachadapter = new SachsearchAdapter(list);
+        sachadapter = new SachsearchAdapter(this,list);
         rcvSach.setLayoutManager(mLayoutManager);
         rcvSach.setAdapter(sachadapter);
     }

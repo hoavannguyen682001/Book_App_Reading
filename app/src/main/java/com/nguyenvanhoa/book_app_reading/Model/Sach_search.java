@@ -1,6 +1,8 @@
 package com.nguyenvanhoa.book_app_reading.Model;
 
-public class Sach_search {
+import java.io.Serializable;
+
+public class Sach_search implements Serializable {
     private int Hinhanh;
     private String tensach;
     private String Tacgia;
