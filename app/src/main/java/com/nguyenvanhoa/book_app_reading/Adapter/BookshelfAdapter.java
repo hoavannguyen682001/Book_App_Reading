@@ -30,9 +30,6 @@ public class BookshelfAdapter extends FragmentStatePagerAdapter {
             case 2:
                 ClassicTabFragment classicFragment = new ClassicTabFragment();
                 return classicFragment;
-            case 3:
-                ReadingTabFragment readingFragment = new ReadingTabFragment();
-                return readingFragment;
             default:
                 return null;
         }
@@ -40,7 +37,7 @@ public class BookshelfAdapter extends FragmentStatePagerAdapter {
 
     @Override
     public int getCount() {
-        return 4;
+        return 3;
     }
 
     @Nullable
@@ -56,9 +53,6 @@ public class BookshelfAdapter extends FragmentStatePagerAdapter {
                 break;
             case 2:
                 title = "Classic";
-                break;
-            case 3:
-                title = "Reading";
                 break;
             default:
                 return null;

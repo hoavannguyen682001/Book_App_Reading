@@ -21,12 +21,9 @@ public class LibraryAdapter extends FragmentStatePagerAdapter {
     public Fragment getItem(int position) {
         switch (position){
             case 0:
-                ArchivedTabFragment archivedFragment = new ArchivedTabFragment();
-                return archivedFragment;
-            case 1:
                 ReadinglistTabFragment readinglistFragment = new ReadinglistTabFragment();
                 return readinglistFragment;
-            case 2:
+            case 1:
                 VoteTabFragment voteFragment = new VoteTabFragment();
                 return voteFragment;
             default:
@@ -36,7 +33,7 @@ public class LibraryAdapter extends FragmentStatePagerAdapter {
 
     @Override
     public int getCount() {
-        return 3;
+        return 2;
     }
 
     @Nullable
@@ -45,12 +42,9 @@ public class LibraryAdapter extends FragmentStatePagerAdapter {
         String title = "";
         switch (position){
             case 0:
-                title = "Archived";
-                break;
-            case 1:
                 title = "Reading List";
                 break;
-            case 2:
+            case 1:
                 title = "Vote";
                 break;
             default:
