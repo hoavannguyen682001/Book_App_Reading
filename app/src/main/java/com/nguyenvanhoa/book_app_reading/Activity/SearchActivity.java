@@ -44,11 +44,11 @@ public class SearchActivity extends AppCompatActivity {
 
         createlist();
         buildRecycleView();
-        spnCategory = findViewById(R.id.spn_catory);
+        spnCategory = findViewById(R.id.spn_category);
         categoryAdapter = new CategoryAdapter(this, R.layout.itemsearch_selected, getListCategory());
         spnCategory.setAdapter(categoryAdapter);
-        RecyclerView.ItemDecoration itemDecoration = new DividerItemDecoration(this, DividerItemDecoration.VERTICAL);
-        rcvSach.addItemDecoration(itemDecoration);
+
+        rcvSach.setLayoutManager(new LinearLayoutManager(this));
         editText= findViewById(R.id.edittext);//timkiem
         editText.addTextChangedListener(new TextWatcher() {
             @Override
