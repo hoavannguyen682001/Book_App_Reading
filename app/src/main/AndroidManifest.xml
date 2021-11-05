@@ -24,6 +24,7 @@
         </activity>
 
         <activity android:name=".Activity.LoginActivity"></activity>
+        <activity android:name=".Activity.ForgotPassActivity"></activity>
         <activity android:name=".Activity.HomeActivity"></activity>
         <activity android:name=".Activity.BookshelfActivity"></activity>
         <activity

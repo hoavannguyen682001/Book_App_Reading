@@ -4,7 +4,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context=".Activity.ForgotPassActivity">
 
     <ImageView
         android:id="@+id/imageView4"
@@ -13,12 +14,25 @@
         android:src="@drawable/main_top"/>
 
     <TextView
+        android:id="@+id/tvExit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="16dp"
+        android:layout_marginRight="16dp"
+        android:fontFamily="sans-serif"
+        android:text="X"
+        android:textColor="@color/RoyalPurple"
+        android:textSize="30dp"
+        android:textStyle="bold"/>
+
+    <TextView
         android:id="@+id/textview_login"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="50dp"
-        android:text="LOGIN"
+        android:text="Forgot Passord"
         android:textColor="@color/black"
         android:textSize="25sp"
         android:textStyle="bold" />
@@ -57,36 +71,16 @@
             android:hint="Email"
             android:textSize="20sp" />
 
-        <EditText
-            android:id="@+id/txtPassword"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginTop="20dp"
-            android:background="@drawable/radius_edittext"
-            android:drawableLeft="@drawable/ic_baseline_lock_24"
-            android:drawablePadding="20dp"
-            android:hint="Password"
-            android:textSize="20sp" />
-
         <Button
-            android:id="@+id/btnLogin_LoginAT"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginTop="20dp"
-            android:background="@drawable/button_login"
-            android:text="LOGIN"
-            android:textColor="@color/white"
-            android:textStyle="bold"
-            app:backgroundTint="@null" />
-
-        <TextView
-            android:id="@+id/tvForgotPass"
+            android:id="@+id/btnSendCode"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="Forgot Password?"
-            android:textColor="@color/RoyalPurple"
-            android:gravity="center"/>
+            android:background="@drawable/button_login"
+            android:text="Send Code"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            app:backgroundTint="@null"/>
 
     </LinearLayout>
 
@@ -106,7 +100,7 @@
             android:textColor="@color/RoyalPurple" />
 
         <TextView
-            android:id="@+id/txtSignUp"
+            android:id="@+id/tvSignUp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"

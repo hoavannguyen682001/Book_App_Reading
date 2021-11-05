@@ -35,13 +35,12 @@ public class HomeActivity extends AppCompatActivity {
     private TabLayout indicator;
     private BottomNavigationView navigationView;
 
-    MainRecyclerAdapter mainRecyclerAdapter;
-    TopAuthorsAdapter topAuthorsAdapter;
-    RecyclerView rcv_mainRecycler;
-    RecyclerView rcv_topAuthors;
-    RecyclerView rcv_TopTrending;
+    private MainRecyclerAdapter mainRecyclerAdapter;
+    private TopAuthorsAdapter topAuthorsAdapter;
+    private RecyclerView rcv_mainRecycler;
+    private RecyclerView rcv_topAuthors;
+    private RecyclerView rcv_TopTrending;
 
-    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
