@@ -35,11 +35,12 @@
         </LinearLayout>
 
         <TextView
+            android:id="@+id/nameBook"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:fontFamily="sans-serif"
-            android:text="Sycamore Tress"
+            android:text="Sycamore Tree"
             android:textColor="@color/black"
             android:textSize="32sp"
             android:textStyle="bold" />

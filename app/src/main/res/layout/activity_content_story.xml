@@ -34,11 +34,12 @@
         </LinearLayout>
 
         <TextView
+            android:id="@+id/nameBook"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:fontFamily="sans-serif"
-            android:text="Sycamore Tress"
+            android:text="Sycamore Tree"
             android:textColor="@color/black"
             android:textSize="32sp"
             android:textStyle="bold" />
@@ -102,7 +103,8 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent" >
+            </View>
         </com.github.barteksc.pdfviewer.PDFView>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

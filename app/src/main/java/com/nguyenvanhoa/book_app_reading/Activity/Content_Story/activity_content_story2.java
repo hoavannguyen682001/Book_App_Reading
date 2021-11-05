@@ -11,14 +11,24 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.github.barteksc.pdfviewer.PDFView;
+import com.nguyenvanhoa.book_app_reading.Activity.Book_Detail_Activity;
 import com.nguyenvanhoa.book_app_reading.R;
 
 public class activity_content_story2 extends AppCompatActivity {
 
     PDFView pdfView;
-    ImageButton chapter_next,chapter_back;
+    ImageButton chapter_next,chapter_back,back_to_detail;
     TextView txtChapter;
     String chapterIndex;
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent intent = new Intent(getApplicationContext(), Book_Detail_Activity.class);
+        intent.putExtra("bookName","Sycamore Tree");
+        intent.putExtra("bookImg",R.drawable.sycamorerow);
+        startActivity(intent);
+    }
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -34,6 +44,7 @@ public class activity_content_story2 extends AppCompatActivity {
         chapter_back = (ImageButton) findViewById(R.id.chapter_back);
         chapter_next = (ImageButton) findViewById(R.id.chapter_next);
         txtChapter = (TextView) findViewById(R.id.txtChapter);
+        back_to_detail = (ImageButton) findViewById(R.id.back_to_detail);
 
         chapterIndex = getIntent().getStringExtra("key");
 
@@ -80,6 +91,15 @@ public class activity_content_story2 extends AppCompatActivity {
                     overridePendingTransition(0,0);
                 }
 
+            }
+        });
+        back_to_detail.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), Book_Detail_Activity.class);
+                intent.putExtra("bookName","Sycamore Tree");
+                intent.putExtra("bookImg",R.drawable.sycamorerow);
+                startActivity(intent);
             }
         });
 

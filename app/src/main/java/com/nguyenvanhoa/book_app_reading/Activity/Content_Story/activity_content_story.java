@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageButton;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,13 +16,28 @@ import androidx.fragment.app.FragmentActivity;
 import com.github.barteksc.pdfviewer.PDFView;
 import com.nguyenvanhoa.book_app_reading.Activity.Book_Detail_Activity;
 import com.nguyenvanhoa.book_app_reading.Fragments.Chapter_BookFragment;
+import com.nguyenvanhoa.book_app_reading.Model.Book;
 import com.nguyenvanhoa.book_app_reading.R;
+
+import java.util.List;
 
 public class activity_content_story extends FragmentActivity {
 
     PDFView pdfView;
     ImageButton chapter_next,back_to_detail;
     String chapterIndex;
+    Book book;
+    TextView txtNamebook;
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent intent = new Intent(getApplicationContext(), Book_Detail_Activity.class);
+        intent.putExtra("bookName","Sycamore Tree");
+        intent.putExtra("bookImg",R.drawable.sycamorerow);
+        startActivity(intent);
+    }
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,12 +46,12 @@ public class activity_content_story extends FragmentActivity {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         pdfView = (PDFView) findViewById(R.id.pdfView);
+        chapter_next = (ImageButton) findViewById(R.id.chapter_next);
+        back_to_detail = (ImageButton) findViewById(R.id.back_to_detail) ;
+        txtNamebook = (TextView) findViewById(R.id.nameBook);
 
         chapterIndex = getIntent().getStringExtra("key");
         pdfView.fromAsset("content_story.pdf").load();
-
-        chapter_next = (ImageButton) findViewById(R.id.chapter_next);
-        back_to_detail = (ImageButton) findViewById(R.id.back_to_detail) ;
 
         chapter_next.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -51,9 +67,12 @@ public class activity_content_story extends FragmentActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), Book_Detail_Activity.class);
+                intent.putExtra("bookName","Sycamore Tree");
+                intent.putExtra("bookImg",R.drawable.sycamorerow);
                 startActivity(intent);
             }
         });
+
     }
 
 
