@@ -107,12 +107,12 @@
                         android:enabled="false"
                         android:singleLine="true"
                         android:text="HKLNT"
-                        android:textSize="14sp" />
+                        android:textSize="16sp" />
 
                     <CheckBox
                         android:id="@+id/cbEdit_name"
                         android:layout_width="match_parent"
-                        android:layout_height="24dp"
+                        android:layout_height="16dp"
                         android:layout_gravity="center"
                         android:background="@color/white"
                         android:button="@drawable/edit_checkbox" />
@@ -154,12 +154,12 @@
                         android:enabled="false"
                         android:singleLine="true"
                         android:text="HKLNT@gmail.com"
-                        android:textSize="14sp" />
+                        android:textSize="16sp" />
 
                     <CheckBox
                         android:id="@+id/cbEdit_email"
                         android:layout_width="match_parent"
-                        android:layout_height="24dp"
+                        android:layout_height="16dp"
                         android:layout_gravity="center"
                         android:background="@color/white"
                         android:button="@drawable/edit_checkbox" />
