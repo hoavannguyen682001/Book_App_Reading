@@ -3,6 +3,7 @@ package com.nguyenvanhoa.book_app_reading.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.CheckBox;
 import android.widget.ImageButton;
@@ -38,6 +39,7 @@ public class Book_Detail_Activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_book_detail);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 //        nameClass = getLocalClassName();
 //        Toast.makeText(getApplication(), nameClass, Toast.LENGTH_SHORT).show();
 

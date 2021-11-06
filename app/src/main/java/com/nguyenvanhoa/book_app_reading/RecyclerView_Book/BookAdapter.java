@@ -49,7 +49,7 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookHolder>{
         holder.author.setText(book.getAuthor());
         holder.date.setText(book.getDate());
         holder.category.setText(book.getCategory());
-        holder.imgBook.setOnClickListener(new View.OnClickListener() {
+        holder.imgview.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Book_Detail_Activity.nameClass = context.getClass().toString();
@@ -71,10 +71,11 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookHolder>{
 
     public class BookHolder extends RecyclerView.ViewHolder{
 
-        ImageView imgBook;
+        ImageView imgBook, imgview;
         TextView name, author, date, category;
         public BookHolder(@NonNull View itemView) {
             super(itemView);
+            imgview = itemView.findViewById(R.id.imageView);
             imgBook = itemView.findViewById(R.id.img_book_item);
             name = itemView.findViewById(R.id.txtName_book);
             author = itemView.findViewById(R.id.txtAuthor_book);

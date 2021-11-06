@@ -50,7 +50,7 @@ public class BookAdapterVote extends RecyclerView.Adapter<BookAdapterVote.BookHo
         holder.author.setText(book.getAuthor());
         holder.date.setText(book.getDate());
         holder.category.setText(book.getCategory());
-        holder.imgBook.setOnClickListener(new View.OnClickListener() {
+        holder.imgview.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Toast.makeText(context, "successfully!", Toast.LENGTH_LONG).show();
@@ -82,10 +82,11 @@ public class BookAdapterVote extends RecyclerView.Adapter<BookAdapterVote.BookHo
 
     public class BookHolder extends RecyclerView.ViewHolder{
         CheckBox checkbox;
-        ImageView imgBook;
+        ImageView imgBook, imgview;
         TextView name, author, date, category;
         public BookHolder(@NonNull View itemView) {
             super(itemView);
+            imgview = itemView.findViewById(R.id.imageView);
             imgBook = itemView.findViewById(R.id.img_book_item);
             name = itemView.findViewById(R.id.txtName_book);
             author = itemView.findViewById(R.id.txtAuthor_book);
