@@ -3,6 +3,17 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/121/MOBILE/Book_App/app/src/main/res/drawable-hdpi/edit_line.xml" value="0.23703703703703705" />
+        <entry key="..\:/121/MOBILE/Book_App/app/src/main/res/drawable/custom_account.xml" value="0.2703125" />
+        <entry key="..\:/121/MOBILE/Book_App/app/src/main/res/drawable/ic_search.xml" value="0.23703703703703705" />
+        <entry key="..\:/121/MOBILE/Book_App/app/src/main/res/drawable/item_selected.xml" value="0.23703703703703705" />
+        <entry key="..\:/121/MOBILE/Book_App/app/src/main/res/layout/activity_bookshelf.xml" value="0.264" />
+        <entry key="..\:/121/MOBILE/Book_App/app/src/main/res/layout/activity_forgot_pass.xml" value="0.24139492753623187" />
+        <entry key="..\:/121/MOBILE/Book_App/app/src/main/res/layout/activity_library.xml" value="0.23731884057971014" />
+        <entry key="..\:/121/MOBILE/Book_App/app/src/main/res/layout/activity_profile.xml" value="0.264" />
+        <entry key="..\:/121/MOBILE/Book_App/app/src/main/res/layout/activity_rules.xml" value="0.23731884057971014" />
+        <entry key="..\:/121/MOBILE/Book_App/app/src/main/res/layout/activity_search.xml" value="0.24139492753623187" />
+        <entry key="..\:/121/MOBILE/Book_App/app/src/main/res/layout/activivy_login.xml" value="0.16893115942028986" />
         <entry key="..\:/121/MOBILE/Book_App/test/app/src/main/res/layout/activity_book_detail.xml" value="0.20854700854700856" />
         <entry key="..\:/121/MOBILE/Book_App/test/app/src/main/res/layout/activity_home.xml" value="0.264" />
         <entry key="..\:/121/MOBILE/Book_App/test/app/src/main/res/layout/activity_profile.xml" value="0.20854700854700856" />

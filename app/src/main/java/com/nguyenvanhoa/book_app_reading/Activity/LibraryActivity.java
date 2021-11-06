@@ -19,7 +19,6 @@ import com.nguyenvanhoa.book_app_reading.Adapter.LibraryAdapter;
 import com.nguyenvanhoa.book_app_reading.R;
 
 public class LibraryActivity extends AppCompatActivity {
-    TextView txtLibrary;
     TabLayout tabLayout;
     ViewPager viewPager;
     BottomNavigationView navigationView;
@@ -38,7 +37,6 @@ public class LibraryActivity extends AppCompatActivity {
         Navigation_bar();
     }
     public void AnhXa(){
-        txtLibrary = findViewById(R.id.txtlibrary);
         tabLayout = findViewById(R.id.tablayout);
         viewPager = findViewById(R.id.viewpaper);
     }

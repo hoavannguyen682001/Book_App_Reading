@@ -5,56 +5,56 @@
     android:layout_height="match_parent">
 
     <LinearLayout
+        android:id="@+id/layout_header"
         android:layout_width="match_parent"
-        android:layout_height="180dp"
+        android:layout_height="200dp"
         android:orientation="vertical">
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
             android:orientation="horizontal">
 
             <View
-                android:layout_width="3dp"
-                android:layout_height="30dp"
-                android:layout_marginLeft="5dp"
-                android:layout_marginTop="20dp"
+                android:layout_width="8dp"
+                android:layout_height="37dp"
                 android:background="@color/black" />
 
             <TextView
-                android:id="@+id/profile_account"
-                android:layout_width="300dp"
-                android:layout_height="30dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="20dp"
+                android:id="@+id/txtbookshelf"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
                 android:text="Profile Account"
-                android:textSize="20sp"
+                android:textColor="@color/black"
+                android:textSize="30dp"
                 android:textStyle="bold" />
-
-
-            <ImageButton
-                android:id="@+id/btnlogout"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:src="@drawable/ic_login"
-                android:background="#00000000"/>
-
         </LinearLayout>
 
-        <ImageView
+        <androidx.cardview.widget.CardView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="14dp"
-            android:background="@drawable/custom_account"
-            android:src="@drawable/ic_account" />
+            app:cardCornerRadius="40dp"
+            android:layout_gravity="center">
+            <ImageView
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/author" />
+        </androidx.cardview.widget.CardView>
+
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="User name"
-            android:textSize="20dp" />
+            android:text="HKLNT"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:textColor="@color/black"/>
 
     </LinearLayout>
 
@@ -62,7 +62,7 @@
         android:id="@+id/mainProfile"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="180dp"
+        android:layout_below="@+id/layout_header"
         android:background="@drawable/profile_edit"
         android:orientation="vertical"
         android:paddingLeft="30dp"
@@ -72,13 +72,11 @@
             android:layout_width="match_parent"
             android:layout_height="120dp"
             android:layout_marginTop="30dp"
-            android:gravity="center"
-            android:paddingLeft="16dp"
-            android:paddingRight="16dp">
+            android:gravity="center">
 
             <RelativeLayout
                 android:id="@+id/layout_name"
-                android:layout_width="130dp"
+                android:layout_width="150dp"
                 android:layout_height="110dp"
                 android:layout_alignParentLeft="true"
                 android:background="@drawable/profile_button">
@@ -90,7 +88,8 @@
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="5dp"
                     android:drawableLeft="@drawable/ic_person"
-                    android:text="Name" />
+                    android:text="Name"
+                    android:textStyle="bold" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -107,7 +106,7 @@
                         android:layout_centerVertical="true"
                         android:enabled="false"
                         android:singleLine="true"
-                        android:text="Tran van khanh"
+                        android:text="HKLNT"
                         android:textSize="14sp" />
 
                     <CheckBox
@@ -123,128 +122,8 @@
             </RelativeLayout>
 
             <RelativeLayout
-                android:id="@+id/layout_Gender"
-                android:layout_width="140dp"
-                android:layout_height="110dp"
-                android:layout_alignParentRight="true"
-                android:background="@drawable/profile_button"
-                android:paddingLeft="8dp">
-
-                <TextView
-                    android:id="@+id/tvGender_Profile"
-                    android:layout_width="wrap_content"
-                    android:layout_height="20dp"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginTop="5dp"
-                    android:drawableLeft="@drawable/ic_gender"
-                    android:text="Gender" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/tvGender_Profile"
-                    android:orientation="horizontal">
-
-                    <com.google.android.material.textfield.TextInputLayout
-                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
-                        android:layout_width="wrap_content"
-                        android:layout_height="40dp"
-                        app:hintTextColor="@color/black"
-                        app:boxBackgroundMode="filled"
-                        android:enabled="false">
-
-                        <AutoCompleteTextView
-                            android:id="@+id/Gender_Profile"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:textAlignment="center"
-                            android:inputType="none"
-                            android:text="Male"/>
-
-                    </com.google.android.material.textfield.TextInputLayout>
-                    <!--                    <EditText-->
-                    <!--                        android:id="@+id/input_gender"-->
-                    <!--                        android:layout_width="100dp"-->
-                    <!--                        android:layout_height="wrap_content"-->
-                    <!--                        android:layout_centerHorizontal="true"-->
-                    <!--                        android:layout_centerVertical="true"-->
-                    <!--                        android:enabled="false"-->
-                    <!--                        android:singleLine="true"-->
-                    <!--                        android:text="Male"-->
-                    <!--                        android:textSize="14sp" />-->
-
-                    <CheckBox
-                        android:id="@+id/cbEdit_Gender"
-                        android:layout_width="match_parent"
-                        android:layout_height="24dp"
-                        android:layout_gravity="center"
-                        android:background="@color/white"
-                        android:button="@drawable/edit_checkbox" />
-                </LinearLayout>
-
-
-            </RelativeLayout>
-
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="120dp"
-            android:layout_marginTop="30dp"
-            android:gravity="center"
-            android:paddingLeft="16dp"
-            android:paddingRight="16dp">
-
-            <RelativeLayout
-                android:id="@+id/layout_phone"
-                android:layout_width="130dp"
-                android:layout_height="110dp"
-                android:layout_alignParentLeft="true"
-                android:background="@drawable/profile_button"
-                android:paddingLeft="8dp">
-
-                <TextView
-                    android:id="@+id/tvphone"
-                    android:layout_width="wrap_content"
-                    android:layout_height="20dp"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginTop="5dp"
-                    android:drawableLeft="@drawable/ic_phone"
-                    android:text="Phone-Number" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/tvphone"
-
-                    android:orientation="horizontal">
-
-                    <EditText
-                        android:id="@+id/input_phone"
-                        android:layout_width="100dp"
-                        android:layout_height="wrap_content"
-                        android:layout_centerHorizontal="true"
-                        android:layout_centerVertical="true"
-                        android:enabled="false"
-                        android:singleLine="true"
-                        android:text="0376822362"
-                        android:textSize="14sp" />
-
-                    <CheckBox
-                        android:id="@+id/cbEdit_phone"
-                        android:layout_width="match_parent"
-                        android:layout_height="24dp"
-                        android:layout_gravity="center"
-                        android:background="@color/white"
-                        android:button="@drawable/edit_checkbox" />
-                </LinearLayout>
-
-
-            </RelativeLayout>
-
-            <RelativeLayout
                 android:id="@+id/layout_Email"
-                android:layout_width="130dp"
+                android:layout_width="150dp"
                 android:layout_height="110dp"
                 android:layout_alignParentRight="true"
                 android:background="@drawable/profile_button"
@@ -257,7 +136,8 @@
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="5dp"
                     android:drawableLeft="@drawable/ic_gender"
-                    android:text="Email" />
+                    android:text="Email"
+                    android:textStyle="bold" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -284,117 +164,8 @@
                         android:background="@color/white"
                         android:button="@drawable/edit_checkbox" />
                 </LinearLayout>
-
-
             </RelativeLayout>
-
         </RelativeLayout>
-
-        <!--        <LinearLayout-->
-        <!--            android:layout_width="match_parent"-->
-        <!--            android:layout_height="120dp"-->
-        <!--            android:layout_marginTop="10dp"-->
-        <!--            android:gravity="center"-->
-        <!--            android:orientation="horizontal">-->
-
-        <!--            <LinearLayout-->
-        <!--                android:id="@+id/Phone"-->
-        <!--                android:layout_width="130dp"-->
-        <!--                android:layout_height="110dp"-->
-        <!--                android:background="@drawable/profile_button"-->
-        <!--                android:orientation="vertical">-->
-
-        <!--                <LinearLayout-->
-        <!--                    android:layout_width="130dp"-->
-        <!--                    android:layout_height="wrap_content">-->
-
-        <!--                    <ImageView-->
-        <!--                        android:layout_width="wrap_content"-->
-        <!--                        android:layout_height="wrap_content"-->
-        <!--                        android:layout_marginLeft="5dp"-->
-        <!--                        android:layout_marginTop="5dp"-->
-        <!--                        android:src="@drawable/ic_phone" />-->
-
-        <!--                    <TextView-->
-        <!--                        android:layout_width="100dp"-->
-        <!--                        android:layout_height="20dp"-->
-        <!--                        android:layout_alignParentLeft="true"-->
-        <!--                        android:layout_marginTop="5dp"-->
-        <!--                        android:gravity="center_horizontal|top"-->
-        <!--                        android:text="Phone number"-->
-        <!--                        android:textAllCaps="false" />-->
-        <!--                </LinearLayout>-->
-
-        <!--                <EditText-->
-        <!--                    android:id="@+id/input_phone"-->
-        <!--                    android:layout_width="wrap_content"-->
-        <!--                    android:layout_height="wrap_content"-->
-        <!--                    android:layout_gravity="center"-->
-        <!--                    android:layout_marginTop="10dp"-->
-        <!--                    android:inputType="none"-->
-        <!--                    android:text="0901-XXXXX"-->
-        <!--                    android:textSize="14sp" />-->
-
-        <!--                <CheckBox-->
-        <!--                    android:id="@+id/edit_phone"-->
-        <!--                    android:layout_width="100dp"-->
-        <!--                    android:layout_height="match_parent"-->
-        <!--                    android:layout_gravity="center"-->
-        <!--                    android:background="@color/white"-->
-        <!--                    android:src="@drawable/ic_edit" />-->
-
-        <!--            </LinearLayout>-->
-
-        <!--            <LinearLayout-->
-        <!--                android:id="@+id/Email"-->
-        <!--                android:layout_width="130dp"-->
-        <!--                android:layout_height="110dp"-->
-        <!--                android:layout_marginLeft="30dp"-->
-        <!--                android:background="@drawable/profile_button"-->
-        <!--                android:orientation="vertical">-->
-
-        <!--                <LinearLayout-->
-        <!--                    android:layout_width="130dp"-->
-        <!--                    android:layout_height="wrap_content">-->
-
-        <!--                    <ImageView-->
-        <!--                        android:layout_width="wrap_content"-->
-        <!--                        android:layout_height="wrap_content"-->
-        <!--                        android:layout_marginLeft="30dp"-->
-        <!--                        android:layout_marginTop="5dp"-->
-        <!--                        android:src="@drawable/ic_email" />-->
-
-        <!--                    <TextView-->
-        <!--                        android:layout_width="50dp"-->
-        <!--                        android:layout_height="20dp"-->
-        <!--                        android:layout_alignParentLeft="true"-->
-        <!--                        android:layout_marginTop="5dp"-->
-        <!--                        android:gravity="center_horizontal|top"-->
-        <!--                        android:text="Email"-->
-        <!--                        android:textAllCaps="false" />-->
-        <!--                </LinearLayout>-->
-
-        <!--                <EditText-->
-        <!--                    android:id="@+id/input_email"-->
-        <!--                    android:layout_width="wrap_content"-->
-        <!--                    android:layout_height="wrap_content"-->
-        <!--                    android:layout_gravity="center"-->
-        <!--                    android:layout_marginTop="10dp"-->
-        <!--                    android:inputType="none"-->
-        <!--                    android:text="HKLNT@gmail."-->
-        <!--                    android:textSize="14sp" />-->
-
-        <!--                <CheckBox-->
-        <!--                    android:id="@+id/edit_email"-->
-        <!--                    android:layout_width="100dp"-->
-        <!--                    android:layout_height="match_parent"-->
-        <!--                    android:layout_gravity="center"-->
-        <!--                    android:background="@color/white"-->
-        <!--                    android:src="@drawable/ic_edit" />-->
-        <!--            </LinearLayout>-->
-
-        <!--        </LinearLayout>-->
-
         <Button
             android:id="@+id/introduce"
             android:layout_width="match_parent"
@@ -425,6 +196,21 @@
             android:textAllCaps="false"
             android:textColor="@color/black"
             app:backgroundTint="@null" />
+
+        <Button
+            android:id="@+id/btnlogout"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginVertical="10dp"
+            android:background="@drawable/profile_button"
+            android:drawableLeft="@drawable/ic_login"
+            android:drawablePadding="10dp"
+            android:gravity="left|center_vertical"
+            android:paddingLeft="30dp"
+            android:text="Log Out"
+            android:textAllCaps="false"
+            android:textColor="@color/black"
+            app:backgroundTint="@null" />
     </LinearLayout>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
@@ -437,52 +223,3 @@
         app:itemTextColor="@color/white"
         app:menu="@menu/item_menu" />
 </RelativeLayout>
-
-    <!--            <LinearLayout-->
-    <!--                android:id="@+id/gender"-->
-    <!--                android:layout_width="130dp"-->
-    <!--                android:layout_height="110dp"-->
-    <!--                android:layout_marginLeft="30dp"-->
-    <!--                android:background="@drawable/profile_button"-->
-    <!--                android:orientation="vertical">-->
-
-    <!--                <LinearLayout-->
-    <!--                    android:layout_width="130dp"-->
-    <!--                    android:layout_height="wrap_content">-->
-
-    <!--                    <ImageView-->
-    <!--                        android:layout_width="wrap_content"-->
-    <!--                        android:layout_height="wrap_content"-->
-    <!--                        android:layout_marginLeft="30dp"-->
-    <!--                        android:layout_marginTop="5dp"-->
-    <!--                        android:src="@drawable/ic_gender" />-->
-
-    <!--                    <TextView-->
-    <!--                        android:layout_width="50dp"-->
-    <!--                        android:layout_height="20dp"-->
-    <!--                        android:layout_alignParentLeft="true"-->
-    <!--                        android:layout_marginTop="5dp"-->
-    <!--                        android:gravity="center_horizontal|top"-->
-    <!--                        android:text="Gender"-->
-    <!--                        android:textAllCaps="false" />-->
-    <!--                </LinearLayout>-->
-
-    <!--                <EditText-->
-    <!--                    android:id="@+id/input_gender"-->
-    <!--                    android:layout_width="wrap_content"-->
-    <!--                    android:layout_height="wrap_content"-->
-    <!--                    android:layout_gravity="center"-->
-    <!--                    android:layout_marginTop="10dp"-->
-    <!--                    android:inputType="none"-->
-    <!--                    android:text="Male/Female"-->
-    <!--                    android:textSize="14sp" />-->
-
-    <!--                <CheckBox-->
-    <!--                    android:id="@+id/edit_gender"-->
-    <!--                    android:layout_width="100dp"-->
-    <!--                    android:layout_height="match_parent"-->
-    <!--                    android:layout_gravity="center"-->
-    <!--                    android:background="@color/white"-->
-    <!--                    android:src="@drawable/ic_edit" />-->
-
-    <!--            </LinearLayout>-->
