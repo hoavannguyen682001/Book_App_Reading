@@ -49,6 +49,7 @@ public class SachsearchAdapter extends RecyclerView.Adapter<SachsearchAdapter.Sa
         holder.layoutitem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Book_Detail_Activity.nameClass = mContext.getClass().toString();
                 Intent intent = new Intent(mContext, Book_Detail_Activity.class);
                 intent.putExtra("bookName", listSach.get(position).getTensach());
                 intent.putExtra("bookImg", listSach.get(position).getHinhanh());

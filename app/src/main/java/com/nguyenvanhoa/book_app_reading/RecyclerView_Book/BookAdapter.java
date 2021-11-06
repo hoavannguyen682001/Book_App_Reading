@@ -1,6 +1,7 @@
 package com.nguyenvanhoa.book_app_reading.RecyclerView_Book;
 
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -38,7 +39,7 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookHolder>{
     }
 
     @Override
-    public void onBindViewHolder(@NonNull BookHolder holder, int position) {
+    public void onBindViewHolder(@NonNull BookHolder holder, @SuppressLint("RecyclerView") int position) {
         Book2 book = Books.get(position);
         if(book == null){
             return;
@@ -51,8 +52,7 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookHolder>{
         holder.imgBook.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(context, "successfully!", Toast.LENGTH_LONG).show();
-
+                Book_Detail_Activity.nameClass = context.getClass().toString();
                 Intent intent = new Intent(context, Book_Detail_Activity.class);
                 intent.putExtra("bookName", Books.get(position).getName());
                 intent.putExtra("bookImg", Books.get(position).getImg());

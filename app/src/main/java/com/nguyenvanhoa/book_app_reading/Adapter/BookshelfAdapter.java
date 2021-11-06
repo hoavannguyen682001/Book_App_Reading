@@ -9,7 +9,6 @@ import androidx.fragment.app.FragmentStatePagerAdapter;
 import com.nguyenvanhoa.book_app_reading.Fragments.ClassicTabFragment;
 import com.nguyenvanhoa.book_app_reading.Fragments.NewTabFragment;
 import com.nguyenvanhoa.book_app_reading.Fragments.PopularTabFragment;
-import com.nguyenvanhoa.book_app_reading.Fragments.ReadingTabFragment;
 
 
 public class BookshelfAdapter extends FragmentStatePagerAdapter {

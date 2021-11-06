@@ -1,5 +1,6 @@
 package com.nguyenvanhoa.book_app_reading.Adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -42,7 +43,7 @@ public class TopAuthorsAdapter extends RecyclerView.Adapter<TopAuthorsAdapter.To
     }
 
     @Override
-    public void onBindViewHolder(@NonNull TopAuthorsViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull TopAuthorsViewHolder holder, @SuppressLint("RecyclerView") int position) {
         TopAuthor topAuthor = mListAuthors.get(position);
         if (topAuthor == null){
             return;

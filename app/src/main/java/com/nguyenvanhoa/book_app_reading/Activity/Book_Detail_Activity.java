@@ -32,13 +32,14 @@ public class Book_Detail_Activity extends AppCompatActivity {
     private int mImg;
     private TabLayout mTabLayout;
     private ViewPager mViewPaper;
+    public static String nameClass;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_book_detail);
-
-
+//        nameClass = getLocalClassName();
+//        Toast.makeText(getApplication(), nameClass, Toast.LENGTH_SHORT).show();
 
         imgbook = findViewById(R.id.img_book_item);
         namebook = findViewById(R.id.txtName_book);
@@ -60,8 +61,30 @@ public class Book_Detail_Activity extends AppCompatActivity {
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Book_Detail_Activity.this, HomeActivity.class);
-                startActivity(intent);
+                Toast.makeText(getApplication(), nameClass, Toast.LENGTH_SHORT).show();
+                Intent intent;
+                if(nameClass.endsWith("HomeActivity")){
+                    intent = new Intent(getApplication(), HomeActivity.class);
+                    startActivity(intent);
+                    return;
+                }
+                if(nameClass.endsWith("BookshelfActivity")){
+                    intent = new Intent(getApplication(), BookshelfActivity.class);
+                    startActivity(intent);
+                    return;
+                }
+                if(nameClass.endsWith("LibraryActivity")){
+                    intent = new Intent(getApplication(), LibraryActivity.class);
+                    startActivity(intent);
+                    return;
+                }
+
+                if(nameClass.endsWith("SearchActivity")){
+                    intent = new Intent(getApplication(), SearchActivity.class);
+                    startActivity(intent);
+                    return;
+                }
+
             }
         });
 
