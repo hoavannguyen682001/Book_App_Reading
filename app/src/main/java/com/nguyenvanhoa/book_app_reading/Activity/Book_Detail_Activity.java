@@ -73,6 +73,11 @@ public class Book_Detail_Activity extends AppCompatActivity {
                     startActivity(intent);
                     return;
                 }
+                if (nameClass.endsWith("SliderPagerAdapter")){
+                    intent = new Intent(getApplication(), HomeActivity.class);
+                    startActivity(intent);
+                    return;
+                }
                 if(nameClass.endsWith("BookshelfActivity")){
                     intent = new Intent(getApplication(), BookshelfActivity.class);
                     startActivity(intent);
