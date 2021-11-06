@@ -7,6 +7,7 @@
         <entry key="..\:/121/MOBILE/Book_App/app/src/main/res/drawable/custom_account.xml" value="0.2703125" />
         <entry key="..\:/121/MOBILE/Book_App/app/src/main/res/drawable/ic_search.xml" value="0.23703703703703705" />
         <entry key="..\:/121/MOBILE/Book_App/app/src/main/res/drawable/item_selected.xml" value="0.23703703703703705" />
+        <entry key="..\:/121/MOBILE/Book_App/app/src/main/res/layout/about_us.xml" value="0.25416666666666665" />
         <entry key="..\:/121/MOBILE/Book_App/app/src/main/res/layout/activity_bookshelf.xml" value="0.264" />
         <entry key="..\:/121/MOBILE/Book_App/app/src/main/res/layout/activity_forgot_pass.xml" value="0.24139492753623187" />
         <entry key="..\:/121/MOBILE/Book_App/app/src/main/res/layout/activity_library.xml" value="0.23731884057971014" />
@@ -58,11 +59,6 @@
         <entry key="..\:/121/MOBILE/test/app/src/main/res/layout/item_recycler.xml" value="0.25416666666666665" />
         <entry key="..\:/NAM_3/PhanThiThanhThao_121TLTTD02/Book_App_Reading/app/src/main/res/layout/activity_profile.xml" value="0.22826086956521738" />
         <entry key="..\:/NAM_3/PhanThiThanhThao_121TLTTD02/Book_App_Reading/app/src/main/res/layout/activity_rules.xml" value="0.22826086956521738" />
-        <entry key="..\:/Nam3/LapTrinhDiDong/LyThuyet/BaiTap/Book_App_Reading/app/src/main/res/layout/activity_book_detail.xml" value="0.536" />
-        <entry key="..\:/Nam3/LapTrinhDiDong/LyThuyet/BaiTap/Book_App_Reading/app/src/main/res/layout/activity_profile.xml" value="0.27447916666666666" />
-        <entry key="..\:/Nam3/LapTrinhDiDong/LyThuyet/BaiTap/Book_App_Reading/app/src/main/res/layout/activity_rules.xml" value="0.27447916666666666" />
-        <entry key="..\:/Nam3/LapTrinhDiDong/LyThuyet/BaiTap/Book_App_Reading/app/src/main/res/layout/item_book.xml" value="0.1334853090172239" />
-        <entry key="..\:/Nam3/LapTrinhDiDong/LyThuyet/BaiTap/Book_App_Reading/app/src/main/res/layout/item_book_vote.xml" value="0.1334853090172239" />
         <entry key="..\:/SET_UP/DATA/Android/Sdk/platforms/android-31/data/res/layout/simple_spinner_dropdown_item.xml" value="0.20854700854700856" />
         <entry key="..\:/documents/HK1_Nam_3/LTAndroid/LyThuyet/AndroidStuidoProjectS/Book_App_Reading/app/src/main/res/layout/activity_main.xml" value="0.24728260869565216" />
       </map>

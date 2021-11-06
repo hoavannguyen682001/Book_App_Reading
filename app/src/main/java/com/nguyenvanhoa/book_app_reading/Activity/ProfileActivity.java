@@ -21,7 +21,7 @@ import com.nguyenvanhoa.book_app_reading.R;
 
 public class ProfileActivity extends AppCompatActivity {
     BottomNavigationView navigationView;
-    private Button btnlogout, btnterm;
+    private Button btnlogout, btnterm, btnAboutUs;
     private CheckBox editname, editemail;
     private EditText inputname, inputemail;
 
@@ -36,7 +36,7 @@ public class ProfileActivity extends AppCompatActivity {
         inputname = findViewById(R.id.input_name);
         editname = findViewById(R.id.cbEdit_name);
         btnterm = findViewById(R.id.term);
-
+        btnAboutUs = findViewById(R.id.btnAboutUs);
 
         inputemail = findViewById(R.id.input_email);
         editemail = findViewById(R.id.cbEdit_email);
@@ -45,6 +45,13 @@ public class ProfileActivity extends AppCompatActivity {
         setEditClick(inputname, editname);
         setEditClick(inputemail, editemail);
 
+        btnAboutUs.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), AboutUsActivity.class);
+                startActivity(intent);
+            }
+        });
         btnterm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

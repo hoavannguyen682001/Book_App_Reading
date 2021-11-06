@@ -167,8 +167,9 @@
                 </LinearLayout>
             </RelativeLayout>
         </RelativeLayout>
+
         <Button
-            android:id="@+id/introduce"
+            android:id="@+id/btnAboutUs"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:layout_marginVertical="10dp"
@@ -177,7 +178,7 @@
             android:drawablePadding="10dp"
             android:gravity="left|center_vertical"
             android:paddingLeft="30dp"
-            android:text="Introduce us"
+            android:text="Introduce Us"
             android:textAllCaps="false"
             android:textColor="@color/black"
             app:backgroundTint="@null" />
@@ -193,7 +194,7 @@
             android:drawablePadding="10dp"
             android:gravity="left|center_vertical"
             android:paddingLeft="30dp"
-            android:text="Terms and Policies"
+            android:text="Terms and Conditions"
             android:textAllCaps="false"
             android:textColor="@color/black"
             app:backgroundTint="@null" />

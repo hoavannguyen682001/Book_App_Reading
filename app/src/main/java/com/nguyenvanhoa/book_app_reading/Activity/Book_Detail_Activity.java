@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -33,6 +34,7 @@ public class Book_Detail_Activity extends AppCompatActivity {
     private int mImg;
     private TabLayout mTabLayout;
     private ViewPager mViewPaper;
+    private Button btnRead;
     public static String nameClass;
 
     @Override
@@ -43,6 +45,7 @@ public class Book_Detail_Activity extends AppCompatActivity {
 //        nameClass = getLocalClassName();
 //        Toast.makeText(getApplication(), nameClass, Toast.LENGTH_SHORT).show();
 
+        btnRead = findViewById(R.id.btnRead);
         imgbook = findViewById(R.id.img_book_item);
         namebook = findViewById(R.id.txtName_book);
         fav = findViewById(R.id.cbfavorite);
@@ -63,7 +66,7 @@ public class Book_Detail_Activity extends AppCompatActivity {
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getApplication(), nameClass, Toast.LENGTH_SHORT).show();
+//                Toast.makeText(getApplication(), nameClass, Toast.LENGTH_SHORT).show();
                 Intent intent;
                 if(nameClass.endsWith("HomeActivity")){
                     intent = new Intent(getApplication(), HomeActivity.class);
@@ -90,6 +93,13 @@ public class Book_Detail_Activity extends AppCompatActivity {
             }
         });
 
+        btnRead.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Book_Detail_Activity.this, activity_content_story.class);
+                startActivity(intent);
+            }
+        });
         fav.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -100,8 +110,5 @@ public class Book_Detail_Activity extends AppCompatActivity {
                 }
             }
         });
-
-
-
     }
 }
