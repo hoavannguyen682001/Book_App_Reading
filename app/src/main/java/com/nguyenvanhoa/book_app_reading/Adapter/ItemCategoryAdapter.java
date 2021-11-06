@@ -45,7 +45,6 @@ public class ItemCategoryAdapter extends RecyclerView.Adapter<ItemCategoryAdapte
             @Override
             public void onClick(View v) {
                 Toast.makeText(context, "successfully!", Toast.LENGTH_LONG).show();
-
                 Intent intent = new Intent(context, Book_Detail_Activity.class);
                 intent.putExtra("bookName", bookList.get(position).getName());
                 intent.putExtra("bookImg", bookList.get(position).getImg());

@@ -97,7 +97,7 @@ public class HomeActivity extends AppCompatActivity {
         rcv_topAuthors.setFocusable(false);
         rcv_topAuthors.setNestedScrollingEnabled(false);
 
-        topAuthorsAdapter = new TopAuthorsAdapter();
+        topAuthorsAdapter = new TopAuthorsAdapter(this, GetListAuthors());
         topAuthorsAdapter.setData(GetListAuthors());
         rcv_topAuthors.setAdapter(topAuthorsAdapter);
 
@@ -127,18 +127,11 @@ public class HomeActivity extends AppCompatActivity {
 
     private List<TopAuthor> GetListAuthors() {
         List<TopAuthor> list = new ArrayList<>();
-        list.add(new TopAuthor(R.drawable.author));
-        list.add(new TopAuthor(R.drawable.author1));
-        list.add(new TopAuthor(R.drawable.author2));
-        list.add(new TopAuthor(R.drawable.author3));
-        list.add(new TopAuthor(R.drawable.author4));
-        list.add(new TopAuthor(R.drawable.author));
-        list.add(new TopAuthor(R.drawable.author1));
-        list.add(new TopAuthor(R.drawable.author2));
-        list.add(new TopAuthor(R.drawable.author3));
-        list.add(new TopAuthor(R.drawable.author4));
-        list.add(new TopAuthor(R.drawable.author2));
-        list.add(new TopAuthor(R.drawable.author4));
+        list.add(new TopAuthor(R.drawable.author, ""));
+        list.add(new TopAuthor(R.drawable.author1, "Scotland Kenneth Grahame"));
+        list.add(new TopAuthor(R.drawable.author2, "William Golding"));
+        list.add(new TopAuthor(R.drawable.author3, "J.K. Rowling"));
+        list.add(new TopAuthor(R.drawable.author4, " Ernest Hemingway"));
         return list;
     }
 

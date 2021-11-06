@@ -45,7 +45,7 @@ public class LibraryAdapter extends FragmentStatePagerAdapter {
                 title = "Reading List";
                 break;
             case 1:
-                title = "Vote";
+                title = "Favorite";
                 break;
             default:
                 return null;

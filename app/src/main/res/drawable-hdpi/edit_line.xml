@@ -5,5 +5,5 @@
     android:topRightRadius="30dp"
     />
     <solid  android:color="#EAEFEF"/>
-    <stroke android:color="@color/black" android:width="2dp"/>
+    <stroke android:color="#EAEFEF" android:width="2dp"/>
 </shape>

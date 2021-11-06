@@ -1,5 +1,6 @@
 package com.nguyenvanhoa.book_app_reading.Adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -35,7 +36,7 @@ public class SachsearchAdapter extends RecyclerView.Adapter<SachsearchAdapter.Sa
     }
     @Override
 
-    public void onBindViewHolder(@NonNull SachViewHoder holder, int position) {
+    public void onBindViewHolder(@NonNull SachViewHoder holder, @SuppressLint("RecyclerView") int position) {
       Sach_search sach = listSach.get(position);
         if (sach == null){
             return;
@@ -48,16 +49,18 @@ public class SachsearchAdapter extends RecyclerView.Adapter<SachsearchAdapter.Sa
         holder.layoutitem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                onClickGoToDetail(sach);
+                Intent intent = new Intent(mContext, Book_Detail_Activity.class);
+                intent.putExtra("bookName", listSach.get(position).getTensach());
+                intent.putExtra("bookImg", listSach.get(position).getHinhanh());
+                mContext.startActivity(intent);
             }
         });
     }
     private void onClickGoToDetail(Sach_search sach){
-        Intent intent = new Intent(mContext, Book_Detail_Activity.class);
-        Bundle bundle = new Bundle();
-        bundle.putSerializable("Object_sach", sach);
-        intent.putExtras(bundle);
-        mContext.startActivity(intent);
+
+//        Bundle bundle = new Bundle();
+//        bundle.putSerializable("Object_sach", sach);
+//        intent.putExtras(bundle);
     }
     @Override
     public int getItemCount() {

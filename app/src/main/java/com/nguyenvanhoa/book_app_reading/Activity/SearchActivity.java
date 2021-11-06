@@ -48,7 +48,7 @@ public class SearchActivity extends AppCompatActivity {
         categoryAdapter = new CategoryAdapter(this, R.layout.itemsearch_selected, getListCategory());
         spnCategory.setAdapter(categoryAdapter);
 
-        rcvSach.setLayoutManager(new LinearLayoutManager(this));
+        rcvSach.setLayoutManager(new LinearLayoutManager(getApplication()));
         editText= findViewById(R.id.edittext);//timkiem
         editText.addTextChangedListener(new TextWatcher() {
             @Override
@@ -63,20 +63,21 @@ public class SearchActivity extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable editable) {
-
+                buildRecycleView();
                 filter(editable.toString());
             }
         });
     }
     private void createlist() {
         list = new ArrayList<>();
-        list.add(new Sach_search(R.drawable.title_book,"Sycamore Trees", "By John Grisham", "October 19,2017","Love story"));
+        list.add(new Sach_search(R.drawable.title_book,"Sycamore Trees", "John Grisham", "October 19,2017","Love story"));
         list.add(new Sach_search(R.drawable.truyen,"The Wind in the Willows", "Scotland Kenneth Grahame", "October 19,2017","Love story"));
-        list.add(new Sach_search(R.drawable.truyen,"Lord of the Flies", "William Golding", "October 19,2017","Love story"));
-        list.add(new Sach_search(R.drawable.title_book,"The Old Man and Sea", " Ernest Hemingway", "October 19,2017","Love story"));
-        list.add(new Sach_search(R.drawable.truyen,"The Giver", "Lois Lowry", "October 19,2017","Love story"));
+        list.add(new Sach_search(R.drawable.truyen,"Lord of the Flies", "Lois Lowry", "October 19,2017","Love story"));
+        list.add(new Sach_search(R.drawable.title_book,"The Old Man and Sea", " Ernest Hemingway", "Octobjsoer 19,2017","Love story"));
+        list.add(new Sach_search(R.drawable.truyen,"The Giver", "William Golding", "October 19,2017","Love story"));
         list.add(new Sach_search(R.drawable.title_book,"Harry Potter", "J.K. Rowling", "October 19,2017","Love story"));
     }
+
     private List<Category> getListCategory(){
         List<Category> list = new ArrayList<>();
         list.add(new Category("Book"));
@@ -92,6 +93,7 @@ public class SearchActivity extends AppCompatActivity {
         rcvSach.setLayoutManager(mLayoutManager);
         rcvSach.setAdapter(sachadapter);
     }
+
     private void filter(String text){  //timkiem
         ArrayList<Sach_search> ab = new ArrayList<>();
         for (Sach_search sach: list){
