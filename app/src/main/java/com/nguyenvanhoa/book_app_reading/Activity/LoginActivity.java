@@ -57,10 +57,10 @@ public class LoginActivity extends AppCompatActivity {
         tvforgotpass.setAlpha(0);
 
         txtEmail.animate().translationX(0).alpha(1).setDuration(1000).setStartDelay(200).start();
-        txtPassword.animate().translationX(0).alpha(1).setDuration(1000).setStartDelay(400).start();
-        btnLogin.animate().translationX(0).alpha(1).setDuration(1000).setStartDelay(600).start();
-        tvforgotpass.animate().translationX(0).alpha(1).setDuration(1000).setStartDelay(800).start();
-        ln.animate().translationX(0).alpha(1).setDuration(1000).setStartDelay(1000).start();
+        txtPassword.animate().translationX(0).alpha(1).setDuration(1000).setStartDelay(300).start();
+        btnLogin.animate().translationX(0).alpha(1).setDuration(1000).setStartDelay(400).start();
+        tvforgotpass.animate().translationX(0).alpha(1).setDuration(1000).setStartDelay(500).start();
+        ln.animate().translationX(0).alpha(1).setDuration(1000).setStartDelay(600).start();
     }
 
     private void setClick() {

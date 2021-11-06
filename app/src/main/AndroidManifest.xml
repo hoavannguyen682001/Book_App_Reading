@@ -22,8 +22,6 @@
 
         <activity android:name=".Activity.SignUpActivity">
         </activity>
-        <activity android:name=".Activity.AboutUsActivity"></activity>
-
         <activity android:name=".Activity.TermsAndPoliciesActivity"></activity>
         <activity android:name=".Activity.LoginActivity"></activity>
         <activity android:name=".Activity.ForgotPassActivity"></activity>
