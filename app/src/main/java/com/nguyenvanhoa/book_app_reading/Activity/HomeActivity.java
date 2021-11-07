@@ -114,11 +114,11 @@ public class HomeActivity extends AppCompatActivity {
 
     private List<AllCategory> GetListTrending() {
         List<Book2> bookTrending = new ArrayList<>();
-        bookTrending.add(new Book2("The Dawn of Everything", "1", "2", "3",R.drawable.the_dawn));
-        bookTrending.add(new Book2("Dune", "2", "", "",R.drawable.dune ));
-        bookTrending.add(new Book2("The Story of Schitt's Creek","3",  "", "", R.drawable.the_story_of_schit_creek));
-        bookTrending.add(new Book2("The 1619 Project","4",  "", "", R.drawable.the_1619_project));
-        bookTrending.add(new Book2( "Poems","5", "", "",R.drawable.poems));
+        bookTrending.add(new Book2("The Dawn of Everything", "by John Grisham", "August 19, 2014", "Horror",R.drawable.the_dawn));
+        bookTrending.add(new Book2("Dune","by John Grisham", "August 19, 2014", "Horror",R.drawable.dune ));
+        bookTrending.add(new Book2("The Story of Schitt's Creek","by John Grisham", "August 19, 2014", "Horror",R.drawable.the_story_of_schit_creek));
+        bookTrending.add(new Book2("The 1619 Project","by John Grisham", "August 19, 2014", "Horror",R.drawable.the_1619_project));
+        bookTrending.add(new Book2( "Poems","by John Grisham", "August 19, 2014", "Horror",R.drawable.poems));
 
         List<AllCategory> trending_list = new ArrayList<>();
         trending_list.add(new AllCategory(1, "Trending Books ", bookTrending));
@@ -127,7 +127,7 @@ public class HomeActivity extends AppCompatActivity {
 
     private List<TopAuthor> GetListAuthors() {
         List<TopAuthor> list = new ArrayList<>();
-        list.add(new TopAuthor(R.drawable.author, ""));
+        list.add(new TopAuthor(R.drawable.author, "John Grisham"));
         list.add(new TopAuthor(R.drawable.author1, "Scotland Kenneth Grahame"));
         list.add(new TopAuthor(R.drawable.author2, "William Golding"));
         list.add(new TopAuthor(R.drawable.author3, "J.K. Rowling"));
@@ -137,28 +137,28 @@ public class HomeActivity extends AppCompatActivity {
 
     private List<AllCategory> GetListCategory(){
         List<Book2> mListBookEducation = new ArrayList<>();
-        mListBookEducation.add(new Book2( "School Leaders","","","",R.drawable.school_leaders));
-        mListBookEducation.add(new Book2( "Shaping School Culture","","","",R.drawable.shaping_school_culture));
-        mListBookEducation.add(new Book2( "Our Country Friends","","","",R.drawable.our_country_friends));
-        mListBookEducation.add(new Book2( "Pedagogy","","","",R.drawable.pedagogy));
+        mListBookEducation.add(new Book2( "School Leaders","by John Grisham", "August 19, 2014", "Horror",R.drawable.school_leaders));
+        mListBookEducation.add(new Book2( "Shaping School Culture","by John Grisham", "August 19, 2014", "Horror",R.drawable.shaping_school_culture));
+        mListBookEducation.add(new Book2( "Our Country Friends","by John Grisham", "August 19, 2014", "Horror",R.drawable.our_country_friends));
+        mListBookEducation.add(new Book2( "Pedagogy","by John Grisham", "August 19, 2014", "Horror",R.drawable.pedagogy));
 
         List<Book2> mListBook2 = new ArrayList<>();
-        mListBook2.add(new Book2("The Stranger in the Lifeboat","", "","",R.drawable.the_stranger));
-        mListBook2.add(new Book2("Big Fish & Begonia","", "","",R.drawable.bigfish_begonia));
-        mListBook2.add(new Book2("Tales from Earthsea","", "","",R.drawable.tales_from_earthsea));
-        mListBook2.add(new Book2("when marnie was there","","","",R.drawable.when_marnie_was_there));
+        mListBook2.add(new Book2("The Stranger in the Lifeboat","by John Grisham", "August 19, 2014", "Horror",R.drawable.the_stranger));
+        mListBook2.add(new Book2("Big Fish & Begonia","by John Grisham", "August 19, 2014", "Horror",R.drawable.bigfish_begonia));
+        mListBook2.add(new Book2("Tales from Earthsea","by John Grisham", "August 19, 2014", "Horror",R.drawable.tales_from_earthsea));
+        mListBook2.add(new Book2("when marnie was there","by John Grisham", "August 19, 2014", "Horror",R.drawable.when_marnie_was_there));
 
         List<Book2> mListBook3 = new ArrayList<>();
-        mListBook3.add(new Book2("Braiding Sweetgrass","", "","",R.drawable.braiding_sweetgrass));
-        mListBook3.add(new Book2( "How to Write a Mystery","","","",R.drawable.how_to_write_a_mystery));
-        mListBook3.add(new Book2("One Writer's Beginnings","", "","", R.drawable.one_writers_beginnings));
-        mListBook3.add(new Book2( "Olympus, Texas","","","",R.drawable.olympus_texas));
+        mListBook3.add(new Book2("Braiding Sweetgrass","by John Grisham", "August 19, 2014", "Horror",R.drawable.braiding_sweetgrass));
+        mListBook3.add(new Book2( "How to Write a Mystery","by John Grisham", "August 19, 2014", "Horror",R.drawable.how_to_write_a_mystery));
+        mListBook3.add(new Book2("One Writer's Beginnings","by John Grisham", "August 19, 2014", "Horror", R.drawable.one_writers_beginnings));
+        mListBook3.add(new Book2( "Olympus, Texas","by John Grisham", "August 19, 2014", "Horror",R.drawable.olympus_texas));
 
         List<Book2> mListBook4 = new ArrayList<>();
-        mListBook4.add(new Book2( "Circe","","","",R.drawable.circe));
-        mListBook4.add(new Book2("Ariadne","","","",R.drawable.ariadne));
-        mListBook4.add(new Book2( "Slide Version 2","","","",R.drawable.shaping_school_culture));
-        mListBook4.add(new Book2( "Moana","","","",R.drawable.moana));
+        mListBook4.add(new Book2( "Circe","by John Grisham", "August 19, 2014", "Horror",R.drawable.circe));
+        mListBook4.add(new Book2("Ariadne","by John Grisham", "August 19, 2014", "Horror",R.drawable.ariadne));
+        mListBook4.add(new Book2( "Slide Version 2","by John Grisham", "August 19, 2014", "Horror",R.drawable.shaping_school_culture));
+        mListBook4.add(new Book2( "Moana","by John Grisham", "August 19, 2014", "Horror",R.drawable.moana));
 
         List<AllCategory> allCategoryList = new ArrayList<>();
         allCategoryList.add(new AllCategory(1, "Education ", mListBookEducation));
