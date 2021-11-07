@@ -11,22 +11,20 @@ import android.widget.Spinner;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.nguyenvanhoa.book_app_reading.Adapter.CategoryAdapter;
 import com.nguyenvanhoa.book_app_reading.Adapter.SachsearchAdapter;
-import com.nguyenvanhoa.book_app_reading.Model.Book;
+import com.nguyenvanhoa.book_app_reading.Model.Book2;
 import com.nguyenvanhoa.book_app_reading.Model.Category;
-import com.nguyenvanhoa.book_app_reading.Model.Sach_search;
 import com.nguyenvanhoa.book_app_reading.R;
 
 import java.util.ArrayList;
 import java.util.List;
 public class SearchActivity extends AppCompatActivity {
-    ArrayList<Sach_search> list;
+    ArrayList<Book2> books;
     private Spinner spnCategory;
     private CategoryAdapter categoryAdapter;
     private RecyclerView rcvSach;
@@ -69,13 +67,13 @@ public class SearchActivity extends AppCompatActivity {
         });
     }
     private void createlist() {
-        list = new ArrayList<>();
-        list.add(new Sach_search(R.drawable.title_book,"Sycamore Trees", "John Grisham", "October 19,2017","Love story"));
-        list.add(new Sach_search(R.drawable.truyen,"The Wind in the Willows", "Scotland Kenneth Grahame", "October 19,2017","Love story"));
-        list.add(new Sach_search(R.drawable.truyen,"Lord of the Flies", "Lois Lowry", "October 19,2017","Love story"));
-        list.add(new Sach_search(R.drawable.title_book,"The Old Man and Sea", " Ernest Hemingway", "Octobjsoer 19,2017","Love story"));
-        list.add(new Sach_search(R.drawable.truyen,"The Giver", "William Golding", "October 19,2017","Love story"));
-        list.add(new Sach_search(R.drawable.title_book,"Harry Potter", "J.K. Rowling", "October 19,2017","Love story"));
+        books = new ArrayList<>();
+        books.add(new Book2("GrindelWall Row", "by John Grisham", "August 19, 2014", "Horror", R.drawable.the_story_of_schit_creek));
+        books.add(new Book2("Themartian", "by John Grisham", "August 19, 2014", "Horror", R.drawable.braiding_sweetgrass));
+        books.add(new Book2("Spider Cover", "by John Grisham", "August 19, 2014", "Horror", R.drawable.the_stranger));
+        books.add(new Book2("Sycamore Row", "by John Grisham", "August 19, 2014", "Horror", R.drawable.circe));
+        books.add(new Book2("Werewolves", "by John Grisham", "August 19, 2014", "Horror", R.drawable.school_leaders));
+        books.add(new Book2("Moana", "by John Grisham", "August 19, 2014", "Horror", R.drawable.shaping_school_culture));
     }
 
     private List<Category> getListCategory(){
@@ -89,21 +87,21 @@ public class SearchActivity extends AppCompatActivity {
         rcvSach = findViewById(R.id.rcv_book);
         rcvSach.setHasFixedSize(true);
         mLayoutManager = new LinearLayoutManager(this);
-        sachadapter = new SachsearchAdapter(this,list);
+        sachadapter = new SachsearchAdapter(this,books);
         rcvSach.setLayoutManager(mLayoutManager);
         rcvSach.setAdapter(sachadapter);
     }
 
     private void filter(String text){  //timkiem
-        ArrayList<Sach_search> ab = new ArrayList<>();
-        for (Sach_search sach: list){
-            if(sach.getTensach().toLowerCase().contains(text.toLowerCase())){
+        ArrayList<Book2> ab = new ArrayList<>();
+        for (Book2 sach: books){
+            if(sach.getName().toLowerCase().contains(text.toLowerCase())){
                 ab.add(sach);
             }
-            else if(sach.getTacgia().toLowerCase().contains(text.toLowerCase())){
+            else if(sach.getCategory().toLowerCase().contains(text.toLowerCase())){
                 ab.add(sach);
             }
-            else if(sach.getTheloai().toLowerCase().contains(text.toLowerCase())){
+            else if(sach.getCategory().toLowerCase().contains(text.toLowerCase())){
                 ab.add(sach);
             }
         }
