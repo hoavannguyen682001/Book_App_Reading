@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 
 import com.nguyenvanhoa.book_app_reading.Model.AllCategory;
-import com.nguyenvanhoa.book_app_reading.Model.Book;
+import com.nguyenvanhoa.book_app_reading.Model.Book2;
 import com.nguyenvanhoa.book_app_reading.R;
 
 import java.util.List;
@@ -62,7 +62,7 @@ public class MainRecyclerAdapter extends RecyclerView.Adapter<MainRecyclerAdapte
             itemRecycler = itemView.findViewById(R.id.item_recycler);
         }
     }
-    private void SetItemRecycler(RecyclerView recyclerView, List<Book> bookList){
+    private void SetItemRecycler(RecyclerView recyclerView, List<Book2> bookList){
         ItemCategoryAdapter itemCategoryAdapter = new ItemCategoryAdapter(context, bookList);
         recyclerView.setLayoutManager(new LinearLayoutManager(context, RecyclerView.HORIZONTAL, false));
         recyclerView.setAdapter(itemCategoryAdapter);

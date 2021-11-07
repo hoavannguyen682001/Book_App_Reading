@@ -17,7 +17,7 @@ import com.nguyenvanhoa.book_app_reading.Adapter.MainRecyclerAdapter;
 import com.nguyenvanhoa.book_app_reading.Adapter.SliderPagerAdapter;
 import com.nguyenvanhoa.book_app_reading.Adapter.TopAuthorsAdapter;
 import com.nguyenvanhoa.book_app_reading.Model.AllCategory;
-import com.nguyenvanhoa.book_app_reading.Model.Book;
+import com.nguyenvanhoa.book_app_reading.Model.Book2;
 import com.nguyenvanhoa.book_app_reading.Model.Slide_Show;
 import com.nguyenvanhoa.book_app_reading.Model.TopAuthor;
 import com.nguyenvanhoa.book_app_reading.R;
@@ -50,6 +50,7 @@ public class HomeActivity extends AppCompatActivity {
         InitView_RecyclerView();
         Naviagation_bar();
     }
+
     private void InitView_Slide() {
         slide_pager = findViewById(R.id.vpSlider);
         indicator = findViewById(R.id.indicator);
@@ -69,7 +70,6 @@ public class HomeActivity extends AppCompatActivity {
         listSlides.add(new Slide_Show(2, "The Stranger in the Lifeboat", R.drawable.banner2));
         return listSlides;
     }
-
 
     private void InitView_RecyclerView(){
         setMainRecycler();
@@ -113,12 +113,12 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     private List<AllCategory> GetListTrending() {
-        List<Book> bookTrending = new ArrayList<>();
-        bookTrending.add(new Book(R.drawable.the_dawn, "The Dawn of Everything"));
-        bookTrending.add(new Book(R.drawable.dune, "Dune"));
-        bookTrending.add(new Book(R.drawable.the_story_of_schit_creek, "The Story of Schitt's Creek"));
-        bookTrending.add(new Book(R.drawable.the_1619_project, "The 1619 Project"));
-        bookTrending.add(new Book(R.drawable.poems, "Poems"));
+        List<Book2> bookTrending = new ArrayList<>();
+        bookTrending.add(new Book2("The Dawn of Everything", "1", "2", "3",R.drawable.the_dawn));
+        bookTrending.add(new Book2("Dune", "2", "", "",R.drawable.dune ));
+        bookTrending.add(new Book2("The Story of Schitt's Creek","3",  "", "", R.drawable.the_story_of_schit_creek));
+        bookTrending.add(new Book2("The 1619 Project","4",  "", "", R.drawable.the_1619_project));
+        bookTrending.add(new Book2( "Poems","5", "", "",R.drawable.poems));
 
         List<AllCategory> trending_list = new ArrayList<>();
         trending_list.add(new AllCategory(1, "Trending Books ", bookTrending));
@@ -136,29 +136,29 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     private List<AllCategory> GetListCategory(){
-        List<Book> mListBookEducation = new ArrayList<>();
-        mListBookEducation.add(new Book(R.drawable.school_leaders, "School Leaders"));
-        mListBookEducation.add(new Book(R.drawable.shaping_school_culture, "Shaping School Culture"));
-        mListBookEducation.add(new Book(R.drawable.our_country_friends, "Our Country Friends"));
-        mListBookEducation.add(new Book(R.drawable.pedagogy, "Pedagogy"));
+        List<Book2> mListBookEducation = new ArrayList<>();
+        mListBookEducation.add(new Book2( "School Leaders","","","",R.drawable.school_leaders));
+        mListBookEducation.add(new Book2( "Shaping School Culture","","","",R.drawable.shaping_school_culture));
+        mListBookEducation.add(new Book2( "Our Country Friends","","","",R.drawable.our_country_friends));
+        mListBookEducation.add(new Book2( "Pedagogy","","","",R.drawable.pedagogy));
 
-        List<Book> mListBook2 = new ArrayList<>();
-        mListBook2.add(new Book(R.drawable.the_stranger, "The Stranger in the Lifeboat"));
-        mListBook2.add(new Book(R.drawable.bigfish_begonia, "Big Fish & Begonia"));
-        mListBook2.add(new Book(R.drawable.tales_from_earthsea, "Tales from Earthsea"));
-        mListBook2.add(new Book(R.drawable.when_marnie_was_there, "When Marnie Was There"));
+        List<Book2> mListBook2 = new ArrayList<>();
+        mListBook2.add(new Book2("The Stranger in the Lifeboat","", "","",R.drawable.the_stranger));
+        mListBook2.add(new Book2("Big Fish & Begonia","", "","",R.drawable.bigfish_begonia));
+        mListBook2.add(new Book2("Tales from Earthsea","", "","",R.drawable.tales_from_earthsea));
+        mListBook2.add(new Book2("when marnie was there","","","",R.drawable.when_marnie_was_there));
 
-        List<Book> mListBook3 = new ArrayList<>();
-        mListBook3.add(new Book(R.drawable.braiding_sweetgrass, "Braiding Sweetgrass"));
-        mListBook3.add(new Book(R.drawable.how_to_write_a_mystery, "How to Write a Mystery"));
-        mListBook3.add(new Book(R.drawable.one_writers_beginnings, "One Writer's Beginnings"));
-        mListBook3.add(new Book(R.drawable.olympus_texas, "Olympus, Texas"));
+        List<Book2> mListBook3 = new ArrayList<>();
+        mListBook3.add(new Book2("Braiding Sweetgrass","", "","",R.drawable.braiding_sweetgrass));
+        mListBook3.add(new Book2( "How to Write a Mystery","","","",R.drawable.how_to_write_a_mystery));
+        mListBook3.add(new Book2("One Writer's Beginnings","", "","", R.drawable.one_writers_beginnings));
+        mListBook3.add(new Book2( "Olympus, Texas","","","",R.drawable.olympus_texas));
 
-        List<Book> mListBook4 = new ArrayList<>();
-        mListBook4.add(new Book(R.drawable.circe, "Circe"));
-        mListBook4.add(new Book(R.drawable.ariadne, "Ariadne"));
-        mListBook4.add(new Book(R.drawable.shaping_school_culture, "Slide Version 2"));
-        mListBook4.add(new Book(R.drawable.moana, "Moana"));
+        List<Book2> mListBook4 = new ArrayList<>();
+        mListBook4.add(new Book2( "Circe","","","",R.drawable.circe));
+        mListBook4.add(new Book2("Ariadne","","","",R.drawable.ariadne));
+        mListBook4.add(new Book2( "Slide Version 2","","","",R.drawable.shaping_school_culture));
+        mListBook4.add(new Book2( "Moana","","","",R.drawable.moana));
 
         List<AllCategory> allCategoryList = new ArrayList<>();
         allCategoryList.add(new AllCategory(1, "Education ", mListBookEducation));

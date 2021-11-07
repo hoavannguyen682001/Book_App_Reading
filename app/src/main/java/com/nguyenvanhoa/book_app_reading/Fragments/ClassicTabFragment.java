@@ -37,10 +37,10 @@ public class ClassicTabFragment extends Fragment {
         super.onCreate(savedInstanceState);
         books = new ArrayList<>();
         books.add(new Book2("Sycamore Row", "by John Grisham", "August 19, 2014", "Horror", R.drawable.the_stranger));
-        books.add(new Book2("Sycamore Row", "by John Grisham", "August 19, 2014", "Horror", R.drawable.the_story_of_schit_creek));
-        books.add(new Book2("Sycamore Row", "by John Grisham", "August 19, 2014", "Horror", R.drawable.braiding_sweetgrass));
-        books.add(new Book2("Sycamore Row", "by John Grisham", "August 19, 2014", "Horror", R.drawable.circe));
-        books.add(new Book2("Sycamore Row", "by John Grisham", "August 19, 2014", "Horror", R.drawable.shaping_school_culture));
-        books.add(new Book2("Sycamore Row", "by John Grisham", "August 19, 2014", "Horror", R.drawable.school_leaders));
+        books.add(new Book2("Texas", "by John Grisham", "August 19, 2014", "Horror", R.drawable.the_story_of_schit_creek));
+        books.add(new Book2("Ariadne", "by John Grisham", "August 19, 2014", "Horror", R.drawable.braiding_sweetgrass));
+        books.add(new Book2("Olympus", "by John Grisham", "August 19, 2014", "Horror", R.drawable.circe));
+        books.add(new Book2("Circe", "by John Grisham", "August 19, 2014", "Horror", R.drawable.shaping_school_culture));
+        books.add(new Book2("The Dam", "by John Grisham", "August 19, 2014", "Horror", R.drawable.school_leaders));
     }
 }

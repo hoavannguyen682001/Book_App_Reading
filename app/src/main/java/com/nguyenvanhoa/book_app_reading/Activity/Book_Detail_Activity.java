@@ -29,8 +29,8 @@ public class Book_Detail_Activity extends AppCompatActivity {
     private CheckBox fav;
     private ImageButton btnBack;
     private ImageView imgbook;
-    private TextView namebook;
-    private String mName;
+    private TextView namebook, authorbook, datebook, categorybook;
+    private String mName, mAuthor, mDate, mCatrgory;
     private int mImg;
     private TabLayout mTabLayout;
     private ViewPager mViewPaper;
@@ -48,10 +48,18 @@ public class Book_Detail_Activity extends AppCompatActivity {
         btnRead = findViewById(R.id.btnRead);
         imgbook = findViewById(R.id.img_book_item);
         namebook = findViewById(R.id.txtName_book);
+        authorbook = findViewById(R.id.txtAuthor_book);
+        datebook = findViewById(R.id.txtDate_book);
+        categorybook = findViewById(R.id.txtCategory_book);
         fav = findViewById(R.id.cbfavorite);
         btnBack = findViewById(R.id.btnBack);
+
         mName = getIntent().getStringExtra("bookName");
+        mAuthor = getIntent().getStringExtra("bookAuthor");
+        mDate = getIntent().getStringExtra("bookDate");
+        mCatrgory = getIntent().getStringExtra("bookCategory");
         mImg = getIntent().getExtras().getInt("bookImg");
+
         namebook.setText(mName);
         Glide.with(this).load(mImg).into(imgbook);
 
@@ -109,9 +117,9 @@ public class Book_Detail_Activity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if(fav.isChecked()){
-                    Toast.makeText(Book_Detail_Activity.this, "Save To Library Successfully!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Book_Detail_Activity.this, "Save To Favorite Book Successfully!", Toast.LENGTH_SHORT).show();
                 }else{
-                    Toast.makeText(Book_Detail_Activity.this, "Unsave Successfully!", Toast.LENGTH_LONG).show();
+                    Toast.makeText(Book_Detail_Activity.this, "Unsaved Successfully!", Toast.LENGTH_LONG).show();
                 }
             }
         });

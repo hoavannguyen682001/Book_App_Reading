@@ -5,7 +5,7 @@ import java.util.List;
 public class AllCategory {
     private String Categorytitle;
     private Integer CategoryId;
-    private List<Book> bookList = null;
+    private List<Book2> bookList = null;
 
     public String getCategorytitle() {
         return Categorytitle;
@@ -23,15 +23,15 @@ public class AllCategory {
         CategoryId = categoryId;
     }
 
-    public List<Book> getBookList() {
+    public List<Book2> getBookList() {
         return bookList;
     }
 
-    public void setBookList(List<Book> bookList) {
+    public void setBookList(List<Book2> bookList) {
         this.bookList = bookList;
     }
 
-    public AllCategory(Integer categoryId, String categorytitle, List<Book> bookList) {
+    public AllCategory(Integer categoryId, String categorytitle, List<Book2> bookList) {
         Categorytitle = categorytitle;
         CategoryId = categoryId;
         this.bookList = bookList;

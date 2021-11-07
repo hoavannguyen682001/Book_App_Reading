@@ -20,9 +20,8 @@
     <ImageView
         android:id="@+id/img_book_item"
         android:layout_width="100dp"
-        android:layout_height="150dp"
+        android:layout_height="match_parent"
         android:scaleType="centerCrop"
-        android:layout_marginTop="24dp"
         android:layout_marginStart="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -32,7 +31,7 @@
 
     <TextView
         android:id="@+id/txtName_book"
-        android:layout_width="250dp"
+        android:layout_width="245dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
@@ -45,9 +44,9 @@
 
     <TextView
         android:id="@+id/txtAuthor_book"
-        android:layout_width="wrap_content"
+        android:layout_width="245dp"
         android:layout_height="wrap_content"
-        android:text="by John Grisham"
+        android:text="by John Grisham1111"
         app:layout_constraintStart_toEndOf="@+id/img_book_item"
         app:layout_constraintTop_toBottomOf="@+id/txtName_book"
         android:layout_marginStart="16dp"
@@ -57,7 +56,7 @@
 
     <TextView
         android:id="@+id/txtDate_book"
-        android:layout_width="wrap_content"
+        android:layout_width="245dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
@@ -68,7 +67,7 @@
 
     <TextView
         android:id="@+id/txtCategory_book"
-        android:layout_width="wrap_content"
+        android:layout_width="245dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"

@@ -14,6 +14,7 @@ import com.nguyenvanhoa.book_app_reading.R;
 public class MainActivity extends AppCompatActivity {
     private Button btnLogin, btnSignUp;
     private TextView tvSkip;
+    private int x = 1000, alpha = 0, delay = 200;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,18 +31,20 @@ public class MainActivity extends AppCompatActivity {
         btnLogin = findViewById(R.id.btn_LogInLauncherAt);
         btnSignUp  = findViewById(R.id.btn_SignUpLauncherAt);
         tvSkip = findViewById(R.id.tvSkip);
-
     }
 
     private void Animation(){
-        btnLogin.setTranslationX(1000);
-        btnSignUp.setTranslationX(1000);
+        btnLogin.setTranslationX(x);
+        btnSignUp.setTranslationX(x);
+        tvSkip.setTranslationX(x);
 
-        btnLogin.setAlpha(0);
-        btnSignUp.setAlpha(0);
+        btnLogin.setAlpha(alpha);
+        btnSignUp.setAlpha(alpha);
+        tvSkip.setAlpha(alpha);
 
-        btnLogin.animate().translationX(0).alpha(1).setDuration(1000).setStartDelay(400).start();
-        btnSignUp.animate().translationX(0).alpha(1).setDuration(1000).setStartDelay(600).start();
+        btnLogin.animate().translationX(0).alpha(1).setDuration(1000).setStartDelay(delay).start();
+        btnSignUp.animate().translationX(0).alpha(1).setDuration(1000).setStartDelay(delay+100).start();
+        tvSkip.animate().translationX(0).alpha(1).setDuration(1000).setStartDelay(delay+200).start();
     }
 
     private void onClick(){

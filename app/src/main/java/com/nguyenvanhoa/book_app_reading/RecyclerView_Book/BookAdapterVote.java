@@ -57,6 +57,9 @@ public class BookAdapterVote extends RecyclerView.Adapter<BookAdapterVote.BookHo
 
                 Intent intent = new Intent(context, Book_Detail_Activity.class);
                 intent.putExtra("bookName", Books.get(position).getName());
+                intent.putExtra("bookAuthor", Books.get(position).getAuthor());
+                intent.putExtra("bookDate", Books.get(position).getDate());
+                intent.putExtra("bookCategory", Books.get(position).getCategory());
                 intent.putExtra("bookImg", Books.get(position).getImg());
                 context.startActivity(intent);
             }

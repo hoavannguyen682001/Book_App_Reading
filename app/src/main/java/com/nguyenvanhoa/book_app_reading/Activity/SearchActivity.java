@@ -68,12 +68,12 @@ public class SearchActivity extends AppCompatActivity {
     }
     private void createlist() {
         books = new ArrayList<>();
-        books.add(new Book2("GrindelWall Row", "by John Grisham", "August 19, 2014", "Horror", R.drawable.the_story_of_schit_creek));
-        books.add(new Book2("Themartian", "by John Grisham", "August 19, 2014", "Horror", R.drawable.braiding_sweetgrass));
-        books.add(new Book2("Spider Cover", "by John Grisham", "August 19, 2014", "Horror", R.drawable.the_stranger));
-        books.add(new Book2("Sycamore Row", "by John Grisham", "August 19, 2014", "Horror", R.drawable.circe));
-        books.add(new Book2("Werewolves", "by John Grisham", "August 19, 2014", "Horror", R.drawable.school_leaders));
-        books.add(new Book2("Moana", "by John Grisham", "August 19, 2014", "Horror", R.drawable.shaping_school_culture));
+        books.add(new Book2("GrindelWall Row", "John Grisham", "August 19, 2014", "Horror", R.drawable.the_story_of_schit_creek));
+        books.add(new Book2("Themartian", "Grisham", "August 19, 2014", "Family", R.drawable.braiding_sweetgrass));
+        books.add(new Book2("Spider Cover", "Joisham", "August 19, 2014", "Action", R.drawable.the_stranger));
+        books.add(new Book2("Sycamore Row", "Hisham", "August 19, 2014", "Education", R.drawable.circe));
+        books.add(new Book2("Werewolves", "John Grisham", "August 19, 2014", "Horror", R.drawable.school_leaders));
+        books.add(new Book2("Moana", "Joam", "August 19, 2014", "Horror", R.drawable.shaping_school_culture));
     }
 
     private List<Category> getListCategory(){

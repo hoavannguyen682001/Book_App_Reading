@@ -5,28 +5,21 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageButton;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 
 import com.github.barteksc.pdfviewer.PDFView;
 import com.nguyenvanhoa.book_app_reading.Activity.Book_Detail_Activity;
-import com.nguyenvanhoa.book_app_reading.Fragments.Chapter_BookFragment;
-import com.nguyenvanhoa.book_app_reading.Model.Book;
+import com.nguyenvanhoa.book_app_reading.Model.Book2;
 import com.nguyenvanhoa.book_app_reading.R;
-
-import java.util.List;
 
 public class activity_content_story extends FragmentActivity {
 
     PDFView pdfView;
     ImageButton chapter_next,back_to_detail;
     String chapterIndex;
-    Book book;
     TextView txtNamebook;
 
     @Override
