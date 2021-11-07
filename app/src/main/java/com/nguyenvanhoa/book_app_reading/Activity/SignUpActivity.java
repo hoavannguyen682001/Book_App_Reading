@@ -8,6 +8,7 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -26,6 +27,7 @@ public class SignUpActivity extends AppCompatActivity {
     private AutoCompleteTextView spnGender;
     private LinearLayout lnF_G, lnLogin;
     private Button btnSignUp;
+    private ImageButton btnBack;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -37,6 +39,13 @@ public class SignUpActivity extends AppCompatActivity {
         Animation();
 //        InitSpinner();
 
+        btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplication(), MainActivity.class);
+                startActivity(intent);
+            }
+        });
         btnSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -61,6 +70,7 @@ public class SignUpActivity extends AppCompatActivity {
         lnF_G = findViewById(R.id.lnName_Gender);
         btnSignUp = findViewById(R.id.btnSignUp_SignUpAT);
         lnLogin = findViewById(R.id.lnLogIn);
+        btnBack = findViewById(R.id.btnBack);
     }
 
     private void Animation() {

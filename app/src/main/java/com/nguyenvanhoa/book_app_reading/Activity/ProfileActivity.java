@@ -22,8 +22,8 @@ import com.nguyenvanhoa.book_app_reading.R;
 public class ProfileActivity extends AppCompatActivity {
     BottomNavigationView navigationView;
     private Button btnlogout, btnterm, btnAboutUs;
-    private CheckBox editname, editemail;
-    private EditText inputname, inputemail;
+    private CheckBox editname, editemail, cbEdit_user;
+    private EditText inputname, inputemail, inputUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,9 +41,13 @@ public class ProfileActivity extends AppCompatActivity {
         inputemail = findViewById(R.id.input_email);
         editemail = findViewById(R.id.cbEdit_email);
 
+        inputUser = findViewById(R.id.input_user);
+        cbEdit_user = findViewById(R.id.cbEdit_user);
+
 
         setEditClick(inputname, editname);
         setEditClick(inputemail, editemail);
+        setEditClick(inputUser, cbEdit_user);
 
         btnAboutUs.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -62,7 +66,7 @@ public class ProfileActivity extends AppCompatActivity {
         btnlogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(intent);
             }
         });

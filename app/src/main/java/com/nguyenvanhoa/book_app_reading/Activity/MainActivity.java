@@ -7,11 +7,13 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.nguyenvanhoa.book_app_reading.R;
 
 public class MainActivity extends AppCompatActivity {
     private Button btnLogin, btnSignUp;
+    private TextView tvSkip;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,6 +29,8 @@ public class MainActivity extends AppCompatActivity {
     private void AnhXa(){
         btnLogin = findViewById(R.id.btn_LogInLauncherAt);
         btnSignUp  = findViewById(R.id.btn_SignUpLauncherAt);
+        tvSkip = findViewById(R.id.tvSkip);
+
     }
 
     private void Animation(){
@@ -41,6 +45,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void onClick(){
+        tvSkip.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplication(), HomeActivity.class);
+                startActivity(intent);
+            }
+        });
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -21,6 +22,7 @@ public class LoginActivity extends AppCompatActivity {
     private TextView txtSignUp;
     private LinearLayout ln;
     private TextView tvforgotpass;
+    private ImageButton btnBack;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -41,6 +43,7 @@ public class LoginActivity extends AppCompatActivity {
         ln = findViewById(R.id.lnSignUp);
         txtSignUp = findViewById(R.id.txtSignUp);
         tvforgotpass = findViewById(R.id.tvForgotPass);
+        btnBack = findViewById(R.id.btnBack);
     }
 
     private void Animation(){
@@ -64,6 +67,13 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void setClick() {
+        btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                startActivity(intent);
+            }
+        });
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -73,7 +73,7 @@ public class Book_Detail_Activity extends AppCompatActivity {
                     startActivity(intent);
                     return;
                 }
-                if (nameClass.endsWith("SliderPagerAdapter")){
+                if (nameClass.endsWith("SliderPagerAdapter$1")){
                     intent = new Intent(getApplication(), HomeActivity.class);
                     startActivity(intent);
                     return;
@@ -109,9 +109,9 @@ public class Book_Detail_Activity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if(fav.isChecked()){
-                    Toast.makeText(Book_Detail_Activity.this, "Add successfully!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Book_Detail_Activity.this, "Save To Library Successfully!", Toast.LENGTH_SHORT).show();
                 }else{
-                    Toast.makeText(Book_Detail_Activity.this, "Remove successfully!", Toast.LENGTH_LONG).show();
+                    Toast.makeText(Book_Detail_Activity.this, "Unsave Successfully!", Toast.LENGTH_LONG).show();
                 }
             }
         });

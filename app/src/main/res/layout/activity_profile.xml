@@ -44,18 +44,37 @@
                 android:layout_width="80dp"
                 android:layout_height="80dp"
                 android:scaleType="centerCrop"
-                android:src="@drawable/author" />
+                android:src="@drawable/ic_user" />
         </androidx.cardview.widget.CardView>
 
 
-        <TextView
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="HKLNT"
-            android:textSize="20dp"
-            android:textStyle="bold"
-            android:textColor="@color/black"/>
+            android:layout_below="@id/tvname"
+            android:orientation="horizontal"
+            android:paddingLeft="8dp"
+            android:gravity="center">
+
+            <EditText
+                android:id="@+id/input_user"
+                android:layout_width="100dp"
+                android:layout_height="45dp"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:enabled="false"
+                android:singleLine="true"
+                android:text="HKLNT"
+                android:textSize="16sp" />
+
+            <CheckBox
+                android:id="@+id/cbEdit_user"
+                android:layout_width="24dp"
+                android:layout_height="16dp"
+                android:layout_gravity="center"
+                android:background="@color/white"
+                android:button="@drawable/edit_checkbox" />
+        </LinearLayout>
 
     </LinearLayout>
 
@@ -112,14 +131,12 @@
 
                     <CheckBox
                         android:id="@+id/cbEdit_name"
-                        android:layout_width="match_parent"
+                        android:layout_width="24dp"
                         android:layout_height="16dp"
                         android:layout_gravity="center"
                         android:background="@color/white"
                         android:button="@drawable/edit_checkbox" />
                 </LinearLayout>
-
-
             </RelativeLayout>
 
             <RelativeLayout
@@ -159,7 +176,7 @@
 
                     <CheckBox
                         android:id="@+id/cbEdit_email"
-                        android:layout_width="match_parent"
+                        android:layout_width="24dp"
                         android:layout_height="16dp"
                         android:layout_gravity="center"
                         android:background="@color/white"

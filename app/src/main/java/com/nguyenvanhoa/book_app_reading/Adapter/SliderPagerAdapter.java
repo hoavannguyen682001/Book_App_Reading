@@ -44,7 +44,7 @@ public class SliderPagerAdapter extends PagerAdapter {
         slideImg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Book_Detail_Activity.nameClass = getClass().toString();;
+                Book_Detail_Activity.nameClass = getClass().toString();
                 Intent intent = new Intent(context, Book_Detail_Activity.class);
                 intent.putExtra("bookId", mList.get(position).getId());
                 intent.putExtra("bookName", mList.get(position).getBookName());
