@@ -1,7 +1,9 @@
 package com.nguyenvanhoa.book_app_reading.Activity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -9,10 +11,22 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.nguyenvanhoa.book_app_reading.R;
 
 public class LoginActivity extends AppCompatActivity {
@@ -24,6 +38,10 @@ public class LoginActivity extends AppCompatActivity {
     private TextView tvforgotpass;
     private ImageButton btnBack;
 
+    private FirebaseAuth firebaseAuth;
+
+    private ProgressDialog progressDialog;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,6 +51,14 @@ public class LoginActivity extends AppCompatActivity {
         AnhXa();
         Animation();
         setClick();
+
+        //init firebase auth
+        firebaseAuth = FirebaseAuth.getInstance();
+
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setTitle("Please wait...");
+        progressDialog.setCanceledOnTouchOutside(false);
+
 
     }
 
@@ -77,8 +103,9 @@ public class LoginActivity extends AppCompatActivity {
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
-                startActivity(intent);
+//                Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+//                startActivity(intent);
+                validateData();
             }
         });
         txtSignUp.setOnClickListener(new View.OnClickListener() {
@@ -96,5 +123,70 @@ public class LoginActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
+
+    private String email = "", password = "";
+    private void validateData() {
+        // get data
+        email = txtEmail.getText().toString().trim();
+        password = txtPassword.getText().toString().trim();
+
+        // validate data
+        if(TextUtils.isEmpty(email)){
+            Toast.makeText(LoginActivity.this, "Enter your email...", Toast.LENGTH_SHORT).show();
+        }else if(TextUtils.isEmpty(password)){
+            Toast.makeText(LoginActivity.this, "Enter password...", Toast.LENGTH_SHORT).show();
+        }else{
+            loginUser();
+        }
+    }
+
+    private void loginUser() {
+        progressDialog.setMessage("Logging in...");
+        progressDialog.show();
+
+        firebaseAuth.signInWithEmailAndPassword(email,password)
+                .addOnSuccessListener(new OnSuccessListener<AuthResult>() {
+                    @Override
+                    public void onSuccess(AuthResult authResult) {
+                        progressDialog.dismiss();
+                        startActivity(new Intent(getApplicationContext(), HomeActivity.class));
+                        finish();
+                        //checkUser();
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure( Exception e) {
+                        progressDialog.dismiss();
+                        Toast.makeText(LoginActivity.this, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                });
+    }
+
+    private void checkUser() {
+
+        // get current user
+        FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
+
+        //check in db
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Users");
+        ref.child(firebaseUser.getUid())
+                .addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot snapshot) {
+                        //check user type
+                        String userType = "" + snapshot.child("userType").getValue();
+                        if(userType.equals("user")){
+                            startActivity(new Intent(getApplicationContext(), HomeActivity.class));
+                            finish();
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError error) {
+
+                    }
+                });
     }
 }

@@ -13,6 +13,11 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.tabs.TabLayout;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.nguyenvanhoa.book_app_reading.Adapter.MainRecyclerAdapter;
 import com.nguyenvanhoa.book_app_reading.Adapter.SliderPagerAdapter;
 import com.nguyenvanhoa.book_app_reading.Adapter.TopAuthorsAdapter;
@@ -87,9 +92,9 @@ public class HomeActivity extends AppCompatActivity {
         rcv_TopTrending.setFocusable(false);
         rcv_TopTrending.setNestedScrollingEnabled(false);
 
-        mainRecyclerAdapter = new MainRecyclerAdapter(this, GetListTrending());
-        mainRecyclerAdapter.setData(GetListTrending());
-        rcv_TopTrending.setAdapter(mainRecyclerAdapter);
+//        mainRecyclerAdapter = new MainRecyclerAdapter(this, GetListTrending());
+//        mainRecyclerAdapter.setData(GetListTrending());
+//        rcv_TopTrending.setAdapter(mainRecyclerAdapter);
 
 //        rcv_topAuthors
         rcv_topAuthors = findViewById(R.id.rcv_topAuthors);
@@ -112,18 +117,18 @@ public class HomeActivity extends AppCompatActivity {
         rcv_mainRecycler.setAdapter(mainRecyclerAdapter);
     }
 
-    private List<AllCategory> GetListTrending() {
-        List<Book2> bookTrending = new ArrayList<>();
-        bookTrending.add(new Book2("The Dawn of Everything", "by John Grisham", "August 19, 2014", "Horror",R.drawable.the_dawn));
-        bookTrending.add(new Book2("Dune","by John Grisham", "August 19, 2014", "Horror",R.drawable.dune ));
-        bookTrending.add(new Book2("The Story of Schitt's Creek","by John Grisham", "August 19, 2014", "Horror",R.drawable.the_story_of_schit_creek));
-        bookTrending.add(new Book2("The 1619 Project","by John Grisham", "August 19, 2014", "Horror",R.drawable.the_1619_project));
-        bookTrending.add(new Book2( "Poems","by John Grisham", "August 19, 2014", "Horror",R.drawable.poems));
-
-        List<AllCategory> trending_list = new ArrayList<>();
-        trending_list.add(new AllCategory(1, "Trending Books ", bookTrending));
-        return trending_list;
-    }
+//    private List<AllCategory> GetListTrending() {
+//        List<Book2> bookTrending = new ArrayList<>();
+//        bookTrending.add(new Book2("The Dawn of Everything", "by John Grisham", "August 19, 2014", "Horror",R.drawable.the_dawn));
+//        bookTrending.add(new Book2("Dune","by John Grisham", "August 19, 2014", "Horror",R.drawable.dune ));
+//        bookTrending.add(new Book2("The Story of Schitt's Creek","by John Grisham", "August 19, 2014", "Horror",R.drawable.the_story_of_schit_creek));
+//        bookTrending.add(new Book2("The 1619 Project","by John Grisham", "August 19, 2014", "Horror",R.drawable.the_1619_project));
+//        bookTrending.add(new Book2( "Poems","by John Grisham", "August 19, 2014", "Horror",R.drawable.poems));
+//
+//        List<AllCategory> trending_list = new ArrayList<>();
+//        trending_list.add(new AllCategory(1, "Trending Books ", bookTrending));
+//        return trending_list;
+//    }
 
     private List<TopAuthor> GetListAuthors() {
         List<TopAuthor> list = new ArrayList<>();
@@ -135,7 +140,7 @@ public class HomeActivity extends AppCompatActivity {
         return list;
     }
 
-    private List<AllCategory> GetListCategory(){
+    /* private List<AllCategory> GetListCategory(){
         List<Book2> mListBookEducation = new ArrayList<>();
         mListBookEducation.add(new Book2( "School Leaders","by John Grisham", "August 19, 2014", "Horror",R.drawable.school_leaders));
         mListBookEducation.add(new Book2( "Shaping School Culture","by John Grisham", "August 19, 2014", "Horror",R.drawable.shaping_school_culture));
@@ -167,8 +172,32 @@ public class HomeActivity extends AppCompatActivity {
         allCategoryList.add(new AllCategory(4, "Historical Fiction", mListBook4));
 
         return allCategoryList;
-    }
+    }*/
 
+    //get categories from db firebase
+    private List<AllCategory> GetListCategory(){
+        List<AllCategory> allCategoryList = new ArrayList<>();
+
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Catogeries");
+        ref.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                allCategoryList.clear();
+
+                for (DataSnapshot ds: snapshot.getChildren()) {
+                    AllCategory allCategory = ds.getValue(AllCategory.class);
+
+                    allCategoryList.add(allCategory);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+        return allCategoryList;
+    }
     class SliderTimer extends TimerTask {
         @Override
         public void run() {

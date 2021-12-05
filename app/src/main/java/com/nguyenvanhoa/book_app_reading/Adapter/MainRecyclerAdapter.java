@@ -1,6 +1,7 @@
 package com.nguyenvanhoa.book_app_reading.Adapter;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -39,11 +40,11 @@ public class MainRecyclerAdapter extends RecyclerView.Adapter<MainRecyclerAdapte
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MainRecyclerHolder holder, int position) {
-        if (allCategories == null){
-            return;
-        }
-        holder.categoryName.setText(allCategories.get(position).getCategorytitle());
+    public void onBindViewHolder(@NonNull MainRecyclerAdapter.MainRecyclerHolder holder, int position) {
+//        if (allCategories == null){
+//            return;
+//        }
+        holder.categoryName.setText(allCategories.get(position).getCategory());
         SetItemRecycler(holder.itemRecycler, allCategories.get(position).getBookList());
     }
 

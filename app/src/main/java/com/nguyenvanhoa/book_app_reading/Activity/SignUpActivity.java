@@ -1,7 +1,10 @@
 package com.nguyenvanhoa.book_app_reading.Activity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
+import android.util.Patterns;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.ArrayAdapter;
@@ -12,13 +15,23 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.nguyenvanhoa.book_app_reading.R;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.regex.Pattern;
 
 public class SignUpActivity extends AppCompatActivity {
 
@@ -28,6 +41,9 @@ public class SignUpActivity extends AppCompatActivity {
     private LinearLayout lnF_G, lnLogin;
     private Button btnSignUp;
     private ImageButton btnBack;
+
+    private FirebaseAuth firebaseAuth;
+    private ProgressDialog progressDialog;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -39,6 +55,14 @@ public class SignUpActivity extends AppCompatActivity {
         Animation();
 //        InitSpinner();
 
+        //Init firebase auth
+        firebaseAuth = FirebaseAuth.getInstance();
+
+        //Progress dialog
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setTitle("Please wait...");
+        progressDialog.setCanceledOnTouchOutside(false);
+
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -49,8 +73,9 @@ public class SignUpActivity extends AppCompatActivity {
         btnSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplication(), LoginActivity.class);
-                startActivity(intent);
+//                Intent intent = new Intent(getApplication(), LoginActivity.class);
+//                startActivity(intent);
+                validateData();
             }
         });
         btnLogin.setOnClickListener(new View.OnClickListener() {
@@ -60,6 +85,90 @@ public class SignUpActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
+
+    // validate data
+    private String fullName = "", email ="", password = "";
+    private void validateData() {
+
+        //get data
+        fullName = txtFullName.getText().toString().trim();
+        email = txtEmail.getText().toString().trim();
+        password = txtPassword.getText().toString().trim();
+        
+        //validate data
+        if(!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
+            Toast.makeText(this, "Invalid email address... !", Toast.LENGTH_SHORT).show();
+        }else if(TextUtils.isEmpty(fullName)){
+            Toast.makeText(this, "Enter your name...", Toast.LENGTH_SHORT).show();
+        }else if(TextUtils.isEmpty(password)){
+            Toast.makeText(this, "Enter password...", Toast.LENGTH_SHORT).show();
+        }else {
+            createUserAccount();
+        }
+    }
+
+    private void createUserAccount() {
+        //show progress dialog
+        progressDialog.setTitle("Creating account...");
+        progressDialog.show();
+
+        //create user in firebase auth
+        firebaseAuth.createUserWithEmailAndPassword(email, password)
+                .addOnSuccessListener(new OnSuccessListener<AuthResult>() {
+                    @Override
+                    public void onSuccess(AuthResult authResult) {
+                        updateUserInfo();
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(Exception e) {
+                        progressDialog.dismiss();
+                        Toast.makeText(SignUpActivity.this, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                });
+    }
+
+    //update user info to db firebase auth
+    private void updateUserInfo() {
+        progressDialog.setTitle("Saving user info...");
+
+        Long timestamp = System.currentTimeMillis();
+
+        //get uid
+        String uid = firebaseAuth.getUid();
+
+        //set up data to add in db
+        HashMap<String, Object>  hashMap = new HashMap<>();
+        hashMap.put("uid", uid);
+        hashMap.put("email", email);
+        hashMap.put("fullName", fullName);
+        hashMap.put("profileImage", "");
+        hashMap.put("userType", "user");
+        hashMap.put("timestamp", timestamp);
+
+        //set data to db
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users");
+         reference.child(uid)
+                 .setValue(hashMap)
+                 .addOnSuccessListener(new OnSuccessListener<Void>() {
+                     @Override
+                     public void onSuccess(Void unused) {
+                        progressDialog.dismiss();
+                        Toast.makeText(SignUpActivity.this, "Account created...", Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(getApplicationContext(), HomeActivity.class));
+                        finish();
+                     }
+                 })
+                 .addOnFailureListener(new OnFailureListener() {
+                     @Override
+                     public void onFailure(Exception e) {
+                        progressDialog.dismiss();
+                         Toast.makeText(SignUpActivity.this, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
+                     }
+                 });
+
     }
 
     private void AnhXa() {
@@ -107,5 +216,7 @@ public class SignUpActivity extends AppCompatActivity {
 //        ArrayAdapter<CharSequence> GenderAdapter = new ArrayAdapter<CharSequence>(this, R.layout.custom_spinner, arrGender);
 //        spnGender.setAdapter(GenderAdapter);
 //    }
+
+
 
 }
