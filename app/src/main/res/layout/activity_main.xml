@@ -77,16 +77,6 @@
             android:textStyle="bold"
             app:backgroundTint="#DCCDE4" />
 
-        <TextView
-            android:id="@+id/tvSkip"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/btn_SignUpLauncherAt"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="8dp"
-            android:text="Skip"
-            android:textAllCaps="false"
-            android:textColor="@color/purple_700" />
 
     </RelativeLayout>
 

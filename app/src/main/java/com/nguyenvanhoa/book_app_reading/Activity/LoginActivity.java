@@ -103,8 +103,6 @@ public class LoginActivity extends AppCompatActivity {
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
-//                startActivity(intent);
                 validateData();
             }
         });
@@ -150,22 +148,21 @@ public class LoginActivity extends AppCompatActivity {
                     @Override
                     public void onSuccess(AuthResult authResult) {
                         progressDialog.dismiss();
-                        startActivity(new Intent(getApplicationContext(), HomeActivity.class));
-                        finish();
-                        //checkUser();
+                        checkUser();
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure( Exception e) {
                         progressDialog.dismiss();
-                        Toast.makeText(LoginActivity.this, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(LoginActivity.this, "Email or password is not correctly...\nPlease try again!", Toast.LENGTH_SHORT).show();
                     }
                 });
     }
 
     private void checkUser() {
-
+        progressDialog.setMessage("Checking user type...");
+        progressDialog.show();
         // get current user
         FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
 
@@ -179,6 +176,11 @@ public class LoginActivity extends AppCompatActivity {
                         String userType = "" + snapshot.child("userType").getValue();
                         if(userType.equals("user")){
                             startActivity(new Intent(getApplicationContext(), HomeActivity.class));
+                            finish();
+                        }else if(userType.equals("admin")){
+                            //hien thi form admin
+                            startActivity(new Intent(getApplicationContext(), HomeActivity.class));
+                            Toast.makeText(getApplicationContext(), "Account admin..................", Toast.LENGTH_SHORT).show();
                             finish();
                         }
                     }
