@@ -34,8 +34,10 @@ public class MainActivity extends AppCompatActivity {
     private void Animation(){
         btnLogin.setTranslationX(x);
         btnSignUp.setTranslationX(x);
+
         btnLogin.setAlpha(alpha);
         btnSignUp.setAlpha(alpha);
+
         btnLogin.animate().translationX(0).alpha(1).setDuration(1000).setStartDelay(delay).start();
         btnSignUp.animate().translationX(0).alpha(1).setDuration(1000).setStartDelay(delay+100).start();
     }
