@@ -32,7 +32,6 @@ public class LibraryActivity extends AppCompatActivity {
         LibraryAdapter adapter =new LibraryAdapter(getSupportFragmentManager(), FragmentStatePagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
         viewPager.setAdapter(adapter);
         tabLayout.setupWithViewPager(viewPager);
-
         setAllCaps(tabLayout,false);
         Navigation_bar();
     }
@@ -64,7 +63,6 @@ public class LibraryActivity extends AppCompatActivity {
                         startActivity(intent);
                         overridePendingTransition(0,0);
                         break;
-
                     case R.id.nav_library:
                         break;
                     case R.id.nav_person:
