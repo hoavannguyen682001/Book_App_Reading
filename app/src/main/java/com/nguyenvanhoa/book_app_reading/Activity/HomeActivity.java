@@ -39,7 +39,6 @@ public class HomeActivity extends AppCompatActivity {
     private SliderPagerAdapter adapter;
     private TabLayout indicator;
     private BottomNavigationView navigationView;
-
     private MainRecyclerAdapter mainRecyclerAdapter;
     private TopAuthorsAdapter topAuthorsAdapter;
     private RecyclerView rcv_mainRecycler;

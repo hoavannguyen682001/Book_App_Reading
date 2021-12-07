@@ -23,7 +23,6 @@ public class ItemCategoryAdapter extends RecyclerView.Adapter<ItemCategoryAdapte
 
     Context context;
     List<Book2> bookList;
-
     public ItemCategoryAdapter(Context context, List<Book2> bookList) {
         this.context = context;
         this.bookList = bookList;

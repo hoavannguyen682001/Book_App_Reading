@@ -36,7 +36,6 @@ public class Book_Detail_Activity extends AppCompatActivity {
     private ViewPager mViewPaper;
     private Button btnRead;
     public static String nameClass;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

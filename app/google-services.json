@@ -1,0 +1,56 @@
+{
+  "project_info": {
+    "project_number": "653136338325",
+    "firebase_url": "https://book-app-91f8d-default-rtdb.firebaseio.com",
+    "project_id": "book-app-91f8d",
+    "storage_bucket": "book-app-91f8d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:653136338325:android:85841402b780f3d0632a9c",
+        "android_client_info": {
+          "package_name": "com.nguyenvanhoa.book_app_reading"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "653136338325-37cps7fpfsf47skeeo6ojq8fh7bgj68q.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.nguyenvanhoa.book_app_reading",
+            "certificate_hash": "fe403761f8198409eeb4ce1bd81420b62eca2341"
+          }
+        },
+        {
+          "client_id": "653136338325-oemn57cg4kk2i1rgqltgucuu36eovo68.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.nguyenvanhoa.book_app_reading",
+            "certificate_hash": "ccb4a901124aee7b354cb2e18b2490ac1d8a883c"
+          }
+        },
+        {
+          "client_id": "653136338325-v3tfek86i0lr3acevca3a19k1le2i2dr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAboqqT9cC9RZkN9HGjN6uoi-srgQhoL0o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "653136338325-v3tfek86i0lr3acevca3a19k1le2i2dr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
