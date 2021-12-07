@@ -41,10 +41,10 @@ public class MainRecyclerAdapter extends RecyclerView.Adapter<MainRecyclerAdapte
 
     @Override
     public void onBindViewHolder(@NonNull MainRecyclerAdapter.MainRecyclerHolder holder, int position) {
-//        if (allCategories == null){
-//            return;
-//        }
-        holder.categoryName.setText(allCategories.get(position).getCategory());
+        if (allCategories == null){
+            return;
+        }
+        holder.categoryName.setText(allCategories.get(position).getCategorytitle());
         SetItemRecycler(holder.itemRecycler, allCategories.get(position).getBookList());
     }
 
