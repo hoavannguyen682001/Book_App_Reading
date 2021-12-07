@@ -10,7 +10,6 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.nguyenvanhoa.book_app_reading.Activity.SearchActivity;
 import com.nguyenvanhoa.book_app_reading.Model.Category;
 import com.nguyenvanhoa.book_app_reading.R;
 

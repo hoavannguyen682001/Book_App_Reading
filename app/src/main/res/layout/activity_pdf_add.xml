@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activity.Admin.Activity.PdfAddActivity"
+    android:padding="16dp">
+
+    <ImageView
+        android:id="@+id/backBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_left_back"/>
+
+    <TextView
+        android:id="@+id/AddTv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/backBtn"
+        android:gravity="center_horizontal"
+        android:layout_toEndOf="@+id/backBtn"
+        android:text="Add Book Pdf"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/titleEt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/AddTv"
+        android:hint="Book Title"
+        android:maxLines="1"/>
+
+    <EditText
+        android:id="@+id/descriptionEt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/titleEt"
+        android:hint="Book Description"
+        android:maxLines="1" />
+
+    <TextView
+        android:id="@+id/categoryTv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/descriptionEt"
+        android:layout_centerHorizontal="true"
+        android:drawableRight="@drawable/ic_down_gray"
+        android:gravity="center_vertical"
+        android:hint="Book Category"
+        android:padding="8dp"
+        android:textSize="16sp" />
+
+    <Button
+        android:id="@+id/attachBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/categoryTv"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:text="Choose File Pdf"
+        android:textAllCaps="false" />
+
+    <Button
+        android:id="@+id/submitBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/attachBtn"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:text="Upload"
+        android:textAllCaps="false" />
+
+</RelativeLayout>

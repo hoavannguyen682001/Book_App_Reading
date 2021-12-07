@@ -1,16 +1,13 @@
-package com.nguyenvanhoa.book_app_reading.Activity;
+package com.nguyenvanhoa.book_app_reading.Activity.User;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
-import android.widget.ArrayAdapter;
-import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -18,13 +15,14 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.nguyenvanhoa.book_app_reading.R;
+import com.nguyenvanhoa.book_app_reading.databinding.ActivityProfileBinding;
 
 public class ProfileActivity extends AppCompatActivity {
     BottomNavigationView navigationView;
     private Button btnlogout, btnterm, btnAboutUs;
     private CheckBox editname, editemail, cbEdit_user;
     private EditText inputname, inputemail, inputUser;
-
+    private ActivityProfileBinding binding;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -123,5 +121,12 @@ public class ProfileActivity extends AppCompatActivity {
                 return false;
             }
         });
-}
+        String typeUser;
+        typeUser = getIntent().getStringExtra("userType");
+        Toast.makeText(getApplication(), typeUser+"", Toast.LENGTH_SHORT).show();
+//        if (typeUser.equals("admin")){
+//            binding.dashboardBtn.setVisibility(View.VISIBLE);
+//            Toast.makeText(getApplication(), typeUser+"", Toast.LENGTH_SHORT).show();
+//        }
+    }
 }

@@ -1,4 +1,4 @@
-package com.nguyenvanhoa.book_app_reading.Activity.Content_Story;
+package com.nguyenvanhoa.book_app_reading.Activity.User.Content_Story;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,7 +11,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.github.barteksc.pdfviewer.PDFView;
-import com.nguyenvanhoa.book_app_reading.Activity.Book_Detail_Activity;
+import com.nguyenvanhoa.book_app_reading.Activity.User.Book_Detail_Activity;
 import com.nguyenvanhoa.book_app_reading.R;
 
 public class activity_content_story2 extends AppCompatActivity {

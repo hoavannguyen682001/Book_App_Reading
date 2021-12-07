@@ -1,4 +1,4 @@
-package com.nguyenvanhoa.book_app_reading.Activity;
+package com.nguyenvanhoa.book_app_reading.Activity.User;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -7,17 +7,14 @@ import android.text.TextUtils;
 import android.util.Patterns;
 import android.view.View;
 import android.view.WindowManager;
-import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -29,9 +26,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.nguyenvanhoa.book_app_reading.R;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.regex.Pattern;
 
 public class SignUpActivity extends AppCompatActivity {
 

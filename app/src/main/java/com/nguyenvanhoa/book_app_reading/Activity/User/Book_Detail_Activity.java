@@ -1,28 +1,24 @@
-package com.nguyenvanhoa.book_app_reading.Activity;
+package com.nguyenvanhoa.book_app_reading.Activity.User;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
 import com.bumptech.glide.Glide;
 import com.google.android.material.tabs.TabLayout;
-import com.nguyenvanhoa.book_app_reading.Activity.Content_Story.activity_content_story;
+import com.nguyenvanhoa.book_app_reading.Activity.User.Content_Story.activity_content_story;
 import com.nguyenvanhoa.book_app_reading.Adapter.TabDetailAdapter;
-import com.nguyenvanhoa.book_app_reading.Fragments.Chapter_BookFragment;
 import com.nguyenvanhoa.book_app_reading.R;
 
 public class Book_Detail_Activity extends AppCompatActivity {

@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.nguyenvanhoa.book_app_reading">
-    <uses-permission android:name="android.permission.INTERNET"/>
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -9,8 +11,26 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Book_App_Reading">
-
-        <activity android:name=".Activity.MainActivity"
+        <activity
+            android:name=".Activity.Admin.Activity.PdfAddActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activity.Admin.Activity.PdfEditActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activity.Admin.Activity.PdfDetailActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activity.Admin.Activity.PdfListActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activity.Admin.Activity.CategoriesActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activity.Admin.Activity.DashBoardActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activity.User.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -18,31 +38,20 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-
-        <activity android:name=".Activity.SignUpActivity">
-        </activity>
-        <activity android:name=".Activity.TermsAndPoliciesActivity"></activity>
-        <activity android:name=".Activity.LoginActivity"></activity>
-        <activity android:name=".Activity.ForgotPassActivity"></activity>
-        <activity android:name=".Activity.HomeActivity"></activity>
-        <activity android:name=".Activity.BookshelfActivity"></activity>
-        <activity
-            android:name=".Activity.LibraryActivity">
-
-        </activity>
-        <activity android:name=".Activity.ProfileActivity">
-        </activity>
-        <activity android:name=".Activity.SearchActivity"></activity>
-
-
-        <activity android:name=".Activity.Book_Detail_Activity">
-        </activity>
-        <activity android:name=".Activity.Content_Story.activity_content_story"></activity>
-        <activity android:name=".Activity.Content_Story.activity_content_story2"></activity>
-        <activity android:name=".Activity.Content_Story.activity_content_story3"></activity>
-        <activity android:name=".Activity.AboutUsActivity"></activity>
-
+        <activity android:name=".Activity.User.SignUpActivity" />
+        <activity android:name=".Activity.User.TermsAndPoliciesActivity" />
+        <activity android:name=".Activity.User.LoginActivity" />
+        <activity android:name=".Activity.User.ForgotPassActivity" />
+        <activity android:name=".Activity.User.HomeActivity" />
+        <activity android:name=".Activity.User.BookshelfActivity" />
+        <activity android:name=".Activity.User.LibraryActivity" />
+        <activity android:name=".Activity.User.ProfileActivity" />
+        <activity android:name=".Activity.User.SearchActivity" />
+        <activity android:name=".Activity.User.Book_Detail_Activity" />
+        <activity android:name=".Activity.User.Content_Story.activity_content_story" />
+        <activity android:name=".Activity.User.Content_Story.activity_content_story2" />
+        <activity android:name=".Activity.User.Content_Story.activity_content_story3" />
+        <activity android:name=".Activity.User.AboutUsActivity" />
     </application>
 
 </manifest>

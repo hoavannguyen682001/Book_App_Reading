@@ -13,7 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 
-import com.nguyenvanhoa.book_app_reading.Activity.Book_Detail_Activity;
+import com.nguyenvanhoa.book_app_reading.Activity.User.Book_Detail_Activity;
 import com.nguyenvanhoa.book_app_reading.Model.Book2;
 import com.nguyenvanhoa.book_app_reading.R;
 

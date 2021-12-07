@@ -1,4 +1,4 @@
-package com.nguyenvanhoa.book_app_reading.Activity;
+package com.nguyenvanhoa.book_app_reading.Activity.User;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,10 +15,10 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.tabs.TabLayout;
-import com.nguyenvanhoa.book_app_reading.Adapter.BookshelfAdapter;
+import com.nguyenvanhoa.book_app_reading.Adapter.LibraryAdapter;
 import com.nguyenvanhoa.book_app_reading.R;
 
-public class BookshelfActivity extends AppCompatActivity {
+public class LibraryActivity extends AppCompatActivity {
     TabLayout tabLayout;
     ViewPager viewPager;
     BottomNavigationView navigationView;
@@ -26,16 +26,14 @@ public class BookshelfActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_bookshelf);
+        setContentView(R.layout.activity_library);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         AnhXa();
-
-        BookshelfAdapter adapter =new BookshelfAdapter(getSupportFragmentManager(), FragmentStatePagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
+        LibraryAdapter adapter =new LibraryAdapter(getSupportFragmentManager(), FragmentStatePagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
         viewPager.setAdapter(adapter);
         tabLayout.setupWithViewPager(viewPager);
 
         setAllCaps(tabLayout,false);
-
         Navigation_bar();
     }
     public void AnhXa(){
@@ -48,10 +46,9 @@ public class BookshelfActivity extends AppCompatActivity {
                 setAllCaps(((ViewGroup) view).getChildAt(i),caps);
         } else if (view instanceof TextView) ((TextView) view).setAllCaps(caps);
     }
-
     public void Navigation_bar(){
         navigationView = findViewById(R.id.bottom_nav);
-        navigationView.setSelectedItemId(R.id.nav_bookshelf);
+        navigationView.setSelectedItemId(R.id.nav_library);
         navigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             Intent intent;
             @Override
@@ -63,11 +60,12 @@ public class BookshelfActivity extends AppCompatActivity {
                         overridePendingTransition(0,0);
                         break;
                     case R.id.nav_bookshelf:
-                        break;
-                    case R.id.nav_library:
-                        intent = new Intent(getApplicationContext(), LibraryActivity.class);
+                        intent = new Intent(getApplicationContext(), BookshelfActivity.class);
                         startActivity(intent);
                         overridePendingTransition(0,0);
+                        break;
+
+                    case R.id.nav_library:
                         break;
                     case R.id.nav_person:
                         intent = new Intent(getApplicationContext(), ProfileActivity.class);
@@ -83,5 +81,5 @@ public class BookshelfActivity extends AppCompatActivity {
                 return false;
             }
         });
-    }
+}
 }

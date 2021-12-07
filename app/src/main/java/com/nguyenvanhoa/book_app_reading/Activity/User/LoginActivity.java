@@ -1,4 +1,4 @@
-package com.nguyenvanhoa.book_app_reading.Activity;
+package com.nguyenvanhoa.book_app_reading.Activity.User;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -13,7 +13,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -27,6 +26,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.nguyenvanhoa.book_app_reading.Activity.Admin.Activity.DashBoardActivity;
+import com.nguyenvanhoa.book_app_reading.Activity.Admin.Activity.PdfListActivity;
 import com.nguyenvanhoa.book_app_reading.R;
 
 public class LoginActivity extends AppCompatActivity {
@@ -172,15 +173,20 @@ public class LoginActivity extends AppCompatActivity {
                 .addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot snapshot) {
+
                         //check user type
                         String userType = "" + snapshot.child("userType").getValue();
+
+                        Intent i = new Intent(LoginActivity.this, ProfileActivity.class);
+                        i.putExtra("userType", userType);
+                        startActivity(i);
+
                         if(userType.equals("user")){
                             startActivity(new Intent(getApplicationContext(), HomeActivity.class));
                             finish();
                         }else if(userType.equals("admin")){
                             //hien thi form admin
-                            startActivity(new Intent(getApplicationContext(), HomeActivity.class));
-                            Toast.makeText(getApplicationContext(), "Account admin..................", Toast.LENGTH_SHORT).show();
+                            startActivity(new Intent(getApplicationContext(), DashBoardActivity.class));
                             finish();
                         }
                     }

@@ -11,14 +11,10 @@ import android.widget.ListView;
 
 import androidx.fragment.app.Fragment;
 
-import com.nguyenvanhoa.book_app_reading.Activity.Book_Detail_Activity;
-import com.nguyenvanhoa.book_app_reading.Activity.Content_Story.activity_content_story;
-import com.nguyenvanhoa.book_app_reading.Activity.Content_Story.activity_content_story2;
-import com.nguyenvanhoa.book_app_reading.Activity.Content_Story.activity_content_story3;
-import com.nguyenvanhoa.book_app_reading.Model.Book2;
+import com.nguyenvanhoa.book_app_reading.Activity.User.Content_Story.activity_content_story;
+import com.nguyenvanhoa.book_app_reading.Activity.User.Content_Story.activity_content_story2;
+import com.nguyenvanhoa.book_app_reading.Activity.User.Content_Story.activity_content_story3;
 import com.nguyenvanhoa.book_app_reading.R;
-
-import java.util.List;
 
 public class Chapter_BookFragment extends Fragment{
     private ListView listView;

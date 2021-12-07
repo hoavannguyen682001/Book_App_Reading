@@ -1,4 +1,4 @@
-package com.nguyenvanhoa.book_app_reading.Activity;
+package com.nguyenvanhoa.book_app_reading.Activity.User;
 
 import android.app.Activity;
 import android.content.Intent;

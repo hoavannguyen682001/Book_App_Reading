@@ -7,14 +7,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 
-import com.nguyenvanhoa.book_app_reading.Activity.LibraryActivity;
-import com.nguyenvanhoa.book_app_reading.Activity.SearchActivity;
+import com.nguyenvanhoa.book_app_reading.Activity.User.SearchActivity;
 import com.nguyenvanhoa.book_app_reading.Model.TopAuthor;
 import com.nguyenvanhoa.book_app_reading.R;
 

@@ -1,4 +1,4 @@
-package com.nguyenvanhoa.book_app_reading.Activity;
+package com.nguyenvanhoa.book_app_reading.Activity.User;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,11 +13,6 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.tabs.TabLayout;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 import com.nguyenvanhoa.book_app_reading.Adapter.MainRecyclerAdapter;
 import com.nguyenvanhoa.book_app_reading.Adapter.SliderPagerAdapter;
 import com.nguyenvanhoa.book_app_reading.Adapter.TopAuthorsAdapter;
