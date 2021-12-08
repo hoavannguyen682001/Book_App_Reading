@@ -1,20 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="140dp"
     android:layout_marginBottom="16dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/container_item_custom"
     android:layout_marginTop="8dp">
-
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
+        android:layout_height="match_parent"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="20dp">
         <RelativeLayout
             android:id="@+id/pdfRl"
             android:layout_width="100dp"
             android:layout_height="match_parent"
-            android:background="@color/teal_200">
-
+            android:layout_marginRight="10dp">
             <com.github.barteksc.pdfviewer.PDFView
                 android:id="@+id/pdfView"
                 android:layout_width="match_parent"
@@ -40,9 +41,9 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/titleTv"
             android:layout_toEndOf="@+id/pdfRl"
+            android:ellipsize="end"
             android:maxLines="4"
-            android:text="Description Book"
-            android:ellipsize="end"/>
+            android:text="Description Book" />
 
         <TextView
             android:id="@+id/categoryTv"
@@ -86,4 +87,4 @@
 
     </RelativeLayout>
 
-</androidx.cardview.widget.CardView>
+</RelativeLayout>

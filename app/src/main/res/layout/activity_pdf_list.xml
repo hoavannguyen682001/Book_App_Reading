@@ -52,10 +52,11 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/booksRv"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_below="@+id/searchEt"
         android:layout_alignParentStart="true"
+        android:background="@drawable/custom_viewpaper"
+        android:padding="15dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        tools:listitem="@layout/row_pdf"
-        android:padding="8dp"/>
+        tools:listitem="@layout/row_pdf" />
 </RelativeLayout>

@@ -10,7 +10,6 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintTop_toTopOf="parent">
-
         <TextView
             android:id="@+id/categoryTv"
             android:layout_width="0dp"
