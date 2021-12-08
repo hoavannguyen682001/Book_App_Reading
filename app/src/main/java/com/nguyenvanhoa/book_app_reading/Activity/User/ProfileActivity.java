@@ -47,6 +47,24 @@ public class ProfileActivity extends AppCompatActivity {
         setEditClick(inputemail, editemail);
         setEditClick(inputUser, cbEdit_user);
 
+//
+//        inputname = findViewById(R.id.input_name);
+//        editname = findViewById(R.id.cbEdit_name);
+//        btnterm = findViewById(R.id.term);
+//        btnAboutUs = findViewById(R.id.btnAboutUs);
+//
+//        inputemail = findViewById(R.id.input_email);
+//        editemail = findViewById(R.id.cbEdit_email);
+//
+//        inputUser = findViewById(R.id.input_user);
+//        cbEdit_user = findViewById(R.id.cbEdit_user);
+//
+//
+//        setEditClick(inputname, editname);
+//        setEditClick(inputemail, editemail);
+//        setEditClick(inputUser, cbEdit_user);
+
+
         btnAboutUs.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
