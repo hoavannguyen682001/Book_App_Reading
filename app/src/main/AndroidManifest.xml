@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Book_App_Reading">
         <activity
+            android:name=".Activity.Admin.Activity.BookViewActivity"
+            android:exported="false" />
+        <activity
             android:name=".Activity.Admin.Activity.PdfAddActivity"
             android:exported="false" />
         <activity

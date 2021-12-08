@@ -136,10 +136,12 @@ public class PdfEditActivity extends AppCompatActivity {
                     public void onClick(DialogInterface dialog, int which) {
                         selectedCategoryId = categoryIdArraylist.get(which);
                         selectedCategoryTitle = categoryTitleArraylist.get(which);
+                        binding.categoryTv.setText(selectedCategoryTitle);
                     }
                 })
                 .show();
     }
+
     private void loadCategories() {
         categoryTitleArraylist = new ArrayList<>();
         categoryIdArraylist = new ArrayList<>();
@@ -153,6 +155,7 @@ public class PdfEditActivity extends AppCompatActivity {
                     String id = ""+ds.child("id").getValue();
                     String category = ""+ds.child("category").getValue();
                     categoryIdArraylist.add(id);
+                    categoryTitleArraylist.add(category);
                 }
             }
 

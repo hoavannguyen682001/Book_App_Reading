@@ -13,6 +13,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.nguyenvanhoa.book_app_reading.Activity.Admin.Models.MyApplication;
+import com.nguyenvanhoa.book_app_reading.Activity.User.Book_Detail_Activity;
 import com.nguyenvanhoa.book_app_reading.databinding.ActivityPdfDetailBinding;
 
 public class PdfDetailActivity extends AppCompatActivity {
@@ -33,7 +34,15 @@ public class PdfDetailActivity extends AppCompatActivity {
             }
         });
         MyApplication.incrementBookViewCount(bookId);
-//        setContentView(R.layout.activity_pdf_detail);
+
+        binding.readBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getApplication(), BookViewActivity.class);
+                i.putExtra("bookId", bookId);
+                startActivity(i);
+            }
+        });
     }
 
     private void loadBookDetail() {
