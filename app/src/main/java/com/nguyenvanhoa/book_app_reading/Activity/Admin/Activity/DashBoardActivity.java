@@ -16,6 +16,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.nguyenvanhoa.book_app_reading.Activity.User.HomeActivity;
 import com.nguyenvanhoa.book_app_reading.Activity.User.MainActivity;
+import com.nguyenvanhoa.book_app_reading.Activity.User.ProfileActivity;
 import com.nguyenvanhoa.book_app_reading.databinding.ActivityDashBoardBinding;
 import com.nguyenvanhoa.book_app_reading.databinding.ActivityProfileBinding;
 
@@ -31,6 +32,7 @@ public class DashBoardActivity extends AppCompatActivity {
         binding = ActivityDashBoardBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 //        setContentView(R.layout.activity_dash_board);
+
         firebaseAuth = FirebaseAuth.getInstance();
         binding.submitBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -58,7 +60,10 @@ public class DashBoardActivity extends AppCompatActivity {
         binding.userActivityBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                ProfileActivity.userType = "admin";
                 Intent i = new Intent(getApplication(), HomeActivity.class);
+//                userType = getIntent().getStringExtra("userType");
+//                i.putExtra("userType", userType);
                 startActivity(i);
                 finish();
             }
@@ -79,7 +84,7 @@ public class DashBoardActivity extends AppCompatActivity {
     private void validateData() {
         category = binding.categoryEt.getText().toString().trim();
         if(TextUtils.isEmpty(category)){
-            Toast.makeText(getApplication(), "enter", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplication(), "enter your category", Toast.LENGTH_SHORT).show();
 
         }else{
             addCategoryFirebase();

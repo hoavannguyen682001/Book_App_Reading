@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.WindowManager;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -48,6 +49,7 @@ public class HomeActivity extends AppCompatActivity {
         InitView_Slide();
         InitView_RecyclerView();
         Naviagation_bar();
+
     }
 
     private void InitView_Slide() {
@@ -231,8 +233,11 @@ public class HomeActivity extends AppCompatActivity {
                         break;
                     case R.id.nav_person:
                         intent = new Intent(getApplicationContext(), ProfileActivity.class);
+                        String userType = getIntent().getStringExtra("userType");
+                        intent.putExtra("userType", userType);
                         startActivity(intent);
                         overridePendingTransition(0,0);
+
                         break;
                     case R.id.nav_search:
                         intent = new Intent(getApplicationContext(), SearchActivity.class);

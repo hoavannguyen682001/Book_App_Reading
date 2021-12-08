@@ -14,6 +14,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.nguyenvanhoa.book_app_reading.Activity.Admin.Activity.DashBoardActivity;
 import com.nguyenvanhoa.book_app_reading.R;
 import com.nguyenvanhoa.book_app_reading.databinding.ActivityProfileBinding;
 
@@ -23,51 +24,19 @@ public class ProfileActivity extends AppCompatActivity {
     private CheckBox editname, editemail, cbEdit_user;
     private EditText inputname, inputemail, inputUser;
     private ActivityProfileBinding binding;
+    public static String userType;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        binding = ActivityProfileBinding.inflate(getLayoutInflater());
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        setContentView(R.layout.activity_profile);
+        setContentView(binding.getRoot());
         btnlogout = findViewById(R.id.btnlogout);
         Navigation_bar();
-
-        inputname = findViewById(R.id.input_name);
-        editname = findViewById(R.id.cbEdit_name);
-        btnterm = findViewById(R.id.term);
-        btnAboutUs = findViewById(R.id.btnAboutUs);
-
-        inputemail = findViewById(R.id.input_email);
-        editemail = findViewById(R.id.cbEdit_email);
-
-        inputUser = findViewById(R.id.input_user);
-        cbEdit_user = findViewById(R.id.cbEdit_user);
-
-
-        setEditClick(inputname, editname);
-        setEditClick(inputemail, editemail);
-        setEditClick(inputUser, cbEdit_user);
-
-        btnAboutUs.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), AboutUsActivity.class);
-                startActivity(intent);
-            }
-        });
-        btnterm.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), TermsAndPoliciesActivity.class);
-                startActivity(intent);
-            }
-        });
-        btnlogout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                startActivity(intent);
-            }
-        });
+        enableDashboard();
+        initView();
+        setOnClick();
     }
 
     private void setEditClick(EditText input, CheckBox checkBox){
@@ -121,12 +90,69 @@ public class ProfileActivity extends AppCompatActivity {
                 return false;
             }
         });
-        String typeUser;
-        typeUser = getIntent().getStringExtra("userType");
-        Toast.makeText(getApplication(), typeUser+"", Toast.LENGTH_SHORT).show();
-//        if (typeUser.equals("admin")){
-//            binding.dashboardBtn.setVisibility(View.VISIBLE);
-//            Toast.makeText(getApplication(), typeUser+"", Toast.LENGTH_SHORT).show();
+    }
+
+    public void enableDashboard(){
+//        String typeUser = getIntent().getStringExtra("userType");
+//        if(!(userType == null)){
+            if(userType.equals("admin")){
+                binding.dashboardBtn.setVisibility(View.VISIBLE);
+//                userType = "";
+            }
 //        }
+
+    }
+
+    public void initView(){
+        inputname = findViewById(R.id.input_name);
+        editname = findViewById(R.id.cbEdit_name);
+        btnterm = findViewById(R.id.term);
+        btnAboutUs = findViewById(R.id.btnAboutUs);
+
+        inputemail = findViewById(R.id.input_email);
+        editemail = findViewById(R.id.cbEdit_email);
+
+        inputUser = findViewById(R.id.input_user);
+        cbEdit_user = findViewById(R.id.cbEdit_user);
+
+
+        setEditClick(inputname, editname);
+        setEditClick(inputemail, editemail);
+        setEditClick(inputUser, cbEdit_user);
+
+    }
+
+    public void setOnClick(){
+        btnAboutUs.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), AboutUsActivity.class);
+                startActivity(intent);
+            }
+        });
+        btnterm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), TermsAndPoliciesActivity.class);
+                startActivity(intent);
+            }
+        });
+        btnlogout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        binding.dashboardBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getApplication(), DashBoardActivity.class);
+                startActivity(i);
+                binding.dashboardBtn.setVisibility(View.INVISIBLE);
+                finish();
+            }
+        });
     }
 }

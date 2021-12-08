@@ -162,8 +162,8 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void checkUser() {
-        progressDialog.setMessage("Checking user type...");
-        progressDialog.show();
+//        progressDialog.setMessage("Checking user type...");
+//        progressDialog.show();
         // get current user
         FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
 
@@ -177,16 +177,15 @@ public class LoginActivity extends AppCompatActivity {
                         //check user type
                         String userType = "" + snapshot.child("userType").getValue();
 
-                        Intent i = new Intent(LoginActivity.this, ProfileActivity.class);
-                        i.putExtra("userType", userType);
-                        startActivity(i);
-
                         if(userType.equals("user")){
                             startActivity(new Intent(getApplicationContext(), HomeActivity.class));
+                            ProfileActivity.userType = "user";
                             finish();
                         }else if(userType.equals("admin")){
                             //hien thi form admin
-                            startActivity(new Intent(getApplicationContext(), DashBoardActivity.class));
+                            Intent i = new Intent(getApplicationContext(), DashBoardActivity.class);
+                            ProfileActivity.userType = "admin";
+                            startActivity(i);
                             finish();
                         }
                     }
