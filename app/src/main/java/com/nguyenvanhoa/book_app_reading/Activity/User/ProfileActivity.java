@@ -47,24 +47,6 @@ public class ProfileActivity extends AppCompatActivity {
         setEditClick(inputemail, editemail);
         setEditClick(inputUser, cbEdit_user);
 
-//
-//        inputname = findViewById(R.id.input_name);
-//        editname = findViewById(R.id.cbEdit_name);
-//        btnterm = findViewById(R.id.term);
-//        btnAboutUs = findViewById(R.id.btnAboutUs);
-//
-//        inputemail = findViewById(R.id.input_email);
-//        editemail = findViewById(R.id.cbEdit_email);
-//
-//        inputUser = findViewById(R.id.input_user);
-//        cbEdit_user = findViewById(R.id.cbEdit_user);
-//
-//
-//        setEditClick(inputname, editname);
-//        setEditClick(inputemail, editemail);
-//        setEditClick(inputUser, cbEdit_user);
-
-
         btnAboutUs.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -147,4 +129,43 @@ public class ProfileActivity extends AppCompatActivity {
 //            Toast.makeText(getApplication(), typeUser+"", Toast.LENGTH_SHORT).show();
 //        }
     }
+
+//      btnAboutUs.setOnClickListener(new View.OnClickListener() {
+//        @Override
+//        public void onClick(View v) {
+//            Intent intent = new Intent(getApplicationContext(), AboutUsActivity.class);
+//            startActivity(intent);
+//        }
+//    });
+//        btnterm.setOnClickListener(new View.OnClickListener() {
+//        @Override
+//        public void onClick(View v) {
+//            Intent intent = new Intent(getApplicationContext(), TermsAndPoliciesActivity.class);
+//            startActivity(intent);
+//        }
+//    });
+//        btnlogout.setOnClickListener(new View.OnClickListener() {
+//        @Override
+//        public void onClick(View v) {
+//            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+//            startActivity(intent);
+//        }
+//    });
+//}
+//
+//    private void setEditClick(EditText input, CheckBox checkBox){
+//        checkBox.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                if (checkBox.isChecked()){
+//                    input.setEnabled(true);
+//                }else{
+//                    input.setEnabled(false);
+//                    input.setText(input.getText());
+//                    Toast.makeText(getApplication(), "Edit Successfully!", Toast.LENGTH_SHORT).show();
+//                }
+//            }
+//        });
+//    }
+
 }
