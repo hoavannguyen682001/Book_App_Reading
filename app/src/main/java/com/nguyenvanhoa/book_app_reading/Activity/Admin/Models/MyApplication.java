@@ -4,8 +4,11 @@ package com.nguyenvanhoa.book_app_reading.Activity.Admin.Models;
 import static com.nguyenvanhoa.book_app_reading.Activity.Admin.Adapter.Constants.MAX_BYTES_PDF;
 
 import android.app.Application;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.text.format.DateFormat;
+import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -13,6 +16,7 @@ import androidx.annotation.NonNull;
 
 import com.github.barteksc.pdfviewer.PDFView;
 import com.github.barteksc.pdfviewer.listener.OnErrorListener;
+import com.github.barteksc.pdfviewer.listener.OnLoadCompleteListener;
 import com.github.barteksc.pdfviewer.listener.OnPageErrorListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -43,6 +47,10 @@ public class MyApplication extends Application {
     }
 
     public static void deleteBook(Context context, String bookId, String bookUrl, String bookTitle) {
+        ProgressDialog progressDialog = new ProgressDialog(context);
+        progressDialog.setMessage("Deleting...");
+        progressDialog.show();
+
         StorageReference ref = FirebaseStorage.getInstance().getReferenceFromUrl(bookUrl);
         ref.delete()
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
@@ -54,11 +62,13 @@ public class MyApplication extends Application {
                                     @Override
                                     public void onSuccess(Void unused) {
                                         Toast.makeText(context, "Delete Success", Toast.LENGTH_SHORT).show();
+                                        progressDialog.dismiss();
                                     }
                                 })
                                 .addOnFailureListener(new OnFailureListener() {
                                     @Override
                                     public void onFailure(@NonNull Exception e) {
+                                        progressDialog.dismiss();
                                         Toast.makeText(context, "Line 124 Delete Fail", Toast.LENGTH_SHORT).show();
                                     }
                                 });
@@ -67,7 +77,8 @@ public class MyApplication extends Application {
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(context, "Line 131 Delete Fail", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(context, "Line 131 Delete Fail", Toast.LENGTH_SHORT).show();                                        progressDialog.dismiss();
+                        progressDialog.dismiss();
                     }
                 });
     }
@@ -102,8 +113,9 @@ public class MyApplication extends Application {
                 });
     }
 
-    public static void loadPdfFromUrlPage(String pdfUrl, String pdfTitle, PDFView pdfView, Context context) {
+    public static void loadPdfFromUrlPage(String pdfUrl, String pdfTitle, PDFView pdfView, Context context, ProgressBar progressBar) {
 //        String pdfurl = model.getUrl();
+
         StorageReference ref = FirebaseStorage.getInstance().getReferenceFromUrl(pdfUrl);
         ref.getBytes(MAX_BYTES_PDF)
                 .addOnSuccessListener(new OnSuccessListener<byte[]>() {
@@ -118,21 +130,31 @@ public class MyApplication extends Application {
                                     @Override
                                     public void onError(Throwable t) {
                                         Toast.makeText(context, "line 109 on error" + t.getMessage(), Toast.LENGTH_SHORT).show();
+                                        progressBar.setVisibility(View.INVISIBLE);
                                     }
                                 })
                                 .onPageError(new OnPageErrorListener() {
                                     @Override
                                     public void onPageError(int page, Throwable t) {
                                         Toast.makeText(context, "line 116 on page error" + t.getMessage(), Toast.LENGTH_SHORT).show();
+                                        progressBar.setVisibility(View.INVISIBLE);
+                                    }
+                                })
+                                .onLoad(new OnLoadCompleteListener() {
+                                    @Override
+                                    public void loadComplete(int nbPages) {
+                                        progressBar.setVisibility(View.INVISIBLE);
                                     }
                                 })
                                 .load();
+
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
                         Toast.makeText(context, "line 106 on Fail " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                        progressBar.setVisibility(View.INVISIBLE);
                     }
                 });
     }
@@ -171,7 +193,6 @@ public class MyApplication extends Application {
                         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Books");
                         reference.child(bookId)
                                 .updateChildren(hashMap);
-
                     }
 
                     @Override

@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.WindowManager;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -23,6 +24,8 @@ public class PdfDetailActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityPdfDetailBinding.inflate(getLayoutInflater());
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
         setContentView(binding.getRoot());
         Intent i = getIntent();
         bookId = i.getStringExtra("bookId");
@@ -60,7 +63,7 @@ public class PdfDetailActivity extends AppCompatActivity {
                         String date = MyApplication.formatTimestamp(Long.parseLong(timestamp));
                         MyApplication.loadCategory(binding.categoryTv, ""+categoryId );
 
-                        MyApplication.loadPdfFromUrlPage(""+url, ""+title, binding.pdfView, getApplication());
+                        MyApplication.loadPdfFromUrlPage(""+url, ""+title, binding.pdfView, getApplication(), binding.progressBar);
                         binding.titleTv.setText(title);
                         binding.descriptionTv.setText(description);
                         binding.dateTv.setText(date);

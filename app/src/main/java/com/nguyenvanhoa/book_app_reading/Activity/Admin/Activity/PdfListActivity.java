@@ -3,11 +3,13 @@ package com.nguyenvanhoa.book_app_reading.Activity.Admin.Activity;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
@@ -26,10 +28,13 @@ public class PdfListActivity extends AppCompatActivity {
     private ArrayList<PdfModel> pdfArrayList;
     private AdapterPdf adapterPdf;
     private String categoryId, categoryTitle;
+    private ProgressDialog progressDialog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityPdfListBinding.inflate(getLayoutInflater());
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
 //        setContentView(R.layout.activity_pdf_list);
         setContentView(binding.getRoot());
 

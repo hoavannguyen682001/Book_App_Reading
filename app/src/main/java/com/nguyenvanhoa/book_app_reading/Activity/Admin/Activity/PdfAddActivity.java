@@ -5,12 +5,14 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
@@ -31,21 +33,41 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class PdfAddActivity extends AppCompatActivity {
+    //binding
     private ActivityPdfAddBinding binding;
+    //firebase
     private FirebaseAuth firebaseAuth;
+    //result code
     private static final int PDF_PICK_CODE = 1000;
+    //
     private Uri pdfUri = null;
-    //    private ArrayList<Category> categoryArrayList;
+    //
+    private String title = "", description = "";
+
     private ArrayList<String> categoryTitleArrayList, categoryIdArrayList;
+
+    private ProgressDialog progressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         binding = ActivityPdfAddBinding.inflate(getLayoutInflater());
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
         setContentView(binding.getRoot());
-//        setContentView(R.layout.activity_pdf_add);
+
         firebaseAuth = FirebaseAuth.getInstance();
+
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setTitle("Please wait...");
+        progressDialog.setCanceledOnTouchOutside(false);
+
         loadPdfCategories();
+        setOnClick();
+    }
+
+    private void setOnClick(){
         binding.backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -74,22 +96,22 @@ public class PdfAddActivity extends AppCompatActivity {
         });
     }
 
-    //    private String title = "", description = "", category = "";
-    private String title = "", description = "";
-
     private void validateData() {
+        progressDialog.setMessage("Adding Book...");
+        progressDialog.show();
+
         title = binding.titleEt.getText().toString().trim();
         description = binding.descriptionEt.getText().toString().trim();
 //        category = binding.categoryTv.getText().toString().trim();
 
         if(TextUtils.isEmpty(title)){
-            Toast.makeText(getApplication(), "enter title", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplication(), "Enter Title....", Toast.LENGTH_SHORT).show();
         }else if(TextUtils.isEmpty(description)){
-            Toast.makeText(getApplication(), "enter description", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplication(), "Enter Description", Toast.LENGTH_SHORT).show();
         }else if(TextUtils.isEmpty(selectedCategoryTitle)){
-            Toast.makeText(getApplication(), "Pick category", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplication(), "Choose Category", Toast.LENGTH_SHORT).show();
         }else if(pdfUri == null){
-            Toast.makeText(getApplication(), "Pick Pdf", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplication(), "Choose File Pdf", Toast.LENGTH_SHORT).show();
         }else{
             uploadPdfToStorege();
         }
@@ -106,14 +128,13 @@ public class PdfAddActivity extends AppCompatActivity {
                         Task<Uri> uriTask = taskSnapshot.getStorage ().getDownloadUrl();
                         while (!uriTask.isSuccessful());
                         String uploadedPdfUrl = ""+uriTask.getResult();
-
                         uploadPdfInfoDb(uploadedPdfUrl, timestamp);
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(getApplication(), "Upload file fail", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplication(), "Upload File Fail", Toast.LENGTH_SHORT).show();
                     }
                 });
     }
@@ -138,14 +159,15 @@ public class PdfAddActivity extends AppCompatActivity {
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void unused) {
-                        Toast.makeText(getApplication(), "upload pdf file to db Success", Toast.LENGTH_SHORT).show();
-
+                        Toast.makeText(getApplication(), "Upload Pdf File To Database Success", Toast.LENGTH_SHORT).show();
+                        progressDialog.dismiss();
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(getApplication(), "upload pdf file to db fail", Toast.LENGTH_SHORT).show();
+                        progressDialog.dismiss();
+                        Toast.makeText(getApplication(), "Upload Pdf File To Database Fail", Toast.LENGTH_SHORT).show();
                     }
                 });
     }
@@ -205,7 +227,7 @@ public class PdfAddActivity extends AppCompatActivity {
         Intent i = new Intent();
         i.setType("application/pdf");
         i.setAction(Intent.ACTION_GET_CONTENT);
-        startActivityForResult(Intent.createChooser(i,"select Pdf file"), PDF_PICK_CODE);
+        startActivityForResult(Intent.createChooser(i,"Select Pdf File"), PDF_PICK_CODE);
     }
 
     @Override
@@ -217,7 +239,7 @@ public class PdfAddActivity extends AppCompatActivity {
                 pdfUri = data.getData();
             }
         }else{
-            Toast.makeText(getApplication(), "cancelled picking pdf file ", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplication(), "Cancelled Picking Pdf File ", Toast.LENGTH_SHORT).show();
         }
     }
 }

@@ -61,7 +61,7 @@ public class AdapterPdf extends RecyclerView.Adapter<AdapterPdf.HolderPdf> imple
         holder.dateTv.setText(formatDate);
 
         MyApplication.loadCategory(holder.categoryTv, ""+categoryId);
-        MyApplication.loadPdfFromUrlPage(""+pdfUrl, ""+ title, holder.pdfView, context);
+        MyApplication.loadPdfFromUrlPage(""+pdfUrl, ""+ title, holder.pdfView, context, holder.progressBar);
         MyApplication.loadPdfSize(""+pdfUrl, ""+title, holder.sizeTv, context);
         holder.moreBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -84,7 +84,7 @@ public class AdapterPdf extends RecyclerView.Adapter<AdapterPdf.HolderPdf> imple
         String bookId = model.getId();
         String bookurl = model.getUrl();
         String bookTitle = model.getTitle();
-        String[] options = {"edit", "delete"};
+        String[] options = {"Edit", "Delete"};
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setTitle("Choose Options")
                 .setItems(options, new DialogInterface.OnClickListener() {
@@ -98,17 +98,12 @@ public class AdapterPdf extends RecyclerView.Adapter<AdapterPdf.HolderPdf> imple
                                 break;
                             case 1:
                                 MyApplication.deleteBook(context, ""+bookId, ""+bookurl, ""+bookTitle);
-//                                deleteBook(model, holder);
                                 break;
                         }
                     }
                 })
                 .show();
     }
-
-
-
-
 
     @Override
     public int getItemCount() {
@@ -132,7 +127,7 @@ public class AdapterPdf extends RecyclerView.Adapter<AdapterPdf.HolderPdf> imple
         public HolderPdf(@NonNull View itemView) {
             super(itemView);
             pdfView = binding.pdfView;
-//            progressBar = binding.progressBar;
+            progressBar = binding.progressBar;
             titleTv = binding.titleTv;
             descriptionTv = binding.descriptionTv;
             categoryTv = binding.categoryTv;

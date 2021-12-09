@@ -37,9 +37,12 @@
                 android:id="@+id/pdfView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:scaleType="centerCrop"
-                android:background="#00DA0303"/>
-
+                android:background="#00DA0303"
+                android:scaleType="centerCrop" />
+            <ProgressBar
+                android:id="@+id/progressBar"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
         </androidx.cardview.widget.CardView>
 
 
@@ -105,6 +108,8 @@
                 android:textSize="24sp"
                 app:backgroundTint="@null" />
         </RelativeLayout>
+
+
     </LinearLayout>
 
     <ScrollView
@@ -116,7 +121,7 @@
         <TextView
             android:id="@+id/descriptionTv"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:text="@string/loremText" />
 
     </ScrollView>
