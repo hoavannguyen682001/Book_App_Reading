@@ -81,13 +81,4 @@ public class LibraryActivity extends AppCompatActivity {
             }
         });
 }
-//        super.onCreate(savedInstanceState);
-//        setContentView(R.layout.activity_library);
-//        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-//        AnhXa();
-//        LibraryAdapter adapter =new LibraryAdapter(getSupportFragmentManager(), FragmentStatePagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
-//        viewPager.setAdapter(adapter);
-//        tabLayout.setupWithViewPager(viewPager);
-//        setAllCaps(tabLayout,false);
-//        Navigation_bar();
 }
