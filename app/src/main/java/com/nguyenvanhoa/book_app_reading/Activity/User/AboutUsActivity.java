@@ -8,7 +8,9 @@ import android.widget.ImageButton;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentStatePagerAdapter;
 
+import com.nguyenvanhoa.book_app_reading.Adapter.LibraryAdapter;
 import com.nguyenvanhoa.book_app_reading.R;
 
 public class AboutUsActivity extends AppCompatActivity {
@@ -28,5 +30,15 @@ public class AboutUsActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
     }
+//    super.onCreate(savedInstanceState);
+//    setContentView(R.layout.activity_library);
+//    getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+//    AnhXa();
+//    LibraryAdapter adapter =new LibraryAdapter(getSupportFragmentManager(), FragmentStatePagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
+//        viewPager.setAdapter(adapter);
+//        tabLayout.setupWithViewPager(viewPager);
+//    setAllCaps(tabLayout,false);
+//    Navigation_bar();
 }
