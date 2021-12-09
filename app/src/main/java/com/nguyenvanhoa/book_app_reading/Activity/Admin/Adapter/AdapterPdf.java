@@ -45,6 +45,7 @@ public class AdapterPdf extends RecyclerView.Adapter<AdapterPdf.HolderPdf> imple
         return new HolderPdf(binding.getRoot());
     }
 
+
     @Override
     public void onBindViewHolder(@NonNull HolderPdf holder, int position) {
         PdfModel model = pdfArrayList.get(position);
@@ -59,6 +60,7 @@ public class AdapterPdf extends RecyclerView.Adapter<AdapterPdf.HolderPdf> imple
         holder.titleTv.setText(title);
         holder.descriptionTv.setText(description);
         holder.dateTv.setText(formatDate);
+
 
         MyApplication.loadCategory(holder.categoryTv, ""+categoryId);
         MyApplication.loadPdfFromUrlPage(""+pdfUrl, ""+ title, holder.pdfView, context, holder.progressBar);

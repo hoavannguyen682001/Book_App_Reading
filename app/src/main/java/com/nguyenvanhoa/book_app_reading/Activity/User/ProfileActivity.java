@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
-import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -13,18 +12,24 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.bumptech.glide.Glide;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.nguyenvanhoa.book_app_reading.Activity.Admin.Activity.DashBoardActivity;
+import com.nguyenvanhoa.book_app_reading.Activity.Admin.Models.MyApplication;
 import com.nguyenvanhoa.book_app_reading.R;
 import com.nguyenvanhoa.book_app_reading.databinding.ActivityProfileBinding;
 
 public class ProfileActivity extends AppCompatActivity {
     BottomNavigationView navigationView;
-    private Button btnlogout, btnterm, btnAboutUs;
-    private CheckBox editname, editemail, cbEdit_user;
-    private EditText inputname, inputemail, inputUser;
     private ActivityProfileBinding binding;
     public static String userType;
+    private FirebaseAuth firebaseAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,11 +37,54 @@ public class ProfileActivity extends AppCompatActivity {
         binding = ActivityProfileBinding.inflate(getLayoutInflater());
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(binding.getRoot());
-        btnlogout = findViewById(R.id.btnlogout);
-        Navigation_bar();
         enableDashboard();
         initView();
         setOnClick();
+        Navigation_bar();
+        firebaseAuth = FirebaseAuth.getInstance();
+        loadUserInfo();
+    }
+
+    private void loadUserInfo() {
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("User");
+        ref.child(firebaseAuth.getUid())
+                .addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        Toast.makeText(getApplication(), ""+firebaseAuth.getUid(), Toast.LENGTH_SHORT).show();
+                        String email = ""+snapshot.child("email").getValue();
+                        Toast.makeText(getApplication(), ""+email, Toast.LENGTH_SHORT).show();
+
+//                        String fullName = ""+snapshot.child("fullName").getValue();
+//                        String profileImage = ""+snapshot.child("profileImage").getValue();
+//                        String timestamp = ""+snapshot.child("timestamp").getValue();
+//                        String uid = ""+snapshot.child("uid").getValue();
+//                        String formatDate = MyApplication.formatTimestamp(Long.parseLong(timestamp));
+//                        binding.nameEt.setText(fullName);
+//                        binding.emailEt.setText(email);
+//                        binding.nameTv.setText(fullName);
+//                        Glide.with(ProfileActivity.this)
+//                                .load(profileImage)
+//                                .placeholder(R.drawable.ic_person)
+//                                .into(binding.profileIv);
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+    }
+
+    public void enableDashboard(){
+        if(userType.equals("admin")){
+            binding.dashboardBtn.setVisibility(View.VISIBLE);
+        }
+    }
+
+    public void initView(){
+        setEditClick(binding.nameEt, binding.cbEditName);
+        setEditClick(binding.emailEt, binding.cbEditEmail);
     }
 
     private void setEditClick(EditText input, CheckBox checkBox){
@@ -50,6 +98,40 @@ public class ProfileActivity extends AppCompatActivity {
                     input.setText(input.getText());
                     Toast.makeText(getApplication(), "Edit Successfully!", Toast.LENGTH_SHORT).show();
                 }
+            }
+        });
+    }
+
+    public void setOnClick(){
+        binding.btnAboutUs.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), AboutUsActivity.class);
+                startActivity(intent);
+            }
+        });
+        binding.termBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), TermsAndPoliciesActivity.class);
+                startActivity(intent);
+            }
+        });
+        binding.btnlogout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        binding.dashboardBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getApplication(), DashBoardActivity.class);
+                startActivity(i);
+                binding.dashboardBtn.setVisibility(View.INVISIBLE);
+                finish();
             }
         });
     }
@@ -88,70 +170,6 @@ public class ProfileActivity extends AppCompatActivity {
                         break;
                 }
                 return false;
-            }
-        });
-    }
-
-    public void enableDashboard(){
-//        String typeUser = getIntent().getStringExtra("userType");
-//        if(!(userType == null)){
-            if(userType.equals("admin")){
-                binding.dashboardBtn.setVisibility(View.VISIBLE);
-//                userType = "";
-            }
-//        }
-
-    }
-
-    public void initView(){
-        inputname = findViewById(R.id.input_name);
-        editname = findViewById(R.id.cbEdit_name);
-        btnterm = findViewById(R.id.term);
-        btnAboutUs = findViewById(R.id.btnAboutUs);
-
-        inputemail = findViewById(R.id.input_email);
-        editemail = findViewById(R.id.cbEdit_email);
-
-        inputUser = findViewById(R.id.input_user);
-        cbEdit_user = findViewById(R.id.cbEdit_user);
-
-
-        setEditClick(inputname, editname);
-        setEditClick(inputemail, editemail);
-        setEditClick(inputUser, cbEdit_user);
-
-    }
-
-    public void setOnClick(){
-        btnAboutUs.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), AboutUsActivity.class);
-                startActivity(intent);
-            }
-        });
-        btnterm.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), TermsAndPoliciesActivity.class);
-                startActivity(intent);
-            }
-        });
-        btnlogout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                startActivity(intent);
-            }
-        });
-
-        binding.dashboardBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(getApplication(), DashBoardActivity.class);
-                startActivity(i);
-                binding.dashboardBtn.setVisibility(View.INVISIBLE);
-                finish();
             }
         });
     }

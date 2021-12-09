@@ -37,7 +37,6 @@ public class PdfListActivity extends AppCompatActivity {
 
 //        setContentView(R.layout.activity_pdf_list);
         setContentView(binding.getRoot());
-
         Intent i = getIntent();
         categoryId = i.getStringExtra("categoryId");
         categoryTitle = i.getStringExtra("categoryTitle");

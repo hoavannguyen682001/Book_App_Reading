@@ -25,7 +25,7 @@ public class MainRecyclerAdapter extends RecyclerView.Adapter<MainRecyclerAdapte
 
     public void setData (List<AllCategory> list) {
         this.allCategories = list;
-        notifyDataSetChanged ();
+        notifyDataSetChanged();
     }
 
     public MainRecyclerAdapter(Context context, List<AllCategory> allCategories) {

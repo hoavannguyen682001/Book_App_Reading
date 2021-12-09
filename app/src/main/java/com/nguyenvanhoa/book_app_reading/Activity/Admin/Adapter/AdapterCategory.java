@@ -60,7 +60,6 @@ public class AdapterCategory extends RecyclerView.Adapter<AdapterCategory.Holder
                 Intent i = new Intent(context, PdfListActivity.class);
                 i.putExtra("categoryId", id);
                 i.putExtra("categoryTitle", category);
-
                 context.startActivity(i);
             }
         });
