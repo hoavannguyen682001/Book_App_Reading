@@ -31,42 +31,5 @@ public class TermsAndPoliciesActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-//        btnAboutUs.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(getApplicationContext(), AboutUsActivity.class);
-//                startActivity(intent);
-//            }
-//        });
-//        btnterm.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(getApplicationContext(), TermsAndPoliciesActivity.class);
-//                startActivity(intent);
-//            }
-//        });
-//        btnlogout.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-//                startActivity(intent);
-//            }
-//        });
-//    }
-//
-//    private void setEditClick(EditText input, CheckBox checkBox){
-//        checkBox.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                if (checkBox.isChecked()){
-//                    input.setEnabled(true);
-//                }else{
-//                    input.setEnabled(false);
-//                    input.setText(input.getText());
-//                    Toast.makeText(getApplication(), "Edit Successfully!", Toast.LENGTH_SHORT).show();
-//                }
-//            }
-//        });
-//    }
     }
 }
