@@ -54,7 +54,6 @@ public class ProfileActivity extends AppCompatActivity {
                         Toast.makeText(getApplication(), ""+firebaseAuth.getUid(), Toast.LENGTH_SHORT).show();
                         String email = ""+snapshot.child("email").getValue();
                         Toast.makeText(getApplication(), ""+email, Toast.LENGTH_SHORT).show();
-
 //                        String fullName = ""+snapshot.child("fullName").getValue();
 //                        String profileImage = ""+snapshot.child("profileImage").getValue();
 //                        String timestamp = ""+snapshot.child("timestamp").getValue();
