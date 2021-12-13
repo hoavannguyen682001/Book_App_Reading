@@ -148,7 +148,7 @@ public class LoginActivity extends AppCompatActivity {
                 .addOnSuccessListener(new OnSuccessListener<AuthResult>() {
                     @Override
                     public void onSuccess(AuthResult authResult) {
-                        progressDialog.dismiss();
+
                         checkUser();
                     }
                 })
@@ -188,6 +188,7 @@ public class LoginActivity extends AppCompatActivity {
                             startActivity(i);
                             finish();
                         }
+                        progressDialog.dismiss();
                     }
 
                     @Override
