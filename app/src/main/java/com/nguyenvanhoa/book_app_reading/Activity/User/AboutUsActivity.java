@@ -8,7 +8,9 @@ import android.widget.ImageButton;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentStatePagerAdapter;
 
+import com.nguyenvanhoa.book_app_reading.Adapter.LibraryAdapter;
 import com.nguyenvanhoa.book_app_reading.R;
 
 public class AboutUsActivity extends AppCompatActivity {
@@ -28,5 +30,6 @@ public class AboutUsActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
     }
 }

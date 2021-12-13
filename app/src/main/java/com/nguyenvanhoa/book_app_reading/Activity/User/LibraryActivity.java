@@ -34,6 +34,7 @@ public class LibraryActivity extends AppCompatActivity {
         tabLayout.setupWithViewPager(viewPager);
         setAllCaps(tabLayout,false);
         Navigation_bar();
+
     }
     public void AnhXa(){
         tabLayout = findViewById(R.id.tablayout);
