@@ -7,19 +7,25 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.nguyenvanhoa.book_app_reading.Activity.Admin.Models.MyApplication;
-import com.nguyenvanhoa.book_app_reading.Activity.User.Book_Detail_Activity;
+import com.nguyenvanhoa.book_app_reading.R;
 import com.nguyenvanhoa.book_app_reading.databinding.ActivityPdfDetailBinding;
 
 public class PdfDetailActivity extends AppCompatActivity {
     ActivityPdfDetailBinding binding;
     String bookId;
+
+    boolean isInMyFavorite = false;
+
+    FirebaseAuth firebaseAuth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,6 +35,10 @@ public class PdfDetailActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
         Intent i = getIntent();
         bookId = i.getStringExtra("bookId");
+        firebaseAuth = FirebaseAuth.getInstance();
+        if(firebaseAuth.getCurrentUser() !=null){
+            checkIsFavorite();
+        }
         loadBookDetail();
         binding.btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -43,7 +53,22 @@ public class PdfDetailActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent i = new Intent(getApplication(), BookViewActivity.class);
                 i.putExtra("bookId", bookId);
+                MyApplication.addToReading( PdfDetailActivity.this, bookId);
                 startActivity(i);
+            }
+        });
+
+        binding.addFavBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(firebaseAuth.getCurrentUser() != null){
+                    if(isInMyFavorite){
+                        MyApplication.removeFromFavorite(PdfDetailActivity.this, bookId);
+                    }else{
+                        MyApplication.addToFavorite(PdfDetailActivity.this, bookId);
+                    }
+
+                }
             }
         });
     }
@@ -68,6 +93,29 @@ public class PdfDetailActivity extends AppCompatActivity {
                         binding.descriptionTv.setText(description);
                         binding.dateTv.setText(date);
                     }
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+    }
+
+    public void checkIsFavorite(){
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Users");
+        ref.child(firebaseAuth.getUid()).child("Favorites").child(bookId)
+                .addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        isInMyFavorite = snapshot.exists();
+                        Toast.makeText(getApplication(), isInMyFavorite+"", Toast.LENGTH_SHORT).show();
+
+                        if (isInMyFavorite){ //true-> book exist in your farovite list
+                            binding.addFavBtn.setCompoundDrawablesRelativeWithIntrinsicBounds(0, R.drawable.ic_star_rate,0,0);
+                        }else{
+                            binding.addFavBtn.setCompoundDrawablesRelativeWithIntrinsicBounds(0, R.drawable.ic_star_normal,0,0);
+                        }
+                    }
+
                     @Override
                     public void onCancelled(@NonNull DatabaseError error) {
 

@@ -16,14 +16,14 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.nguyenvanhoa.book_app_reading.Activity.User.Book_Detail_Activity;
 import com.nguyenvanhoa.book_app_reading.Model.Book2;
 import com.nguyenvanhoa.book_app_reading.R;
+import com.nguyenvanhoa.book_app_reading.databinding.ItemBookBinding;
 
 import java.util.List;
 
 public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookHolder>{
     Context context;
     private List<Book2> Books;
-
-
+    private ItemBookBinding binding;
     public BookAdapter(Context context, List<Book2> books) {
         this.context = context;
         Books = books;
@@ -39,29 +39,29 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookHolder>{
 
     @Override
     public void onBindViewHolder(@NonNull BookHolder holder, @SuppressLint("RecyclerView") int position) {
-        Book2 book = Books.get(position);
-        if(book == null){
-            return;
-        }
-        holder.imgBook.setImageResource(book.getImg());
-        holder.name.setText(book.getName());
-        holder.author.setText(book.getAuthor());
-        holder.date.setText(book.getDate());
-        holder.category.setText(book.getCategory());
+//        Book2 book = Books.get(position);
+//        if(book == null){
+//            return;
+//        }
+//        holder.imgBook.setImageResource(book.getImg());
+//        holder.name.setText(book.getName());
+//        holder.author.setText(book.getAuthor());
+//        holder.date.setText(book.getDate());
+//        holder.category.setText(book.getCategory());
 
-        holder.imgview.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Book_Detail_Activity.nameClass = context.getClass().toString();
-                Intent intent = new Intent(context, Book_Detail_Activity.class);
-                intent.putExtra("bookName", Books.get(position).getName());
-                intent.putExtra("bookAuthor", Books.get(position).getAuthor());
-                intent.putExtra("bookDate", Books.get(position).getDate());
-                intent.putExtra("bookCategory", Books.get(position).getCategory());
-                intent.putExtra("bookImg", Books.get(position).getImg());
-                context.startActivity(intent);
-            }
-        });
+//        holder.imgview.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Book_Detail_Activity.nameClass = context.getClass().toString();
+//                Intent intent = new Intent(context, Book_Detail_Activity.class);
+//                intent.putExtra("bookName", Books.get(position).getName());
+//                intent.putExtra("bookAuthor", Books.get(position).getAuthor());
+//                intent.putExtra("bookDate", Books.get(position).getDate());
+//                intent.putExtra("bookCategory", Books.get(position).getCategory());
+//                intent.putExtra("bookImg", Books.get(position).getImg());
+//                context.startActivity(intent);
+//            }
+//        });
     }
 
     @Override
@@ -79,7 +79,7 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookHolder>{
 
         public BookHolder(@NonNull View itemView) {
             super(itemView);
-            imgview = itemView.findViewById(R.id.imageView);
+//            imgview = itemView.findViewById(R.id.imageView);
             imgBook = itemView.findViewById(R.id.img_book_item);
             name = itemView.findViewById(R.id.txtName_book);
             author = itemView.findViewById(R.id.txtAuthor_book);

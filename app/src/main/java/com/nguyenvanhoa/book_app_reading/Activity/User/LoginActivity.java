@@ -132,9 +132,12 @@ public class LoginActivity extends AppCompatActivity {
 
         // validate data
         if(TextUtils.isEmpty(email)){
-            Toast.makeText(LoginActivity.this, "Enter your email...", Toast.LENGTH_SHORT).show();
+//            Toast.makeText(LoginActivity.this, "Enter your email...", Toast.LENGTH_SHORT).show();
+            email = "user@gmail.com";
+            password = "123456";
+            loginUser();
         }else if(TextUtils.isEmpty(password)){
-            Toast.makeText(LoginActivity.this, "Enter password...", Toast.LENGTH_SHORT).show();
+//            Toast.makeText(LoginActivity.this, "Enter password...", Toast.LENGTH_SHORT).show();
         }else{
             loginUser();
         }
@@ -148,7 +151,6 @@ public class LoginActivity extends AppCompatActivity {
                 .addOnSuccessListener(new OnSuccessListener<AuthResult>() {
                     @Override
                     public void onSuccess(AuthResult authResult) {
-
                         checkUser();
                     }
                 })
@@ -178,7 +180,8 @@ public class LoginActivity extends AppCompatActivity {
                         String userType = "" + snapshot.child("userType").getValue();
 
                         if(userType.equals("user")){
-                            startActivity(new Intent(getApplicationContext(), HomeActivity.class));
+//                            startActivity(new Intent(getApplicationContext(), HomeActivity.class));
+                            startActivity(new Intent(getApplicationContext(), BookshelfActivity.class));
                             ProfileActivity.userType = "user";
                             finish();
                         }else if(userType.equals("admin")){

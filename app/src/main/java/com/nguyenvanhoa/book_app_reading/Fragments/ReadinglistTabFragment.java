@@ -4,42 +4,70 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.nguyenvanhoa.book_app_reading.Model.Book2;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.nguyenvanhoa.book_app_reading.Adapter.ReadingAdapter;
+import com.nguyenvanhoa.book_app_reading.Model.Book;
 import com.nguyenvanhoa.book_app_reading.R;
-import com.nguyenvanhoa.book_app_reading.RecyclerView_Book.BookAdapter;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class ReadinglistTabFragment extends Fragment {
     private RecyclerView rvbooks;
-    private List<Book2> books;
+    private ArrayList<Book> bookArrayList;
+    private ReadingAdapter adapterBook;
+
+    private FirebaseAuth firebaseAuth;
+
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.tab_readinglist, container, false);
         rvbooks = root.findViewById(R.id.rcvBook);
-        BookAdapter bookAdapter = new BookAdapter(getContext(), books);
+        firebaseAuth = FirebaseAuth.getInstance();
         rvbooks.setLayoutManager(new LinearLayoutManager(getActivity()));
-        rvbooks.setAdapter(bookAdapter);
+        loadBookReading();
         return root;
+    }
+
+    private void loadBookReading() {
+        bookArrayList = new ArrayList<>();
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Users");
+        ref.child(firebaseAuth.getUid()).child("Reading")
+                .addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        bookArrayList.clear();
+                        for (DataSnapshot ds : snapshot.getChildren()){
+                            String bookId = ""+ds.child("bookId").getValue();
+                            Book model = ds.getValue(Book.class);
+                            model.setId(bookId);
+                            bookArrayList.add(model);
+                        }
+                        adapterBook = new ReadingAdapter(getContext(), bookArrayList);
+                        rvbooks.setAdapter(adapterBook);
+                    }
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
     }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        books = new ArrayList<>();
-        books.add(new Book2("GrindelWall Row", "by John Grisham", "August 19, 2014", "Horror", R.drawable.the_story_of_schit_creek));
-        books.add(new Book2("Themartian", "by John Grisham", "August 19, 2014", "Horror", R.drawable.braiding_sweetgrass));
-        books.add(new Book2("Spider Cover", "by John Grisham", "August 19, 2014", "Horror", R.drawable.the_stranger));
-        books.add(new Book2("Sycamore Row", "by John Grisham", "August 19, 2014", "Horror", R.drawable.circe));
-        books.add(new Book2("Werewolves", "by John Grisham", "August 19, 2014", "Horror", R.drawable.school_leaders));
-        books.add(new Book2("Moana", "by John Grisham", "August 19, 2014", "Horror", R.drawable.shaping_school_culture));
     }
 
 }

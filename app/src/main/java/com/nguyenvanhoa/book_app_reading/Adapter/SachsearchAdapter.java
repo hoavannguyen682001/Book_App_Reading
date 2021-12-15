@@ -74,12 +74,12 @@ public class SachsearchAdapter extends RecyclerView.Adapter<SachsearchAdapter.Sa
         TextView name, author, date, category;
         public SachViewHoder(@NonNull View itemView) {
             super(itemView);
-            imgview = itemView.findViewById(R.id.imageView);
-            imgBook = itemView.findViewById(R.id.img_book_item);
-            name = itemView.findViewById(R.id.txtName_book);
-            author = itemView.findViewById(R.id.txtAuthor_book);
-            date = itemView.findViewById(R.id.txtDate_book);
-            category = itemView.findViewById(R.id.txtCategory_book);
+//            imgview = itemView.findViewById(R.id.imageView);
+//            imgBook = itemView.findViewById(R.id.img_book_item);
+//            name = itemView.findViewById(R.id.txtName_book);
+//            author = itemView.findViewById(R.id.txtAuthor_book);
+//            date = itemView.findViewById(R.id.txtDate_book);
+//            category = itemView.findViewById(R.id.txtCategory_book);
         }
     }
     public void filterList(List<Book2> list){//timkiem

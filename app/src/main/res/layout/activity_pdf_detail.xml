@@ -24,12 +24,12 @@
     <LinearLayout
         android:id="@+id/book_detailLl"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="200dp"
         android:layout_below="@+id/toolBarRl"
         android:orientation="horizontal">
 
         <androidx.cardview.widget.CardView
-            android:layout_width="140dp"
+            android:layout_width="120dp"
             android:layout_height="match_parent"
             app:cardCornerRadius="20dp">
 
@@ -39,6 +39,7 @@
                 android:layout_height="match_parent"
                 android:background="#00DA0303"
                 android:scaleType="centerCrop" />
+
             <ProgressBar
                 android:id="@+id/progressBar"
                 android:layout_width="match_parent"
@@ -49,14 +50,13 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
-            android:paddingLeft="16dp">
+            android:layout_marginTop="16dp"
+            android:paddingStart="16dp">
 
             <TextView
                 android:id="@+id/titleTv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="53dp"
                 android:text="Sycamore Row"
                 android:textColor="@color/black"
                 android:textSize="24sp"
@@ -65,7 +65,7 @@
 
             <TextView
                 android:id="@+id/authorTv"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/titleTv"
                 android:layout_marginTop="8dp"
@@ -75,7 +75,7 @@
 
             <TextView
                 android:id="@+id/dateTv"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/authorTv"
                 android:layout_marginTop="8dp"
@@ -85,7 +85,7 @@
 
             <TextView
                 android:id="@+id/categoryTv"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/dateTv"
                 android:layout_marginTop="8dp"
@@ -95,18 +95,25 @@
 
             <Button
                 android:id="@+id/readBtn"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/categoryTv"
-                android:layout_marginTop="8dp"
+                android:layout_alignParentStart="true"
                 android:backgroundTint="@color/RoyalPurple"
-                android:paddingLeft="16dp"
-                android:paddingRight="16dp"
                 android:text="Read"
                 android:textAllCaps="false"
                 android:textColor="@color/white"
                 android:textSize="24sp"
                 app:backgroundTint="@null" />
+
+            <TextView
+                android:id="@+id/addFavBtn"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                android:drawableTop="@drawable/ic_star_normal"/>
+
         </RelativeLayout>
 
 

@@ -5,42 +5,64 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.nguyenvanhoa.book_app_reading.Model.Book2;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.nguyenvanhoa.book_app_reading.Activity.Admin.Models.MyApplication;
+import com.nguyenvanhoa.book_app_reading.Adapter.AdapterBook;
+import com.nguyenvanhoa.book_app_reading.Model.Book;
 import com.nguyenvanhoa.book_app_reading.R;
-import com.nguyenvanhoa.book_app_reading.RecyclerView_Book.BookAdapter;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class PopularTabFragment extends Fragment {
     private RecyclerView rvbooks;
-    private List<Book2> books;
-
+    private ArrayList<Book> bookArrayList;
+    private AdapterBook adapterBook;
+    
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.tab_popular, container, false);
+        loadBookShelf();
         rvbooks = root.findViewById(R.id.rcvBook);
-        BookAdapter bookAdapter = new BookAdapter(getContext(), books);
         rvbooks.setLayoutManager(new LinearLayoutManager(getActivity()));
-        rvbooks.setAdapter(bookAdapter);
         return root;
+    }
+
+
+    public void loadBookShelf() {
+        bookArrayList = new ArrayList<>();
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Books");
+        ref.orderByChild("viewsCount").limitToLast(10)
+                .addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        bookArrayList.clear();
+                        for (DataSnapshot ds : snapshot.getChildren()){
+                            Book model = ds.getValue(Book.class);
+                            bookArrayList.add(model);
+                        }
+                        adapterBook = new AdapterBook(getContext(), bookArrayList);
+                        rvbooks.setAdapter(adapterBook);
+                    }
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
     }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        books = new ArrayList<>();
-        books.add(new Book2("Themartian", "by John Grisham", "August 19, 2014", "Horror", R.drawable.poems));
-        books.add(new Book2("Sycamore Row", "by John Grisham", "August 19, 2014", "Horror", R.drawable.the_adaptive_school));
-        books.add(new Book2("Werewolves", "by John Grisham", "August 19, 2014", "Horror", R.drawable.the_dawn));
-        books.add(new Book2("GrindelWall Row", "by John Grisham", "August 19, 2014", "Horror", R.drawable.the_1619_project));
-        books.add(new Book2("Spider Cover", "by John Grisham", "August 19, 2014", "Horror", R.drawable.olympus_texas));
-        books.add(new Book2("Moana", "by John Grisham", "August 19, 2014", "Horror", R.drawable.the_stranger));
     }
 }
