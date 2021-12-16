@@ -1,13 +1,13 @@
 package com.nguyenvanhoa.book_app_reading.Model;
 
 public class Book {
-    String uid, id, title, description, categoryId, url, author;
+    String uid, id, title, description, categoryId, url, author, image;
     Long timestamp, viewscount, downloadsCount;
     boolean favorite;
     public Book() {
     }
 
-    public Book(String uid, String id, String title, String description, String categoryId, String url, String author, Long timestamp, Long viewscount, Long downloadsCount, boolean favorite) {
+    public Book(String uid, String id, String title, String description, String categoryId, String url, String author, String image, Long timestamp, Long viewscount, Long downloadsCount, boolean favorite) {
         this.uid = uid;
         this.id = id;
         this.title = title;
@@ -15,6 +15,7 @@ public class Book {
         this.categoryId = categoryId;
         this.url = url;
         this.author = author;
+        this.image = image;
         this.timestamp = timestamp;
         this.viewscount = viewscount;
         this.downloadsCount = downloadsCount;
@@ -55,6 +56,14 @@ public class Book {
 
     public String getTitle() {
         return title;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 
     public void setTitle(String title) {

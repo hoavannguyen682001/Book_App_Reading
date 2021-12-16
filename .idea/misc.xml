@@ -34,10 +34,21 @@
         <entry key="..\:/121/MOBILE/Book_App_Reading/app/src/main/res/drawable/ic_launcher_background.xml" value="0.2703125" />
         <entry key="..\:/121/MOBILE/Book_App_Reading/app/src/main/res/drawable/shape_left_panel.xml" value="0.2703125" />
         <entry key="..\:/121/MOBILE/Book_App_Reading/app/src/main/res/drawable/style_spinner.xml" value="0.2703125" />
+        <entry key="..\:/121/MOBILE/Book_App_Reading/app/src/main/res/layout/activity_book_detail.xml" value="0.25416666666666665" />
+        <entry key="..\:/121/MOBILE/Book_App_Reading/app/src/main/res/layout/activity_book_view.xml" value="0.1" />
         <entry key="..\:/121/MOBILE/Book_App_Reading/app/src/main/res/layout/activity_main.xml" value="0.25416666666666665" />
+        <entry key="..\:/121/MOBILE/Book_App_Reading/app/src/main/res/layout/activity_pdf_detail.xml" value="0.4" />
+        <entry key="..\:/121/MOBILE/Book_App_Reading/app/src/main/res/layout/activity_pdf_list.xml" value="0.23148148148148148" />
         <entry key="..\:/121/MOBILE/Book_App_Reading/app/src/main/res/layout/activity_signup.xml" value="0.4" />
         <entry key="..\:/121/MOBILE/Book_App_Reading/app/src/main/res/layout/activivy_login.xml" value="0.25416666666666665" />
+        <entry key="..\:/121/MOBILE/Book_App_Reading/app/src/main/res/layout/item_book.xml" value="0.264" />
+        <entry key="..\:/121/MOBILE/Book_App_Reading/app/src/main/res/layout/item_book_vote.xml" value="0.264" />
         <entry key="..\:/121/MOBILE/Book_App_Reading/app/src/main/res/layout/list_gender.xml" value="0.25416666666666665" />
+        <entry key="..\:/121/MOBILE/Book_App_Reading/app/src/main/res/layout/row_pdf.xml" value="0.25416666666666665" />
+        <entry key="..\:/121/MOBILE/Book_App_Reading/app/src/main/res/layout/small_itembook.xml" value="0.25416666666666665" />
+        <entry key="..\:/121/MOBILE/Book_App_Reading/app/src/main/res/layout/tab_popular.xml" value="0.25416666666666665" />
+        <entry key="..\:/121/MOBILE/Book_App_Reading/app/src/main/res/layout/tab_readinglist.xml" value="0.25416666666666665" />
+        <entry key="..\:/121/MOBILE/Book_App_Reading/app/src/main/res/layout/tab_vote.xml" value="0.25416666666666665" />
         <entry key="..\:/121/MOBILE/Ex/CloneGit/Clone1/app/src/main/res/layout/activity_home.xml" value="0.22554347826086957" />
         <entry key="..\:/121/MOBILE/Ex/CloneGit/E_Book/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.2703125" />
         <entry key="..\:/121/MOBILE/Ex/CloneGit/E_Book/app/src/main/res/drawable/ic_launcher_foreground.xml" value="0.2703125" />
