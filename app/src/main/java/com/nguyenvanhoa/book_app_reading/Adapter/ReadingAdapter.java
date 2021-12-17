@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -21,6 +22,7 @@ import com.nguyenvanhoa.book_app_reading.Activity.Admin.Models.MyApplication;
 import com.nguyenvanhoa.book_app_reading.Model.Book;
 import com.nguyenvanhoa.book_app_reading.databinding.ItemBookBinding;
 import com.nguyenvanhoa.book_app_reading.databinding.ItemBookVoteBinding;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -46,7 +48,9 @@ public class ReadingAdapter extends RecyclerView.Adapter<ReadingAdapter.HolderBo
     @Override
     public void onBindViewHolder(@NonNull HolderBookReading holder, int position) {
         Book model = bookArrayList.get(position);
+
         loadBookDetail(model, holder);
+
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -72,6 +76,8 @@ public class ReadingAdapter extends RecyclerView.Adapter<ReadingAdapter.HolderBo
                         String categoryId = snapshot.child("categoryId").getValue().toString();
                         String url = snapshot.child("url").getValue().toString();
                         String uid = snapshot.child("uid").getValue().toString();
+                        //image
+                        String image = snapshot.child("Image").getValue().toString();
 //
                         model.setTitle(bookTitle);
                         model.setAuthor(bookAuthor);
@@ -79,11 +85,13 @@ public class ReadingAdapter extends RecyclerView.Adapter<ReadingAdapter.HolderBo
                         model.setCategoryId(categoryId);
                         model.setUid(uid);
                         model.setUrl(url);
+                        model.setImage(image);
                         String date = MyApplication.formatTimestamp(Long.parseLong(timestamp));
 //
                         holder.titleTv.setText(bookTitle);
                         holder.authorTv.setText(bookAuthor);
                         holder.dateTv.setText(date);
+                        Picasso.get().load(model.getImage()).into(holder.imageView);
                         MyApplication.loadCategory(holder.categoryTv, ""+categoryId);
                     }
 
@@ -102,6 +110,7 @@ public class ReadingAdapter extends RecyclerView.Adapter<ReadingAdapter.HolderBo
     class HolderBookReading extends RecyclerView.ViewHolder{
 
         TextView titleTv, authorTv, dateTv, categoryTv ;
+        ImageView imageView;
 
         public HolderBookReading(@NonNull View itemView) {
             super(itemView);
@@ -109,6 +118,7 @@ public class ReadingAdapter extends RecyclerView.Adapter<ReadingAdapter.HolderBo
             authorTv = binding.authorTv;
             dateTv = binding.dateTv;
             categoryTv = binding.categoryTv;
+            imageView = binding.imgBook;
         }
     }
 }

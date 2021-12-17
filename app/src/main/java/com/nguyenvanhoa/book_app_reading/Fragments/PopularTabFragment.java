@@ -16,7 +16,6 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.nguyenvanhoa.book_app_reading.Activity.Admin.Models.MyApplication;
 import com.nguyenvanhoa.book_app_reading.Adapter.AdapterBook;
 import com.nguyenvanhoa.book_app_reading.Model.Book;
 import com.nguyenvanhoa.book_app_reading.R;
@@ -64,5 +63,6 @@ public class PopularTabFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
     }
 }

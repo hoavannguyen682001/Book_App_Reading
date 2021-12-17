@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 
 import com.nguyenvanhoa.book_app_reading.Model.AllCategory;
+import com.nguyenvanhoa.book_app_reading.Model.Book;
 import com.nguyenvanhoa.book_app_reading.Model.Book2;
 import com.nguyenvanhoa.book_app_reading.R;
 
@@ -45,7 +46,7 @@ public class MainRecyclerAdapter extends RecyclerView.Adapter<MainRecyclerAdapte
             return;
         }
         holder.categoryName.setText(allCategories.get(position).getCategorytitle());
-        SetItemRecycler(holder.itemRecycler, allCategories.get(position).getBookList());
+//        SetItemRecycler(holder.itemRecycler, allCategories.get(position).getBookList());
     }
 
     @Override
@@ -59,13 +60,13 @@ public class MainRecyclerAdapter extends RecyclerView.Adapter<MainRecyclerAdapte
 
         public MainRecyclerHolder(@NonNull View itemView) {
             super(itemView);
-            categoryName = itemView.findViewById(R.id.item_category);
-            itemRecycler = itemView.findViewById(R.id.item_recycler);
+            categoryName = itemView.findViewById(R.id.categoryTv);
+            itemRecycler = itemView.findViewById(R.id.booksRv);
         }
     }
-    private void SetItemRecycler(RecyclerView recyclerView, List<Book2> bookList){
-        ItemCategoryAdapter itemCategoryAdapter = new ItemCategoryAdapter(context, bookList);
-        recyclerView.setLayoutManager(new LinearLayoutManager(context, RecyclerView.HORIZONTAL, false));
-        recyclerView.setAdapter(itemCategoryAdapter);
+    private void SetItemRecycler(RecyclerView recyclerView, List<Book> bookList){
+//        ItemCategoryAdapter itemCategoryAdapter = new ItemCategoryAdapter(context, bookList);
+//        recyclerView.setLayoutManager(new LinearLayoutManager(context, RecyclerView.HORIZONTAL, false));
+//        recyclerView.setAdapter(itemCategoryAdapter);
     }
 }

@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -27,6 +28,7 @@ import com.nguyenvanhoa.book_app_reading.Activity.Admin.Models.PdfModel;
 import com.nguyenvanhoa.book_app_reading.Model.Book;
 import com.nguyenvanhoa.book_app_reading.R;
 import com.nguyenvanhoa.book_app_reading.databinding.ItemBookBinding;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -46,27 +48,27 @@ public class AdapterBook extends RecyclerView.Adapter<AdapterBook.HolderBook>{
     @NonNull
     @Override
     public HolderBook onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-
         binding = ItemBookBinding.inflate(LayoutInflater.from(context), parent, false);
         return new HolderBook(binding.getRoot());
     }
 
     @Override
     public void onBindViewHolder(@NonNull HolderBook holder, int position) {
-        firebaseAuth = FirebaseAuth.getInstance();
         Book model = bookArrayList.get(position);
         String pdfId = model.getId();
         String categoryId = model.getCategoryId();
         String title = model.getTitle();
         String author = model.getAuthor();
         String pdfUrl = model.getUrl();
+
+        String image = model.getImage();
         long timestamp = model.getTimestamp();
 
         String formatDate = MyApplication.formatTimestamp(timestamp);
         holder.titleTv.setText(title);
         holder.authorTv.setText(author);
         holder.dateTv.setText(formatDate);
-
+        Picasso.get().load(image).into(holder.img);
         MyApplication.loadCategory(holder.categoryTv, ""+categoryId);
 //        MyApplication.loadPdfFromUrlPage(""+pdfUrl, ""+ title, holder.pdfView, context, holder.progressBar);
 //        MyApplication.loadPdfSize(""+pdfUrl, ""+title, holder.sizeTv, context);
@@ -78,23 +80,6 @@ public class AdapterBook extends RecyclerView.Adapter<AdapterBook.HolderBook>{
                 context.startActivity(i);
             }
         });
-//        if (firebaseAuth.getCurrentUser() != null){
-//            checkIsFavorite(pdfId);
-//        }
-//        holder.addFavBtn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                if (firebaseAuth.getCurrentUser() == null){
-//                    Toast.makeText(context, "not login", Toast.LENGTH_SHORT).show();
-//                }else{
-//                    if (isInMyFavorite){
-//                        MyApplication.removeFromFavori(context, pdfId);
-//                    }else{
-//                        MyApplication.addToFavorite(context, pdfId);
-//                    }
-//                }
-//            }
-//        });
 
     }
 
@@ -108,12 +93,15 @@ public class AdapterBook extends RecyclerView.Adapter<AdapterBook.HolderBook>{
 //        PDFView pdfView;
 //        ProgressBar progressBar;
         TextView titleTv, categoryTv, dateTv, authorTv;
+
+        ImageView img;
         public HolderBook(@NonNull View itemView) {
             super(itemView);
             titleTv = binding.titleTv;
             categoryTv = binding.categoryTv;
             authorTv = binding.authorTv;
             dateTv = binding.dateTv;
+            img = binding.imgBook;
         }
     }
 }

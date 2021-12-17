@@ -119,7 +119,7 @@ public class BookAdapterVote extends RecyclerView.Adapter<BookAdapterVote.BookHo
         TextView title, author, date, category;
         ImageButton favBtn;
         PDFView pdfView;
-        ProgressBar progressBar;
+//        ProgressBar progressBar;
         public BookHolder(@NonNull View itemView) {
             super(itemView);
             title = binding.titleTv;
@@ -127,8 +127,8 @@ public class BookAdapterVote extends RecyclerView.Adapter<BookAdapterVote.BookHo
             date = binding.dateTv;
             category = binding.categoryTv;
             favBtn = binding.removeFavBtn;
-            pdfView = binding.pdfView;
-            progressBar = binding.progressBar;
+//            pdfView = binding.pdfView;
+//            progressBar = binding.progressBar;
         }
     }
 //

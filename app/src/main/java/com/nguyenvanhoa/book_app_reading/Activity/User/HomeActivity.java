@@ -2,6 +2,7 @@ package com.nguyenvanhoa.book_app_reading.Activity.User;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.WindowManager;
 import android.widget.Toast;
@@ -14,63 +15,125 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.tabs.TabLayout;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.nguyenvanhoa.book_app_reading.Adapter.AdapterBook;
 import com.nguyenvanhoa.book_app_reading.Adapter.MainRecyclerAdapter;
+import com.nguyenvanhoa.book_app_reading.Adapter.MySliderAdapter;
 import com.nguyenvanhoa.book_app_reading.Adapter.SliderPagerAdapter;
 import com.nguyenvanhoa.book_app_reading.Adapter.TopAuthorsAdapter;
+import com.nguyenvanhoa.book_app_reading.Adapter.TopTrendingAdapter;
 import com.nguyenvanhoa.book_app_reading.Model.AllCategory;
+import com.nguyenvanhoa.book_app_reading.Model.Book;
 import com.nguyenvanhoa.book_app_reading.Model.Book2;
 import com.nguyenvanhoa.book_app_reading.Model.Slide_Show;
 import com.nguyenvanhoa.book_app_reading.Model.TopAuthor;
 import com.nguyenvanhoa.book_app_reading.R;
+import com.nguyenvanhoa.book_app_reading.Service.PicassoLoadingService;
+import com.nguyenvanhoa.book_app_reading.databinding.ActivityHomeBinding;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import ss.com.bannerslider.Slider;
+
 public class HomeActivity extends AppCompatActivity {
 
-    private List<Slide_Show> listSlides;
-    private ViewPager slide_pager;
-    private SliderPagerAdapter adapter;
-    private TabLayout indicator;
     private BottomNavigationView navigationView;
-    private MainRecyclerAdapter mainRecyclerAdapter;
-    private TopAuthorsAdapter topAuthorsAdapter;
-    private RecyclerView rcv_mainRecycler;
-    private RecyclerView rcv_topAuthors;
-    private RecyclerView rcv_TopTrending;
+//    private ViewPager slide_pager;
+//    private SliderPagerAdapter adapter;
+//    private TabLayout indicator;
+//    private MainRecyclerAdapter mainRecyclerAdapter;
+//    private TopAuthorsAdapter topAuthorsAdapter;
+//    private RecyclerView rcv_mainRecycler;
+//    private RecyclerView rcv_topAuthors;
+//    private RecyclerView rcv_TopTrending;
 
+    private ActivityHomeBinding binding;
+    private ArrayList<Book> bookArrayList;
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home);
+        binding = ActivityHomeBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        InitView_Slide();
-        InitView_RecyclerView();
+
+        Slider.init(new PicassoLoadingService());
+
+        loadBanner();
+        loadTopTrendingBook();
         Naviagation_bar();
-
     }
 
-    private void InitView_Slide() {
-        slide_pager = findViewById(R.id.vpSlider);
-        indicator = findViewById(R.id.indicator);
+    private void loadTopTrendingBook() {
+        binding.rcvTopTrending.setLayoutManager(new LinearLayoutManager(this, RecyclerView.HORIZONTAL, false));
+        binding.rcvTopTrending.setNestedScrollingEnabled(false);
+        binding.rcvTopTrending.setFocusable(false);
+        bookArrayList = new ArrayList<>();
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Books");
+        ref.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        bookArrayList.clear();
+                        for (DataSnapshot ds : snapshot.getChildren()){
+                            Book model = ds.getValue(Book.class);
+                            bookArrayList.add(model);
+                        }
+                        binding.rcvTopTrending.setAdapter(new TopTrendingAdapter(HomeActivity.this, bookArrayList));
+                    }
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
 
-        adapter = new SliderPagerAdapter(this, getListSlides());
-        slide_pager.setAdapter(adapter);
-
-
-        Timer timer = new Timer();
-        timer.scheduleAtFixedRate(new SliderTimer(),1000,3000);
-        indicator.setupWithViewPager(slide_pager,true);
+                    }
+                });
     }
 
-    private List<Slide_Show> getListSlides() {
-        listSlides = new ArrayList<>();
-        listSlides.add(new Slide_Show(1, "The Dawn of Everything", R.drawable.banner1));
-        listSlides.add(new Slide_Show(2, "The Stranger in the Lifeboat", R.drawable.banner2));
-        return listSlides;
+    private void loadBanner() {
+        DatabaseReference refBanner = FirebaseDatabase.getInstance().getReference("Banners");
+        refBanner.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                List<String> bannerList = new ArrayList<>();
+                for (DataSnapshot ds:snapshot.getChildren()){
+                    String image = ds.getValue(String.class);
+                    bannerList.add(image);
+                }
+                binding.slider.setAdapter(new MySliderAdapter(HomeActivity.this, bannerList));
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
+
+
+//    private void InitView_Slide() {
+//        slide_pager = findViewById(R.id.vpSlider);
+//        indicator = findViewById(R.id.indicator);
+//
+//        adapter = new SliderPagerAdapter(this, getListSlides());
+//        slide_pager.setAdapter(adapter);
+//
+//
+//        Timer timer = new Timer();
+//        timer.scheduleAtFixedRate(new SliderTimer(),1000,3000);
+//        indicator.setupWithViewPager(slide_pager,true);
+//    }
+
+//    private List<Slide_Show> getListSlides() {
+//        listSlides = new ArrayList<>();
+//        listSlides.add(new Slide_Show(1, "The Dawn of Everything", R.drawable.banner1));
+//        listSlides.add(new Slide_Show(2, "The Stranger in the Lifeboat", R.drawable.banner2));
+//        return listSlides;
+//    }
 
     private void InitView_RecyclerView(){
         setMainRecycler();
@@ -83,34 +146,34 @@ public class HomeActivity extends AppCompatActivity {
         RecyclerView.LayoutManager layoutManager_Category = new LinearLayoutManager(this, RecyclerView.VERTICAL, false);
 
 //        rcv_TopTrending
-        rcv_TopTrending = findViewById(R.id.rcv_TopTrending);
-        rcv_TopTrending.setLayoutManager(layoutManager_Trending);
-        rcv_TopTrending.setFocusable(false);
-        rcv_TopTrending.setNestedScrollingEnabled(false);
-
-        mainRecyclerAdapter = new MainRecyclerAdapter(this, GetListTrending());
-        mainRecyclerAdapter.setData(GetListTrending());
-        rcv_TopTrending.setAdapter(mainRecyclerAdapter);
+//        rcv_TopTrending = findViewById(R.id.rcv_TopTrending);
+//        rcv_TopTrending.setLayoutManager(layoutManager_Trending);
+//        rcv_TopTrending.setFocusable(false);
+//        rcv_TopTrending.setNestedScrollingEnabled(false);
+//
+//        mainRecyclerAdapter = new MainRecyclerAdapter(this, GetListTrending());
+//        mainRecyclerAdapter.setData(GetListTrending());
+//        rcv_TopTrending.setAdapter(mainRecyclerAdapter);
 
 //        rcv_topAuthors
-        rcv_topAuthors = findViewById(R.id.rcv_topAuthors);
-        rcv_topAuthors.setLayoutManager(layoutManager_Horizontal);
-        rcv_topAuthors.setFocusable(false);
-        rcv_topAuthors.setNestedScrollingEnabled(false);
-
-        topAuthorsAdapter = new TopAuthorsAdapter(this, GetListAuthors());
-        topAuthorsAdapter.setData(GetListAuthors());
-        rcv_topAuthors.setAdapter(topAuthorsAdapter);
+//        rcv_topAuthors = findViewById(R.id.rcv_topAuthors);
+//        rcv_topAuthors.setLayoutManager(layoutManager_Horizontal);
+//        rcv_topAuthors.setFocusable(false);
+//        rcv_topAuthors.setNestedScrollingEnabled(false);
+//
+//        topAuthorsAdapter = new TopAuthorsAdapter(this, GetListAuthors());
+//        topAuthorsAdapter.setData(GetListAuthors());
+//        rcv_topAuthors.setAdapter(topAuthorsAdapter);
 
 //        rcv_mainRecycler
-        rcv_mainRecycler = findViewById(R.id.main_recycler);
-        rcv_mainRecycler.setLayoutManager(layoutManager_Category);
-        rcv_mainRecycler.setFocusable(false);
-        rcv_mainRecycler.setNestedScrollingEnabled(false);
-
-        mainRecyclerAdapter = new MainRecyclerAdapter(this, GetListCategory());
-        mainRecyclerAdapter.setData(GetListCategory());
-        rcv_mainRecycler.setAdapter(mainRecyclerAdapter);
+//        rcv_mainRecycler = findViewById(R.id.main_recycler);
+//        rcv_mainRecycler.setLayoutManager(layoutManager_Category);
+//        rcv_mainRecycler.setFocusable(false);
+//        rcv_mainRecycler.setNestedScrollingEnabled(false);
+//
+//        mainRecyclerAdapter = new MainRecyclerAdapter(this, GetListCategory());
+//        mainRecyclerAdapter.setData(GetListCategory());
+//        rcv_mainRecycler.setAdapter(mainRecyclerAdapter);
     }
 
     private List<AllCategory> GetListTrending() {
@@ -136,7 +199,7 @@ public class HomeActivity extends AppCompatActivity {
         return list;
     }
 
- private List<AllCategory> GetListCategory(){
+    private List<AllCategory> GetListCategory(){
         List<Book2> mListBookEducation = new ArrayList<>();
         mListBookEducation.add(new Book2( "School Leaders","by John Grisham", "August 19, 2014", "Horror",R.drawable.school_leaders));
         mListBookEducation.add(new Book2( "Shaping School Culture","by John Grisham", "August 19, 2014", "Horror",R.drawable.shaping_school_culture));
@@ -170,46 +233,22 @@ public class HomeActivity extends AppCompatActivity {
         return allCategoryList;
     }
 
-//    //get categories from db firebase
-//    private List<AllCategory> GetListCategory(){
-//        List<AllCategory> allCategoryList = new ArrayList<>();
+//    class SliderTimer extends TimerTask {
+//        @Override
+//        public void run() {
 //
-//        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Catogeries");
-//        ref.addValueEventListener(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                allCategoryList.clear();
-//
-//                for (DataSnapshot ds: snapshot.getChildren()) {
-//                    AllCategory allCategory = ds.getValue(AllCategory.class);
-//
-//                    allCategoryList.add(allCategory);
+//            HomeActivity.this.runOnUiThread(new Runnable() {
+//                @Override
+//                public void run() {
+//                    if (slide_pager.getCurrentItem()<listSlides.size()-1) {
+//                        slide_pager.setCurrentItem(slide_pager.getCurrentItem()+1);
+//                    }
+//                    else
+//                        slide_pager.setCurrentItem(0);
 //                }
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError error) {
-//
-//            }
-//        });
-//        return allCategoryList;
+//            });
+//        }
 //    }
-    class SliderTimer extends TimerTask {
-        @Override
-        public void run() {
-
-            HomeActivity.this.runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    if (slide_pager.getCurrentItem()<listSlides.size()-1) {
-                        slide_pager.setCurrentItem(slide_pager.getCurrentItem()+1);
-                    }
-                    else
-                        slide_pager.setCurrentItem(0);
-                }
-            });
-        }
-    }
     public void Naviagation_bar(){
         navigationView = findViewById(R.id.bottom_nav);
         navigationView.setSelectedItemId(R.id.nav_home);

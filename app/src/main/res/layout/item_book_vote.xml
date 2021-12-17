@@ -16,15 +16,12 @@
             android:layout_marginEnd="5dp"
             android:background="@color/teal_200">
 
-            <com.github.barteksc.pdfviewer.PDFView
-                android:id="@+id/pdfView"
+            <ImageView
+                android:id="@+id/imgBook"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"/>
+                android:layout_height="match_parent"
+                android:scaleType="fitXY" />
 
-            <ProgressBar
-                android:id="@+id/progressBar"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
 
         </RelativeLayout>
 

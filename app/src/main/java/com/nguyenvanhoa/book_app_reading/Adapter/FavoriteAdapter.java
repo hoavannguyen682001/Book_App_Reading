@@ -20,6 +20,7 @@ import com.nguyenvanhoa.book_app_reading.Activity.Admin.Activity.PdfDetailActivi
 import com.nguyenvanhoa.book_app_reading.Activity.Admin.Models.MyApplication;
 import com.nguyenvanhoa.book_app_reading.Model.Book;
 import com.nguyenvanhoa.book_app_reading.databinding.ItemBookVoteBinding;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -84,7 +85,9 @@ public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.Holder
                         String categoryId = snapshot.child("categoryId").getValue().toString();
                         String url = snapshot.child("url").getValue().toString();
                         String uid = snapshot.child("uid").getValue().toString();
-//
+
+                        String image = snapshot.child("Image").getValue().toString();
+                        //
                         model.setFavorite(true);
                         model.setTitle(booktitle);
                         model.setAuthor(bookAuthor);
@@ -92,11 +95,14 @@ public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.Holder
                         model.setCategoryId(categoryId);
                         model.setUid(uid);
                         model.setUrl(url);
+                        model.setImage(image);
                         String date = MyApplication.formatTimestamp(Long.parseLong(timestamp));
 //
                         holder.titleTv.setText(booktitle);
                         holder.authorTv.setText(bookAuthor);
                         holder.dateTv.setText(date);
+                        Picasso.get().load(model.getImage()).into(holder.imageView);
+
                         MyApplication.loadCategory(holder.categoryTv, ""+categoryId);
                     }
 
@@ -110,7 +116,7 @@ public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.Holder
     class HolderBookFavorite extends RecyclerView.ViewHolder{
 
         TextView titleTv, authorTv, dateTv, categoryTv ;
-        ImageView removeFavBtn;
+        ImageView removeFavBtn, imageView;
         public HolderBookFavorite(@NonNull View itemView) {
             super(itemView);
             titleTv = binding.titleTv;
@@ -118,6 +124,7 @@ public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.Holder
             dateTv = binding.dateTv;
             categoryTv = binding.categoryTv;
             removeFavBtn = binding.removeFavBtn;
+            imageView = binding.imgBook;
         }
     }
 }

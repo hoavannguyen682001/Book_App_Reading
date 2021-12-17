@@ -20,7 +20,8 @@
             <ImageView
                 android:id="@+id/imgBook"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"/>
+                android:layout_height="match_parent"
+                android:scaleType="fitXY" />
 
 <!--            <com.github.barteksc.pdfviewer.PDFView-->
 <!--                android:id="@+id/pdfView"-->

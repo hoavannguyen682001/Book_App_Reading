@@ -87,7 +87,7 @@ public class PdfListActivity extends AppCompatActivity {
                             pdfArrayList.add(model);
                             i++;
                         }
-                        Toast.makeText(getApplication(), ""+i, Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(getApplication(), ""+i, Toast.LENGTH_SHORT).show();
                         adapterPdf = new AdapterPdf(PdfListActivity.this, pdfArrayList);
                         binding.booksRv.setAdapter(adapterPdf);
                     }
