@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:padding="16dp"
     android:background="@color/Porcelain"
-    tools:context=".Activity.Admin.Activity.PdfDetailActivity">
+    tools:context=".Admin.Activity.PdfDetailActivity">
 
     <RelativeLayout
         android:id="@+id/toolBarRl"

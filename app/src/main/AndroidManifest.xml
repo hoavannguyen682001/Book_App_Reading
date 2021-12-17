@@ -12,31 +12,28 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Book_App_Reading">
         <activity
-            android:name=".Test.Activity.MultipleRecyclerViewActivity"
+            android:name=".Admin.Activity.BookViewActivity"
             android:exported="false" />
         <activity
-            android:name=".Activity.Admin.Activity.BookViewActivity"
+            android:name=".Admin.Activity.PdfAddActivity"
             android:exported="false" />
         <activity
-            android:name=".Activity.Admin.Activity.PdfAddActivity"
+            android:name=".Admin.Activity.PdfEditActivity"
             android:exported="false" />
         <activity
-            android:name=".Activity.Admin.Activity.PdfEditActivity"
+            android:name=".Admin.Activity.PdfDetailActivity"
             android:exported="false" />
         <activity
-            android:name=".Activity.Admin.Activity.PdfDetailActivity"
+            android:name=".Admin.Activity.PdfListActivity"
             android:exported="false" />
         <activity
-            android:name=".Activity.Admin.Activity.PdfListActivity"
+            android:name=".Admin.Activity.CategoriesActivity"
             android:exported="false" />
         <activity
-            android:name=".Activity.Admin.Activity.CategoriesActivity"
+            android:name=".Admin.Activity.DashBoardActivity"
             android:exported="false" />
         <activity
-            android:name=".Activity.Admin.Activity.DashBoardActivity"
-            android:exported="false" />
-        <activity
-            android:name=".Activity.User.MainActivity"
+            android:name=".User.Activity.MainActivity"
             android:exported="true">
 
             <!-- <intent-filter> -->
@@ -46,10 +43,19 @@
             <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
             <!-- </intent-filter> -->
         </activity>
-        <activity android:name=".Activity.User.SignUpActivity" />
-        <activity android:name=".Activity.User.TermsAndPoliciesActivity" />
+        <activity android:name=".User.Activity.SignUpActivity" />
+        <activity android:name=".User.Activity.TermsAndPoliciesActivity" />
         <activity
-            android:name=".Activity.User.LoginActivity"
+            android:name=".User.Activity.LoginActivity"
+            android:exported="true">
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.MAIN" />-->
+
+<!--                <category android:name="android.intent.category.LAUNCHER" />-->
+<!--            </intent-filter>-->
+        </activity>
+        <activity android:name=".User.Activity.ForgotPassActivity" />
+        <activity android:name=".User.Activity.HomeActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -57,17 +63,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Activity.User.ForgotPassActivity" />
-        <activity android:name=".Activity.User.HomeActivity" />
-        <activity android:name=".Activity.User.BookshelfActivity" />
-        <activity android:name=".Activity.User.LibraryActivity" />
-        <activity android:name=".Activity.User.ProfileActivity" />
-        <activity android:name=".Activity.User.SearchActivity" />
-        <activity android:name=".Activity.User.Book_Detail_Activity" />
-        <activity android:name=".Activity.User.Content_Story.activity_content_story" />
-        <activity android:name=".Activity.User.Content_Story.activity_content_story2" />
-        <activity android:name=".Activity.User.Content_Story.activity_content_story3" />
-        <activity android:name=".Activity.User.AboutUsActivity" />
+        <activity android:name=".User.Activity.BookshelfActivity" />
+        <activity android:name=".User.Activity.LibraryActivity" />
+        <activity android:name=".User.Activity.ProfileActivity" />
+        <activity android:name=".User.Activity.SearchActivity" />
+        <activity android:name=".User.Activity.Book_Detail_Activity" />
+        <activity android:name=".User.Activity.Content_Story.activity_content_story" />
+        <activity android:name=".User.Activity.Content_Story.activity_content_story2" />
+        <activity android:name=".User.Activity.Content_Story.activity_content_story3" />
+        <activity android:name=".User.Activity.AboutUsActivity" />
     </application>
 
 </manifest>

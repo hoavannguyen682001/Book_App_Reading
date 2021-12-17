@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#EAEFEF"
-    tools:context=".Activity.User.Content_Story.activity_content_story3">
+    tools:context=".User.Activity.Content_Story.activity_content_story3">
 
     <LinearLayout
         android:id="@+id/linearLayout"
