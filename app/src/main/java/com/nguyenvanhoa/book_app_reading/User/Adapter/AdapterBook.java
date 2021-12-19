@@ -5,16 +5,21 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.github.barteksc.pdfviewer.PDFView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.nguyenvanhoa.book_app_reading.Admin.Activity.PdfDetailActivity;
 import com.nguyenvanhoa.book_app_reading.Admin.Filter.FilterPdf;
 import com.nguyenvanhoa.book_app_reading.Admin.Models.MyApplication;
+import com.nguyenvanhoa.book_app_reading.User.Activity.Book_Detail_Activity;
+import com.nguyenvanhoa.book_app_reading.User.Activity.Filter.FilterBook;
 import com.nguyenvanhoa.book_app_reading.User.Model.Book;
 import com.nguyenvanhoa.book_app_reading.databinding.ItemBookBinding;
 import com.squareup.picasso.Picasso;
@@ -25,7 +30,7 @@ public class AdapterBook extends RecyclerView.Adapter<AdapterBook.HolderBook>{
     private Context context;
     public ArrayList<Book> bookArrayList, filterList;
     private ItemBookBinding binding;
-    private FilterPdf filter;
+    private FilterBook filter;
     FirebaseAuth firebaseAuth;
 
     public AdapterBook(Context context, ArrayList<Book> bookArrayList) {
@@ -44,7 +49,7 @@ public class AdapterBook extends RecyclerView.Adapter<AdapterBook.HolderBook>{
     @Override
     public void onBindViewHolder(@NonNull HolderBook holder, int position) {
         Book model = bookArrayList.get(position);
-        String pdfId = model.getId();
+        String id = model.getId();
         String categoryId = model.getCategoryId();
         String title = model.getTitle();
         String author = model.getAuthor();
@@ -59,13 +64,13 @@ public class AdapterBook extends RecyclerView.Adapter<AdapterBook.HolderBook>{
         holder.dateTv.setText(formatDate);
         Picasso.get().load(image).into(holder.img);
         MyApplication.loadCategory(holder.categoryTv, ""+categoryId);
-//        MyApplication.loadPdfFromUrlPage(""+pdfUrl, ""+ title, holder.pdfView, context, holder.progressBar);
+        //MyApplication.loadPdfFromUrlPage(""+pdfUrl, ""+ title, holder.pdfView, context, holder.progressBar);
 //        MyApplication.loadPdfSize(""+pdfUrl, ""+title, holder.sizeTv, context);
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(context, PdfDetailActivity.class);
-                i.putExtra("bookId", pdfId);
+                Intent i = new Intent(context, Book_Detail_Activity.class);
+                i.putExtra("bookId", id);
                 context.startActivity(i);
             }
         });
@@ -77,10 +82,17 @@ public class AdapterBook extends RecyclerView.Adapter<AdapterBook.HolderBook>{
         return bookArrayList.size();
     }
 
+    public Filter getFilter() {
+        if (filter == null) {
+            filter = new FilterBook(filterList, this);
+        }
+        return filter;
+    }
+
 
     class HolderBook extends RecyclerView.ViewHolder{
-//        PDFView pdfView;
-//        ProgressBar progressBar;
+        PDFView pdfView;
+        ProgressBar progressBar;
         TextView titleTv, categoryTv, dateTv, authorTv;
 
         ImageView img;

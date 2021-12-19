@@ -15,8 +15,15 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.nguyenvanhoa.book_app_reading.User.Adapter.AdapterBook;
 import com.nguyenvanhoa.book_app_reading.User.Adapter.CategoryAdapter;
 import com.nguyenvanhoa.book_app_reading.User.Adapter.SachsearchAdapter;
+import com.nguyenvanhoa.book_app_reading.User.Model.Book;
 import com.nguyenvanhoa.book_app_reading.User.Model.Book2;
 import com.nguyenvanhoa.book_app_reading.User.Model.Category;
 import com.nguyenvanhoa.book_app_reading.R;
@@ -24,11 +31,12 @@ import com.nguyenvanhoa.book_app_reading.R;
 import java.util.ArrayList;
 import java.util.List;
 public class SearchActivity extends AppCompatActivity {
-    ArrayList<Book2> books;
+    private ArrayList<Book> bookArrayList;
     private Spinner spnCategory;
     private CategoryAdapter categoryAdapter;
     private RecyclerView rcvSach;
-    private SachsearchAdapter sachadapter;
+    private AdapterBook adapterBook;
+
     private RecyclerView.LayoutManager mLayoutManager;
     private EditText editText;
     private BottomNavigationView navigationView;
@@ -39,14 +47,17 @@ public class SearchActivity extends AppCompatActivity {
         setContentView(R.layout.activity_search);
 
         Navigation_bar();
+        rcvSach = findViewById(R.id.rcv_book);
+        rcvSach.setHasFixedSize(true);
 
-        createlist();
-        buildRecycleView();
         spnCategory = findViewById(R.id.spn_category);
         categoryAdapter = new CategoryAdapter(this, R.layout.itemsearch_selected, getListCategory());
         spnCategory.setAdapter(categoryAdapter);
 
-        rcvSach.setLayoutManager(new LinearLayoutManager(getApplication()));
+        mLayoutManager = new LinearLayoutManager(this);
+        rcvSach.setLayoutManager(mLayoutManager);
+        getAllBooks();
+
         editText= findViewById(R.id.edittext);//timkiem
         editText.addTextChangedListener(new TextWatcher() {
             @Override
@@ -56,24 +67,17 @@ public class SearchActivity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                try {
+                    adapterBook.getFilter().filter(charSequence);
+                } catch (Exception e) {
 
+                }
             }
 
             @Override
             public void afterTextChanged(Editable editable) {
-                buildRecycleView();
-                filter(editable.toString());
             }
         });
-    }
-    private void createlist() {
-        books = new ArrayList<>();
-        books.add(new Book2("GrindelWall Row", "John Grisham", "August 19, 2014", "Horror", R.drawable.the_story_of_schit_creek));
-        books.add(new Book2("Themartian", "Grisham", "August 19, 2014", "Family", R.drawable.braiding_sweetgrass));
-        books.add(new Book2("Spider Cover", "Joisham", "August 19, 2014", "Action", R.drawable.the_stranger));
-        books.add(new Book2("Sycamore Row", "Hisham", "August 19, 2014", "Education", R.drawable.circe));
-        books.add(new Book2("Werewolves", "John Grisham", "August 19, 2014", "Horror", R.drawable.school_leaders));
-        books.add(new Book2("Moana", "Joam", "August 19, 2014", "Horror", R.drawable.shaping_school_culture));
     }
 
     private List<Category> getListCategory(){
@@ -83,29 +87,31 @@ public class SearchActivity extends AppCompatActivity {
         list.add(new Category("Category"));
         return  list;
     }
-    private void buildRecycleView(){
-        rcvSach = findViewById(R.id.rcv_book);
-        rcvSach.setHasFixedSize(true);
-        mLayoutManager = new LinearLayoutManager(this);
-        sachadapter = new SachsearchAdapter(this,books);
-        rcvSach.setLayoutManager(mLayoutManager);
-        rcvSach.setAdapter(sachadapter);
-    }
+    private void getAllBooks(){
+        //init list
+        bookArrayList = new ArrayList<>();
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference( "Books");
+        ref.addValueEventListener (new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                //clear list before starting adding data into it
+                bookArrayList.clear();
+                for (DataSnapshot ds : snapshot.getChildren()) {
+                    //get data
+                    Book model = ds.getValue(Book.class);
+                    //add to list
+                    bookArrayList.add(model);
+                }
+                //setup adapter
+                adapterBook = new AdapterBook(SearchActivity.this, bookArrayList);
+                //set adapter to recyclerview
+                rcvSach.setAdapter(adapterBook);
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
 
-    private void filter(String text){  //timkiem
-        ArrayList<Book2> ab = new ArrayList<>();
-        for (Book2 sach: books){
-            if(sach.getName().toLowerCase().contains(text.toLowerCase())){
-                ab.add(sach);
             }
-            else if(sach.getCategory().toLowerCase().contains(text.toLowerCase())){
-                ab.add(sach);
-            }
-            else if(sach.getCategory().toLowerCase().contains(text.toLowerCase())){
-                ab.add(sach);
-            }
-        }
-        sachadapter.filterList(ab);
+        });
     }
     public void Navigation_bar(){
         navigationView = findViewById(R.id.bottom_nav);
