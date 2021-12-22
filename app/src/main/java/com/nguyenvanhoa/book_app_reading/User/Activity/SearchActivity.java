@@ -49,13 +49,13 @@ public class SearchActivity extends AppCompatActivity {
         Navigation_bar();
         rcvSach = findViewById(R.id.rcv_book);
         rcvSach.setHasFixedSize(true);
+        mLayoutManager = new LinearLayoutManager(this);
+        rcvSach.setLayoutManager(mLayoutManager);
 
         spnCategory = findViewById(R.id.spn_category);
         categoryAdapter = new CategoryAdapter(this, R.layout.itemsearch_selected, getListCategory());
         spnCategory.setAdapter(categoryAdapter);
 
-        mLayoutManager = new LinearLayoutManager(this);
-        rcvSach.setLayoutManager(mLayoutManager);
         getAllBooks();
 
         editText= findViewById(R.id.edittext);//timkiem
