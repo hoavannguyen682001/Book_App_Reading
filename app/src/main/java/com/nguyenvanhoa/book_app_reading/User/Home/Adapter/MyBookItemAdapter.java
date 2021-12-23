@@ -1,6 +1,7 @@
 package com.nguyenvanhoa.book_app_reading.User.Home.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.nguyenvanhoa.book_app_reading.Admin.Activity.PdfDetailActivity;
 import com.nguyenvanhoa.book_app_reading.R;
 import com.nguyenvanhoa.book_app_reading.User.Home.Interface.IItemclickListener;
 import com.nguyenvanhoa.book_app_reading.User.Home.Model.ItemBookData;
@@ -44,7 +46,9 @@ public class MyBookItemAdapter extends RecyclerView.Adapter<MyBookItemAdapter.my
         holder.setiItemclickListener(new IItemclickListener() {
             @Override
             public void onItemClickListener(View view, int position) {
-                Toast.makeText(context.getApplicationContext(), ""+itemDataList.get(position).getImage(), Toast.LENGTH_SHORT).show();
+                Intent i = new Intent(context, PdfDetailActivity.class);
+                i.putExtra("bookId", itemDataList.get(position).getId());
+                context.startActivity(i);
             }
         });
     }

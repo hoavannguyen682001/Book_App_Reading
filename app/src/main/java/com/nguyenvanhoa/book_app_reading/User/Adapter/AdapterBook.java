@@ -69,7 +69,7 @@ public class AdapterBook extends RecyclerView.Adapter<AdapterBook.HolderBook>{
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(context, Book_Detail_Activity.class);
+                Intent i = new Intent(context, PdfDetailActivity.class);
                 i.putExtra("bookId", id);
                 context.startActivity(i);
             }

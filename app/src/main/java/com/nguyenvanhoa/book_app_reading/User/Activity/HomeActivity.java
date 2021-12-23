@@ -38,7 +38,8 @@ public class HomeActivity extends AppCompatActivity implements IFirebaseLoadList
     private BottomNavigationView navigationView;
 
     private ActivityHomeBinding binding;
-    
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -76,10 +77,10 @@ public class HomeActivity extends AppCompatActivity implements IFirebaseLoadList
                     ArrayList<ItemBookData> itemDataList = new ArrayList<>();
 
                     ItemBookData model = new ItemBookData(
-                            "1",
-                            categoryId+"",
-                            "22",
-                            "https://www.pngarts.com/files/3/Pizza-PNG-Image.png"
+                            "1639054861532",
+                            "1639056470313",
+                            "The Lincoln Highway",
+                            "https://images-us.bookshop.org/ingram/9780735222359.jpg?height=500&v=v2-be30cbf0d08057581f8a4eaaa51103d7"
                     );
                     itemDataList.add(model);
 
@@ -93,16 +94,6 @@ public class HomeActivity extends AppCompatActivity implements IFirebaseLoadList
                                         ItemBookData model = ds.getValue(ItemBookData.class);
                                         itemDataList.add(model);
                                     }
-                                    String categotyId= itemDataList.get(0).getCategoryId();
-                                    String title = itemDataList.get(0).getTitle();
-                                    String Img= itemDataList.get(0).getImage();
-                                    String Id = itemDataList.get(0).getId();
-                                    ItemBookData model = new ItemBookData(
-                                            "" + categotyId,
-                                            ""+ Id,
-                                            "" + title,
-                                            "" + Img
-                                    );
                                 }
                                 @Override
                                 public void onCancelled(@NonNull DatabaseError error) {
@@ -156,11 +147,13 @@ public class HomeActivity extends AppCompatActivity implements IFirebaseLoadList
                         intent = new Intent(getApplicationContext(), BookshelfActivity.class);
                         startActivity(intent);
                         overridePendingTransition(0,0);
+                        finish();
                         break;
                     case R.id.nav_library:
                         intent = new Intent(getApplicationContext(), LibraryActivity.class);
                         startActivity(intent);
                         overridePendingTransition(0,0);
+                        finish();
                         break;
                     case R.id.nav_person:
                         intent = new Intent(getApplicationContext(), ProfileActivity.class);
@@ -168,14 +161,16 @@ public class HomeActivity extends AppCompatActivity implements IFirebaseLoadList
                         intent.putExtra("userType", userType);
                         startActivity(intent);
                         overridePendingTransition(0,0);
-
+                        finish();
                         break;
                     case R.id.nav_search:
                         intent = new Intent(getApplicationContext(), SearchActivity.class);
                         startActivity(intent);
                         overridePendingTransition(0,0);
+                        finish();
                         break;
                 }
+                finish();
                 return false;
             }
         });

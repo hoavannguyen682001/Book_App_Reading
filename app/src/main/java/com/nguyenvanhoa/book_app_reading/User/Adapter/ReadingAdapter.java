@@ -67,13 +67,13 @@ public class ReadingAdapter extends RecyclerView.Adapter<ReadingAdapter.HolderBo
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         String bookTitle = snapshot.child("title").getValue().toString();
-//                        String bookAuthor = snapshot.child("author").getValue().toString();
-                        String bookAuthor = "null";
+                        String bookAuthor = snapshot.child("author").getValue().toString();
 
                         String timestamp = snapshot.child("timestamp").getValue().toString();
                         String categoryId = snapshot.child("categoryId").getValue().toString();
                         String url = snapshot.child("url").getValue().toString();
                         String uid = snapshot.child("uid").getValue().toString();
+
                         //image
                         String image = snapshot.child("Image").getValue().toString();
 //

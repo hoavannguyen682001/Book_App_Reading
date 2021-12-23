@@ -84,7 +84,7 @@ public class PdfDetailActivity extends AppCompatActivity {
                         String categoryId = ""+snapshot.child("categoryId").getValue();
                         String url = ""+snapshot.child("url").getValue();
                         String timestamp = ""+snapshot.child("timestamp").getValue();
-
+                        String author = ""+snapshot.child("author").getValue();
                         String date = MyApplication.formatTimestamp(Long.parseLong(timestamp));
                         MyApplication.loadCategory(binding.categoryTv, ""+categoryId );
 
@@ -92,6 +92,7 @@ public class PdfDetailActivity extends AppCompatActivity {
                         binding.titleTv.setText(title);
                         binding.descriptionTv.setText(description);
                         binding.dateTv.setText(date);
+                        binding.authorTv.setText(author);
                     }
                     @Override
                     public void onCancelled(@NonNull DatabaseError error) {
@@ -107,8 +108,6 @@ public class PdfDetailActivity extends AppCompatActivity {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         isInMyFavorite = snapshot.exists();
-                        Toast.makeText(getApplication(), isInMyFavorite+"", Toast.LENGTH_SHORT).show();
-
                         if (isInMyFavorite){ //true-> book exist in your farovite list
                             binding.addFavBtn.setCompoundDrawablesRelativeWithIntrinsicBounds(0, R.drawable.ic_star_rate,0,0);
                         }else{
