@@ -23,6 +23,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.nguyenvanhoa.book_app_reading.Admin.Activity.PdfDetailActivity;
 import com.nguyenvanhoa.book_app_reading.Admin.Models.Category;
 import com.nguyenvanhoa.book_app_reading.R;
 import com.nguyenvanhoa.book_app_reading.User.Activity.BookshelfActivity;
@@ -124,7 +125,10 @@ public class HomeTestActivity extends AppCompatActivity{
                         holder.itemView.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
-                                Toast.makeText(HomeTestActivity.this, ""+model.getImage(), Toast.LENGTH_SHORT).show();
+                                Intent i = new Intent(getApplication(), PdfDetailActivity.class);
+                                i.putExtra("bookId", model.getId());
+                                i.putExtra("categoryId", model.getCategoryId());
+                                startActivity(i);
                             }
                         });
                     }

@@ -84,8 +84,8 @@ public class SearchActivity extends AppCompatActivity {
     private List<Category> getListCategory(){
         List<Category> list = new ArrayList<>();
         list.add(new Category("Book"));
-        list.add(new Category("Author"));
-        list.add(new Category("Category"));
+//        list.add(new Category("Author"));
+//        list.add(new Category("Category"));
         return  list;
     }
     private void getAllBooks(){
