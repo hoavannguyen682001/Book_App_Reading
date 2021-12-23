@@ -27,6 +27,7 @@ import com.nguyenvanhoa.book_app_reading.User.Model.Book;
 import com.nguyenvanhoa.book_app_reading.User.Model.Book2;
 import com.nguyenvanhoa.book_app_reading.User.Model.Category;
 import com.nguyenvanhoa.book_app_reading.R;
+import com.nguyenvanhoa.book_app_reading.User.Test.Activity.HomeTestActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -122,7 +123,7 @@ public class SearchActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.nav_home:
-                        intent = new Intent(getApplicationContext(), HomeActivity.class);
+                        intent = new Intent(getApplicationContext(), HomeTestActivity.class);
                         startActivity(intent);
                         overridePendingTransition(0,0);
                         break;
