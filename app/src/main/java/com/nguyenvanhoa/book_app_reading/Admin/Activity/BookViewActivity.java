@@ -40,6 +40,7 @@ public class BookViewActivity extends AppCompatActivity {
         chapter = i.getStringExtra("chapter");
 
         loadBookDetail();
+
         binding.backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -58,7 +59,6 @@ public class BookViewActivity extends AppCompatActivity {
                 String title = "" + snapshot.child("title").getValue();
                 binding.titleTv.setText("Chap "+chapter+": "+title);
                 loadBookFromUrl(link);
-//
             }
 
             @Override
