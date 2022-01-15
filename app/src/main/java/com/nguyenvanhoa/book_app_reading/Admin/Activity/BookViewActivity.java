@@ -27,7 +27,7 @@ import com.nguyenvanhoa.book_app_reading.databinding.ActivityBookViewBinding;
 public class BookViewActivity extends AppCompatActivity {
 
     private ActivityBookViewBinding binding;
-    private String bookId;
+    private String bookId, chapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,6 +37,7 @@ public class BookViewActivity extends AppCompatActivity {
 
         Intent i = getIntent();
         bookId = i.getStringExtra("bookId");
+        chapter = i.getStringExtra("chapter");
 
         loadBookDetail();
         binding.backBtn.setOnClickListener(new View.OnClickListener() {
@@ -48,15 +49,16 @@ public class BookViewActivity extends AppCompatActivity {
     }
 
     private void loadBookDetail() {
-        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Books");
-        ref.child(bookId)
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Books/"+bookId+"/chapter");
+        ref.child(chapter)
             .addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                String url = "" + snapshot.child("url").getValue();
-                String title = ""+snapshot.child("title").getValue();
-                binding.titleTv.setText(title);
-                loadBookFromUrl(url);
+                String link = ""+ snapshot.child("link").getValue();
+                String title = "" + snapshot.child("title").getValue();
+                binding.titleTv.setText("Chap "+chapter+": "+title);
+                loadBookFromUrl(link);
+//
             }
 
             @Override

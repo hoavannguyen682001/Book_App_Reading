@@ -55,7 +55,7 @@ public class TopTrendingAdapter extends RecyclerView.Adapter<TopTrendingAdapter.
                 Intent i = new Intent(context, PdfDetailActivity.class);
                 i.putExtra("bookId", model.getId());
                 i.putExtra("categoryId", model.getCategoryId());
-                context.startActivity(i);
+//                context.startActivity(i);
             }
         });
     }

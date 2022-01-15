@@ -2,6 +2,7 @@ package com.nguyenvanhoa.book_app_reading.Admin.Activity;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentStatePagerAdapter;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -17,6 +18,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.nguyenvanhoa.book_app_reading.Admin.Models.MyApplication;
 import com.nguyenvanhoa.book_app_reading.R;
+import com.nguyenvanhoa.book_app_reading.User.Adapter.TabDetailAdapter;
 import com.nguyenvanhoa.book_app_reading.databinding.ActivityPdfDetailBinding;
 
 public class PdfDetailActivity extends AppCompatActivity {
@@ -35,6 +37,7 @@ public class PdfDetailActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
         Intent i = getIntent();
         bookId = i.getStringExtra("bookId");
+
         firebaseAuth = FirebaseAuth.getInstance();
         if(firebaseAuth.getCurrentUser() !=null){
             checkIsFavorite();
@@ -53,6 +56,7 @@ public class PdfDetailActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent i = new Intent(getApplication(), BookViewActivity.class);
                 i.putExtra("bookId", bookId);
+                i.putExtra("chapter","1");
                 MyApplication.addToReading( PdfDetailActivity.this, bookId);
                 startActivity(i);
             }
@@ -71,6 +75,9 @@ public class PdfDetailActivity extends AppCompatActivity {
                 }
             }
         });
+        TabDetailAdapter tabDetailAdapter = new TabDetailAdapter(getSupportFragmentManager(), FragmentStatePagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
+        binding.viewTabDetail.setAdapter(tabDetailAdapter);
+        binding.tabLayout.setupWithViewPager(binding.viewTabDetail);
     }
 
     private void loadBookDetail() {
@@ -90,7 +97,7 @@ public class PdfDetailActivity extends AppCompatActivity {
 
                         MyApplication.loadPdfFromUrlPage(""+url, ""+title, binding.pdfView, getApplication(), binding.progressBar);
                         binding.titleTv.setText(title);
-                        binding.descriptionTv.setText(description);
+//                        binding.descriptionTv.setText(description);
                         binding.dateTv.setText(date);
                         binding.authorTv.setText(author);
                     }
