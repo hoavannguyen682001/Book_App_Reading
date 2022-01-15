@@ -25,20 +25,53 @@
                 android:layout_height="200dp">
             </ss.com.bannerslider.Slider>
 
+            <TextView
+                android:id="@+id/itemTitle"
+                android:paddingStart="24dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Top Trending"
+                app:layout_constraintTop_toTopOf="parent"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:padding="8dp"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/topTrendingRcv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingStart="16dp"
+                android:scrollbars="none"/>
+
+
+            <TextView
+                android:id="@+id/TopAuthorTv"
+                android:paddingStart="24dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Top Author"
+                app:layout_constraintTop_toTopOf="parent"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:padding="8dp"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/topAuthorRcv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingStart="16dp"
+                android:scrollbars="none"/>
+
+
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/my_recycler_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:paddingLeft="16dp"
+                android:paddingStart="16dp"
                 android:scrollbars="none"/>
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerView"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:padding="8dp" />
-
         </LinearLayout>
 
     </androidx.core.widget.NestedScrollView>

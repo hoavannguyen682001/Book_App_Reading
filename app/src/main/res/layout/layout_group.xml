@@ -6,17 +6,35 @@
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/itemTitle"
-        android:paddingLeft="8dp"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Title Book"
-        app:layout_constraintTop_toTopOf="parent"
-        android:textStyle="bold"
-        android:textColor="@color/black"
-        android:textSize="20sp"
-        android:padding="8dp"/>
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/itemTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toStartOf="@+id/viewAllTv"
+            android:padding="8dp"
+            android:paddingLeft="8dp"
+            android:text="Title Book"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/viewAllTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:padding="8dp"
+            android:paddingLeft="8dp"
+            android:text="view all"
+            android:textSize="20sp"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </RelativeLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view_item_list"

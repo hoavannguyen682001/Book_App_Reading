@@ -5,9 +5,12 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.WindowManager;
+import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -27,7 +30,7 @@ import com.nguyenvanhoa.book_app_reading.User.Model.Book;
 import com.nguyenvanhoa.book_app_reading.User.Model.Book2;
 import com.nguyenvanhoa.book_app_reading.User.Model.Category;
 import com.nguyenvanhoa.book_app_reading.R;
-import com.nguyenvanhoa.book_app_reading.User.Test.Activity.HomeTestActivity;
+import com.nguyenvanhoa.book_app_reading.databinding.ActivitySearchBinding;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,11 +44,15 @@ public class SearchActivity extends AppCompatActivity {
     private RecyclerView.LayoutManager mLayoutManager;
     private EditText editText;
     private BottomNavigationView navigationView;
+    private String authorName, category;
+
+    private ActivitySearchBinding binding;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        setContentView(R.layout.activity_search);
+        binding = ActivitySearchBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
 
         Navigation_bar();
         rcvSach = findViewById(R.id.rcv_book);
@@ -57,37 +64,68 @@ public class SearchActivity extends AppCompatActivity {
         categoryAdapter = new CategoryAdapter(this, R.layout.itemsearch_selected, getListCategory());
         spnCategory.setAdapter(categoryAdapter);
 
-        getAllBooks();
 
-        editText= findViewById(R.id.edittext);//timkiem
-        editText.addTextChangedListener(new TextWatcher() {
+        Intent i = getIntent();
+        authorName = i.getStringExtra("authorName");
+        category = i.getStringExtra("category");
+        if(authorName != null){
+            binding.searchEt.setText(authorName);
+        }
+        if(category != null){
+            binding.searchEt.setText(category);
+        }
+
+        spnCategory.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if(spnCategory.getSelectedItemPosition() == 0){
+                    editText.addTextChangedListener(new TextWatcher() {
+                        @Override
+                        public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
-            }
+                        }
 
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                try {
-                    adapterBook.getFilter().filter(charSequence);
-                } catch (Exception e) {
+                        @Override
+                        public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                            try {
+                                adapterBook.getFilter().filter(charSequence);
+                            } catch (Exception e) {
 
+                            }
+                        }
+
+                        @Override
+                        public void afterTextChanged(Editable editable) {
+
+                        }
+                    });
+                }else if(spnCategory.getSelectedItemPosition() == 1){
+                    Toast.makeText(getApplicationContext(), "Author", Toast.LENGTH_SHORT).show();
+                }else{
+                    Toast.makeText(getApplicationContext(), "Category", Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
-            public void afterTextChanged(Editable editable) {
+            public void onNothingSelected(AdapterView<?> parent) {
+
             }
         });
+        getAllBooks();
+
+        editText= findViewById(R.id.searchEt);//timkiem
+
+
     }
 
     private List<Category> getListCategory(){
         List<Category> list = new ArrayList<>();
         list.add(new Category("Book"));
-//        list.add(new Category("Author"));
-//        list.add(new Category("Category"));
+        list.add(new Category("Author"));
+        list.add(new Category("Category"));
         return  list;
     }
+
     private void getAllBooks(){
         //init list
         bookArrayList = new ArrayList<>();
@@ -123,7 +161,7 @@ public class SearchActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.nav_home:
-                        intent = new Intent(getApplicationContext(), HomeTestActivity.class);
+                        intent = new Intent(getApplicationContext(), HomeActivity.class);
                         startActivity(intent);
                         overridePendingTransition(0,0);
                         break;

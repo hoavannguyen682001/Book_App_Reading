@@ -41,7 +41,6 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.nguyenvanhoa.book_app_reading.Admin.Activity.DashBoardActivity;
 import com.nguyenvanhoa.book_app_reading.R;
-import com.nguyenvanhoa.book_app_reading.User.Test.Activity.HomeTestActivity;
 import com.nguyenvanhoa.book_app_reading.databinding.ActivityProfileBinding;
 
 import java.util.HashMap;
@@ -338,7 +337,7 @@ public class ProfileActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.nav_home:
-                        intent = new Intent(getApplicationContext(), HomeTestActivity.class);
+                        intent = new Intent(getApplicationContext(), HomeActivity.class);
                         startActivity(intent);
                         overridePendingTransition(0,0);
                         break;

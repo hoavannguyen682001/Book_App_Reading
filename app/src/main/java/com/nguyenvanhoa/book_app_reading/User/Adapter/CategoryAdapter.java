@@ -39,7 +39,6 @@ public class CategoryAdapter extends ArrayAdapter<Category> {
         Category category = this.getItem(position);
         if (category != null)
             tvCatory.setText(category.getName());
-
         return convertView;
 
     }

@@ -17,7 +17,6 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.tabs.TabLayout;
 import com.nguyenvanhoa.book_app_reading.User.Adapter.LibraryAdapter;
 import com.nguyenvanhoa.book_app_reading.R;
-import com.nguyenvanhoa.book_app_reading.User.Test.Activity.HomeTestActivity;
 
 public class LibraryActivity extends AppCompatActivity {
     TabLayout tabLayout;
@@ -56,7 +55,7 @@ public class LibraryActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.nav_home:
-                        intent = new Intent(getApplicationContext(), HomeTestActivity.class);
+                        intent = new Intent(getApplicationContext(), HomeActivity.class);
                         startActivity(intent);
                         overridePendingTransition(0,0);
                         break;

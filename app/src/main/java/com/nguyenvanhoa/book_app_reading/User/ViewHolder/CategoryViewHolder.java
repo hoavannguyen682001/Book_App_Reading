@@ -12,13 +12,14 @@ import com.nguyenvanhoa.book_app_reading.R;
 
 public class CategoryViewHolder extends RecyclerView.ViewHolder {
 
-    public TextView categoryName;
+    public TextView categoryName, viewAll;
     public RecyclerView category_recyclerView;
     public RecyclerView.LayoutManager manager;
     public CategoryViewHolder(@NonNull View itemView) {
         super(itemView);
         manager = new LinearLayoutManager(itemView.getContext(), LinearLayoutManager.HORIZONTAL, false);
         categoryName = itemView.findViewById(R.id.itemTitle);
+        viewAll = itemView.findViewById(R.id.viewAllTv);
         category_recyclerView = itemView.findViewById(R.id.recycler_view_item_list);
         category_recyclerView.setLayoutManager(manager);
     }

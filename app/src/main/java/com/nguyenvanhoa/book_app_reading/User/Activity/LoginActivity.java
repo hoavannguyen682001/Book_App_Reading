@@ -32,7 +32,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.nguyenvanhoa.book_app_reading.Admin.Activity.DashBoardActivity;
 import com.nguyenvanhoa.book_app_reading.R;
-import com.nguyenvanhoa.book_app_reading.User.Test.Activity.HomeTestActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -233,8 +232,7 @@ public class LoginActivity extends AppCompatActivity {
                         String userType = "" + snapshot.child("userType").getValue();
 
                         if(userType.equals("user")){
-//                            startActivity(new Intent(getApplicationContext(), HomeActivity.class));
-                            startActivity(new Intent(getApplicationContext(), HomeTestActivity.class));
+                            startActivity(new Intent(getApplicationContext(), HomeActivity.class));
                             ProfileActivity.userType = "user";
                             finish();
                         }else if(userType.equals("admin")){

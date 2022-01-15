@@ -1,5 +1,6 @@
 package com.nguyenvanhoa.book_app_reading.User.Activity;
 
+import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,7 +8,6 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -23,14 +23,18 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.nguyenvanhoa.book_app_reading.Admin.Activity.PdfDetailActivity;
 import com.nguyenvanhoa.book_app_reading.Admin.Models.Category;
-import com.nguyenvanhoa.book_app_reading.User.Adapter.MySliderAdapter;
 import com.nguyenvanhoa.book_app_reading.R;
-import com.nguyenvanhoa.book_app_reading.User.Home.Adapter.MyBookItemGroupAdapter;
-import com.nguyenvanhoa.book_app_reading.User.Home.Interface.IFirebaseLoadListener;
-import com.nguyenvanhoa.book_app_reading.User.Home.Model.ItemBookData;
-import com.nguyenvanhoa.book_app_reading.User.Home.Model.ItemBookGroup;
-import com.nguyenvanhoa.book_app_reading.User.Home.Model.ItemGroup;
+import com.nguyenvanhoa.book_app_reading.User.Activity.BookshelfActivity;
+import com.nguyenvanhoa.book_app_reading.User.Activity.LibraryActivity;
+import com.nguyenvanhoa.book_app_reading.User.Activity.ProfileActivity;
+import com.nguyenvanhoa.book_app_reading.User.Activity.SearchActivity;
+import com.nguyenvanhoa.book_app_reading.User.Adapter.AdapterBook;
+import com.nguyenvanhoa.book_app_reading.User.Adapter.MySliderAdapter;
+import com.nguyenvanhoa.book_app_reading.User.Adapter.TopAuthorsAdapter;
+import com.nguyenvanhoa.book_app_reading.User.Adapter.TopTrendingAdapter;
+import com.nguyenvanhoa.book_app_reading.User.Model.Author;
 import com.nguyenvanhoa.book_app_reading.User.Model.Book;
 import com.nguyenvanhoa.book_app_reading.User.Service.PicassoLoadingService;
 import com.nguyenvanhoa.book_app_reading.User.ViewHolder.CategoryTwoViewHolder;
@@ -43,13 +47,7 @@ import java.util.List;
 
 import ss.com.bannerslider.Slider;
 
-public class HomeActivity extends AppCompatActivity implements IFirebaseLoadListener {
-    IFirebaseLoadListener iFirebaseLoadListener;
-
-    private BottomNavigationView navigationView;
-
-    private ActivityHomeBinding binding;
-
+public class HomeActivity extends AppCompatActivity{
 
     RecyclerView recyclerView;
     FirebaseRecyclerAdapter<Category, CategoryViewHolder> adapter;
@@ -59,79 +57,47 @@ public class HomeActivity extends AppCompatActivity implements IFirebaseLoadList
     FirebaseDatabase database;
     DatabaseReference refCategory;
 
+    private ActivityHomeBinding binding;
 
     private ProgressDialog progressDialog;
 
+    private BottomNavigationView navigationView;
 
+    private ArrayList<Author> authorArrayList;
+    private TopAuthorsAdapter adapterAuthor;
+
+    @SuppressLint("NotifyDataSetChanged")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        iFirebaseLoadListener = this;
-
-        //init binding
         binding = ActivityHomeBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         Slider.init(new PicassoLoadingService());
 
-        binding.myRecyclerView.setHasFixedSize(true);
-        binding.myRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setTitle("Please wait...");
+        progressDialog.setCanceledOnTouchOutside(false);
+        progressDialog.show();
         loadBanner();
-
-//        loadDataRecyclerViewInSideRecyclerView();
-
-
-        loadBookInsideCategory();
-
-
-
+        loadTrendingBook();
+        loadTopAuthor();
+        loadDataRecyclerViewInSideRecyclerView();
         Naviagation_bar();
+//        loadChapter();
     }
 
-    private void loadBookInsideCategory() {
-        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Categories");
-        ref.addListenerForSingleValueEvent(new ValueEventListener() {
+    private void loadChapter() {
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Books/" + "1639056470313" + "/chapter");
+        ref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                List<ItemBookGroup> itemGroupList = new ArrayList<>();
-                for (DataSnapshot ds:snapshot.getChildren()){
-                    ItemBookGroup itemGroup = new ItemBookGroup();
-                    String categoryId = ds.child("id").getValue(true).toString();
-                    itemGroup.setId(categoryId);
-
-                    ArrayList<ItemBookData> itemDataList = new ArrayList<>();
-
-                    ItemBookData model = new ItemBookData(
-                            "1639054861532",
-                            "1639056470313",
-                            "The Lincoln Highway",
-                            "https://images-us.bookshop.org/ingram/9780735222359.jpg?height=500&v=v2-be30cbf0d08057581f8a4eaaa51103d7"
-                    );
-                    itemDataList.add(model);
-
-                    DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Books");
-                    ref.orderByChild("categoryId").equalTo(categoryId)
-                            .addValueEventListener(new ValueEventListener() {
-                                @Override
-                                public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                    itemDataList.clear();
-                                    for (DataSnapshot ds : snapshot.getChildren()){
-                                        ItemBookData model = ds.getValue(ItemBookData.class);
-                                        itemDataList.add(model);
-                                    }
-                                }
-                                @Override
-                                public void onCancelled(@NonNull DatabaseError error) {
-
-                                }
-                            });
-                    itemGroup.setListItem(itemDataList);
-                    itemGroupList.add(itemGroup);
+                Toast.makeText(getApplication(), "a", Toast.LENGTH_SHORT).show();
+                int i = 0;
+                for (DataSnapshot ds : snapshot.getChildren()){
+                    i++;
                 }
-                iFirebaseLoadListener.onFirebaseLoadsuccess1(itemGroupList);
+                Toast.makeText(getApplication(), ""+i, Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -139,6 +105,63 @@ public class HomeActivity extends AppCompatActivity implements IFirebaseLoadList
 
             }
         });
+    }
+
+    private void loadTopAuthor() {
+        binding.topAuthorRcv.setHasFixedSize(true);
+
+        binding.topAuthorRcv.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+
+        authorArrayList = new ArrayList<>();
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Authors");
+        ref.orderByChild("authorId").limitToLast(10)
+                .addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        authorArrayList.clear();
+                        for (DataSnapshot ds : snapshot.getChildren()){
+                            Author model = ds.getValue(Author.class);
+                            authorArrayList.add(model);
+                        }
+                        adapterAuthor = new TopAuthorsAdapter(getApplication(), authorArrayList);
+                        binding.topAuthorRcv.setAdapter(adapterAuthor);
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+    }
+
+    private ArrayList<Book> bookArrayList;
+
+    private TopTrendingAdapter adapterBook;
+
+    private void loadTrendingBook() {
+        binding.topTrendingRcv.setHasFixedSize(true);
+
+        binding.topTrendingRcv.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+
+        bookArrayList = new ArrayList<>();
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Books");
+        ref.orderByChild("viewsCount").limitToLast(10)
+                .addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        bookArrayList.clear();
+                        for (DataSnapshot ds : snapshot.getChildren()){
+                            Book model = ds.getValue(Book.class);
+                            bookArrayList.add(model);
+                        }
+                        adapterBook = new TopTrendingAdapter(getApplication(), bookArrayList);
+                        binding.topTrendingRcv.setAdapter(adapterBook);
+                    }
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
     }
 
     private void loadBanner() {
@@ -159,6 +182,77 @@ public class HomeActivity extends AppCompatActivity implements IFirebaseLoadList
 
             }
         });
+    }
+
+    private void loadDataRecyclerViewInSideRecyclerView (){
+
+        database = FirebaseDatabase.getInstance();
+        refCategory = database.getReference("Categories");
+        manager = new LinearLayoutManager(this);
+        recyclerView = findViewById(R.id.my_recycler_view);
+        recyclerView.setLayoutManager(manager);
+
+        FirebaseRecyclerOptions<Category> options = new FirebaseRecyclerOptions.Builder<Category>()
+                .setQuery(refCategory,Category.class)
+                .build();
+
+        adapter = new FirebaseRecyclerAdapter<Category, CategoryViewHolder>(options) {
+            @Override
+            protected void onBindViewHolder(@NonNull CategoryViewHolder holder, int position, @NonNull Category model) {
+                holder.categoryName.setText(model.getCategory());
+                holder.viewAll.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent i = new Intent(getApplication(), SearchActivity.class);
+                        i.putExtra("categoryId", model.getId());
+                        i.putExtra("category", model.getCategory());
+                        startActivity(i);
+                    }
+                });
+                FirebaseRecyclerOptions<Book> options2 = new FirebaseRecyclerOptions.Builder<Book>()
+                        .setQuery(refCategory.child(model.getId()).child("Books"),Book.class)
+                        .build();
+                adapter2 = new FirebaseRecyclerAdapter<Book, CategoryTwoViewHolder>(options2) {
+                    @Override
+                    protected void onBindViewHolder(@NonNull CategoryTwoViewHolder holder, int position, @NonNull Book model) {
+                        holder.dataName.setText(model.getTitle());
+                        Picasso.get().load(model.getImage()).into(holder.imgBook);
+                        progressDialog.dismiss();
+                        holder.itemView.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                Intent i = new Intent(getApplication(), PdfDetailActivity.class);
+                                i.putExtra("bookId", model.getId());
+                                i.putExtra("categoryId", model.getCategoryId());
+                                startActivity(i);
+                            }
+                        });
+                    }
+
+                    @NonNull
+                    @Override
+                    public CategoryTwoViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+                        View v2 = LayoutInflater.from(getBaseContext())
+                                .inflate(R.layout.layout_item,parent,false);
+                        return new CategoryTwoViewHolder(v2);
+                    }
+                };
+                adapter2.startListening();
+                adapter2.notifyDataSetChanged();
+                holder.category_recyclerView.setAdapter(adapter2);
+            }
+
+            @NonNull
+            @Override
+            public CategoryViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+                View v1 = LayoutInflater.from(getBaseContext())
+                        .inflate(R.layout.layout_group,parent,false);
+                return new CategoryViewHolder(v1);
+            }
+        };
+        adapter.startListening();
+        adapter.notifyDataSetChanged();
+        recyclerView.setAdapter(adapter);
     }
     public void Naviagation_bar(){
         navigationView = findViewById(R.id.bottom_nav);
@@ -202,21 +296,5 @@ public class HomeActivity extends AppCompatActivity implements IFirebaseLoadList
                 return false;
             }
         });
-    }
-
-    @Override
-    public void onFirebaseLoadsuccess(List<ItemGroup> itemGroupList) {
-
-    }
-
-    @Override
-    public void onFirebaseLoadsuccess1(List<ItemBookGroup> itemGroupList) {
-        MyBookItemGroupAdapter adapter = new MyBookItemGroupAdapter(this, itemGroupList);
-        binding.myRecyclerView.setAdapter(adapter);
-    }
-
-    @Override
-    public void onFirebaseLoadFailed(String messenger) {
-
     }
 }

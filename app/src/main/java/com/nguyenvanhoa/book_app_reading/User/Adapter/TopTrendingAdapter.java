@@ -1,61 +1,78 @@
 package com.nguyenvanhoa.book_app_reading.User.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.nguyenvanhoa.book_app_reading.Admin.Activity.PdfDetailActivity;
+import com.nguyenvanhoa.book_app_reading.R;
 import com.nguyenvanhoa.book_app_reading.User.Model.Book;
-import com.nguyenvanhoa.book_app_reading.databinding.ItemRecyclerBinding;
+import com.nguyenvanhoa.book_app_reading.databinding.ItemBookBinding;
+import com.nguyenvanhoa.book_app_reading.databinding.SmallItembookBinding;
+import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class TopTrendingAdapter extends RecyclerView.Adapter<TopTrendingAdapter.myViewHolder> {
     private Context context;
-    private List<Book> bookList;
-    private ItemRecyclerBinding binding;
-    public TopTrendingAdapter(Context context, List<Book> bookList) {
+    private SmallItembookBinding binding;
+    private ArrayList<Book> bookArrayList;
+
+    public TopTrendingAdapter(Context context, ArrayList<Book> bookList) {
         this.context = context;
-        this.bookList = bookList;
+        this.bookArrayList = bookList;
     }
 
     @NonNull
     @Override
     public myViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        binding = ItemRecyclerBinding.inflate(LayoutInflater.from(context), parent, false);
+        binding = SmallItembookBinding.inflate(LayoutInflater.from(context), parent, false);
         return new myViewHolder(binding.getRoot());
     }
 
     @Override
     public void onBindViewHolder(@NonNull myViewHolder holder, int position) {
-        holder.category.setText("Top Trending");
-        holder.booksRv.setLayoutManager(new LinearLayoutManager(context, RecyclerView.HORIZONTAL, false));
-        getDataItemRecycler(holder.booksRv, bookList);
-    }
+        Book model = bookArrayList.get(position);
+        String id = model.getId();
+        String title = model.getTitle();
+        holder.titleBook.setText(model.getTitle());
+        String image = model.getImage();
+        Picasso.get().load(image).into(holder.imgBook);
 
-    public void getDataItemRecycler(RecyclerView recyclerView, List<Book> bookList){
-        ItemCategoryAdapter itemCategoryAdapter = new ItemCategoryAdapter(context, bookList);
-        recyclerView.setAdapter(itemCategoryAdapter);
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(context, PdfDetailActivity.class);
+                i.putExtra("bookId", model.getId());
+                i.putExtra("categoryId", model.getCategoryId());
+                context.startActivity(i);
+            }
+        });
     }
 
     @Override
     public int getItemCount() {
-        return bookList.size();
+        return bookArrayList.size();
     }
 
     public class myViewHolder extends RecyclerView.ViewHolder{
 
-        TextView category;
-        RecyclerView booksRv;
+        public TextView titleBook;
+        public ImageView imgBook;
         public myViewHolder(@NonNull View itemView) {
             super(itemView);
-            category = binding.categoryTv;
-            booksRv = binding.booksRv;
+            titleBook = binding.txtNameBook;
+            imgBook = binding.imgBookItem;
         }
     }
 }

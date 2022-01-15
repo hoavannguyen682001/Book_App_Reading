@@ -25,7 +25,7 @@ public class FilterBook extends Filter {
             constraint = constraint.toString().toUpperCase();
             ArrayList<Book> filteredModels = new ArrayList<>();
             for(int i = 0; i<filterList.size(); i++){
-                if (filterList.get(i).getTitle().toUpperCase().contains(constraint)) {
+                if (filterList.get(i).getTitle().toUpperCase().contains(constraint) || filterList.get(i).getAuthor().toUpperCase().contains(constraint) || filterList.get(i).getCategoryId().toUpperCase().contains(constraint)) {
                     filteredModels.add(filterList.get(i));
                 }
             }

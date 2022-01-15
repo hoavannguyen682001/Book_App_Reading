@@ -46,12 +46,12 @@
             android:name=".User.Activity.MainActivity"
             android:exported="true">
 
-             <intent-filter>
-             <action android:name="android.intent.action.MAIN" />
+<!--             <intent-filter>-->
+<!--             <action android:name="android.intent.action.MAIN" />-->
 
 
-             <category android:name="android.intent.category.LAUNCHER" />
-             </intent-filter>
+<!--             <category android:name="android.intent.category.LAUNCHER" />-->
+<!--             </intent-filter>-->
         </activity>
         <activity android:name=".User.Activity.SignUpActivity" />
         <activity android:name=".User.Activity.TermsAndPoliciesActivity" />
@@ -62,6 +62,13 @@
         <activity android:name=".User.Activity.ForgotPassActivity" />
         <activity android:name=".User.Activity.HomeActivity"
             android:exported="true">
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity android:name=".User.Activity.BookshelfActivity" />
         <activity android:name=".User.Activity.LibraryActivity" />
