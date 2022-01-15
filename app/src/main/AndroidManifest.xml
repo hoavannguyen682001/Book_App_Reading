@@ -58,17 +58,18 @@
         <activity
             android:name=".User.Activity.LoginActivity"
             android:exported="true">
-        </activity>
-        <activity android:name=".User.Activity.ForgotPassActivity" />
-        <activity android:name=".User.Activity.HomeActivity"
-            android:exported="true">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity android:name=".User.Activity.ForgotPassActivity" />
+        <activity android:name=".User.Activity.HomeActivity"
+            android:exported="true">
+
+
         </activity>
         <activity android:name=".User.Activity.BookshelfActivity" />
         <activity android:name=".User.Activity.LibraryActivity" />
