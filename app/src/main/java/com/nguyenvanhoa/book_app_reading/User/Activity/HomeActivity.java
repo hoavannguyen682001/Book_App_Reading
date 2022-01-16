@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -72,6 +73,8 @@ public class HomeActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         binding = ActivityHomeBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
 
         Slider.init(new PicassoLoadingService());
 
@@ -84,28 +87,8 @@ public class HomeActivity extends AppCompatActivity{
         loadTopAuthor();
         loadDataRecyclerViewInSideRecyclerView();
         Naviagation_bar();
-//        loadChapter();
     }
 
-    private void loadChapter() {
-        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Books/" + "1639056470313" + "/chapter");
-        ref.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                Toast.makeText(getApplication(), "a", Toast.LENGTH_SHORT).show();
-                int i = 0;
-                for (DataSnapshot ds : snapshot.getChildren()){
-                    i++;
-                }
-                Toast.makeText(getApplication(), ""+i, Toast.LENGTH_SHORT).show();
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-    }
 
     private void loadTopAuthor() {
         binding.topAuthorRcv.setHasFixedSize(true);

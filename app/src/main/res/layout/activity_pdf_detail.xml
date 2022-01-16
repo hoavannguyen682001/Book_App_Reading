@@ -24,7 +24,7 @@
     <LinearLayout
         android:id="@+id/book_detailLl"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="250dp"
         android:layout_below="@+id/toolBarRl"
         android:orientation="horizontal">
 
@@ -97,8 +97,9 @@
                 android:id="@+id/readBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/categoryTv"
                 android:layout_alignParentStart="true"
+                android:layout_alignParentBottom="true"
+                android:layout_toStartOf="@+id/addFavBtn"
                 android:backgroundTint="@color/RoyalPurple"
                 android:text="Read"
                 android:textAllCaps="false"
@@ -112,26 +113,10 @@
                 android:layout_height="40dp"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentBottom="true"
-                android:drawableTop="@drawable/ic_star_normal"/>
-
+                android:drawableTop="@drawable/ic_star_normal" />
         </RelativeLayout>
-
-
     </LinearLayout>
 
-<!--    <ScrollView-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_below="@+id/book_detailLl"-->
-<!--        android:layout_marginTop="16dp">-->
-
-<!--        <TextView-->
-<!--            android:id="@+id/descriptionTv"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:text="@string/loremText" />-->
-
-<!--    </ScrollView>-->
     <LinearLayout
         android:id="@+id/ln_container_Button"
         android:layout_width="match_parent"

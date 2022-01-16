@@ -27,6 +27,7 @@ public class PdfDetailActivity extends AppCompatActivity {
 
     boolean isInMyFavorite = false;
 
+    int i = 0;
     FirebaseAuth firebaseAuth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,17 +51,8 @@ public class PdfDetailActivity extends AppCompatActivity {
             }
         });
         MyApplication.incrementBookViewCount(bookId);
+        countChapter(bookId);
 
-        binding.readBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(getApplication(), BookViewActivity.class);
-                i.putExtra("bookId", bookId);
-                i.putExtra("chapter","1");
-                MyApplication.addToReading( PdfDetailActivity.this, bookId);
-                startActivity(i);
-            }
-        });
 
         binding.addFavBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -80,6 +72,37 @@ public class PdfDetailActivity extends AppCompatActivity {
         binding.tabLayout.setupWithViewPager(binding.viewTabDetail);
     }
 
+    private void countChapter(String bookId){
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Books/"+bookId+"/chapter");
+        ref.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot ds:snapshot.getChildren()){
+                    i++;
+                }
+                if (i>0){
+                    binding.readBtn.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                Intent i = new Intent(getApplication(), BookViewActivity.class);
+                i.putExtra("bookId", bookId);
+                i.putExtra("chapter","1");
+                MyApplication.addToReading( PdfDetailActivity.this, bookId);
+                startActivity(i);
+                        }
+                    });
+                }else{
+                    Toast.makeText(getApplication(), "Đang Cập Nhật", Toast.LENGTH_SHORT).show();
+                    binding.readBtn.setText("Đang Cập Nhật");
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
     private void loadBookDetail() {
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Books");
         ref.child(bookId)

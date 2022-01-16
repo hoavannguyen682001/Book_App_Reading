@@ -23,6 +23,9 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.nguyenvanhoa.book_app_reading.Admin.Activity.PdfListActivity;
+import com.nguyenvanhoa.book_app_reading.Admin.Adapter.AdapterPdf;
+import com.nguyenvanhoa.book_app_reading.Admin.Models.PdfModel;
 import com.nguyenvanhoa.book_app_reading.User.Adapter.AdapterBook;
 import com.nguyenvanhoa.book_app_reading.User.Adapter.CategoryAdapter;
 import com.nguyenvanhoa.book_app_reading.User.Adapter.SachsearchAdapter;
@@ -36,7 +39,6 @@ import java.util.ArrayList;
 import java.util.List;
 public class SearchActivity extends AppCompatActivity {
     private ArrayList<Book> bookArrayList;
-    private Spinner spnCategory;
     private CategoryAdapter categoryAdapter;
     private RecyclerView rcvSach;
     private AdapterBook adapterBook;
@@ -44,7 +46,7 @@ public class SearchActivity extends AppCompatActivity {
     private RecyclerView.LayoutManager mLayoutManager;
     private EditText editText;
     private BottomNavigationView navigationView;
-    private String authorName, category;
+    private String authorName, category, categoryId;
 
     private ActivitySearchBinding binding;
     @Override
@@ -60,97 +62,66 @@ public class SearchActivity extends AppCompatActivity {
         mLayoutManager = new LinearLayoutManager(this);
         rcvSach.setLayoutManager(mLayoutManager);
 
-        spnCategory = findViewById(R.id.spn_category);
-        categoryAdapter = new CategoryAdapter(this, R.layout.itemsearch_selected, getListCategory());
-        spnCategory.setAdapter(categoryAdapter);
-
-
         Intent i = getIntent();
         authorName = i.getStringExtra("authorName");
         category = i.getStringExtra("category");
-        if(authorName != null){
-            binding.searchEt.setText(authorName);
-        }
-        if(category != null){
-            binding.searchEt.setText(category);
-        }
-
-        spnCategory.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                if(spnCategory.getSelectedItemPosition() == 0){
-                    editText.addTextChangedListener(new TextWatcher() {
-                        @Override
-                        public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-                        }
-
-                        @Override
-                        public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                            try {
-                                adapterBook.getFilter().filter(charSequence);
-                            } catch (Exception e) {
-
-                            }
-                        }
-
-                        @Override
-                        public void afterTextChanged(Editable editable) {
-
-                        }
-                    });
-                }else if(spnCategory.getSelectedItemPosition() == 1){
-                    Toast.makeText(getApplicationContext(), "Author", Toast.LENGTH_SHORT).show();
-                }else{
-                    Toast.makeText(getApplicationContext(), "Category", Toast.LENGTH_SHORT).show();
-                }
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
+        categoryId = i.getStringExtra("categoryId");
         getAllBooks();
 
         editText= findViewById(R.id.searchEt);//timkiem
-
-
-    }
-
-    private List<Category> getListCategory(){
-        List<Category> list = new ArrayList<>();
-        list.add(new Category("Book"));
-        list.add(new Category("Author"));
-        list.add(new Category("Category"));
-        return  list;
     }
 
     private void getAllBooks(){
         //init list
         bookArrayList = new ArrayList<>();
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference( "Books");
-        ref.addValueEventListener (new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                //clear list before starting adding data into it
-                bookArrayList.clear();
-                for (DataSnapshot ds : snapshot.getChildren()) {
-                    //get data
-                    Book model = ds.getValue(Book.class);
-                    //add to list
-                    bookArrayList.add(model);
-                }
-                //setup adapter
-                adapterBook = new AdapterBook(SearchActivity.this, bookArrayList);
-                //set adapter to recyclerview
-                rcvSach.setAdapter(adapterBook);
-            }
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
+        if (authorName != null){
+            binding.searchEt.setText(authorName);
+            ref.orderByChild("author").equalTo(authorName)
+                    .addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            getBook(snapshot);
+                        }
 
-            }
-        });
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+                        }
+                    });
+        }else if (category != null){
+            binding.searchEt.setText(category);
+            ref.orderByChild("categoryId").equalTo(categoryId)
+                    .addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            getBook(snapshot);
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+                        }
+                    });
+        }else{
+            ref.addValueEventListener (new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    getBook(snapshot);
+                }
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+                }
+            });
+        }
+    }
+
+    public void getBook(DataSnapshot snapshot){
+        bookArrayList.clear();
+        for (DataSnapshot ds : snapshot.getChildren()) {
+            Book model = ds.getValue(Book.class);
+            bookArrayList.add(model);
+        }
+        adapterBook = new AdapterBook(SearchActivity.this, bookArrayList);
+        rcvSach.setAdapter(adapterBook);
     }
     public void Navigation_bar(){
         navigationView = findViewById(R.id.bottom_nav);
