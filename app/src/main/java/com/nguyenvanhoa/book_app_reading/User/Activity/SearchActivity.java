@@ -5,11 +5,8 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.MenuItem;
-import android.view.View;
 import android.view.WindowManager;
-import android.widget.AdapterView;
 import android.widget.EditText;
-import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -23,15 +20,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.nguyenvanhoa.book_app_reading.Admin.Activity.PdfListActivity;
-import com.nguyenvanhoa.book_app_reading.Admin.Adapter.AdapterPdf;
-import com.nguyenvanhoa.book_app_reading.Admin.Models.PdfModel;
 import com.nguyenvanhoa.book_app_reading.User.Adapter.AdapterBook;
-import com.nguyenvanhoa.book_app_reading.User.Adapter.CategoryAdapter;
-import com.nguyenvanhoa.book_app_reading.User.Adapter.SachsearchAdapter;
 import com.nguyenvanhoa.book_app_reading.User.Model.Book;
-import com.nguyenvanhoa.book_app_reading.User.Model.Book2;
-import com.nguyenvanhoa.book_app_reading.User.Model.Category;
 import com.nguyenvanhoa.book_app_reading.R;
 import com.nguyenvanhoa.book_app_reading.databinding.ActivitySearchBinding;
 
@@ -39,7 +29,6 @@ import java.util.ArrayList;
 import java.util.List;
 public class SearchActivity extends AppCompatActivity {
     private ArrayList<Book> bookArrayList;
-    private CategoryAdapter categoryAdapter;
     private RecyclerView rcvSach;
     private AdapterBook adapterBook;
 
@@ -66,9 +55,39 @@ public class SearchActivity extends AppCompatActivity {
         authorName = i.getStringExtra("authorName");
         category = i.getStringExtra("category");
         categoryId = i.getStringExtra("categoryId");
+
         getAllBooks();
 
         editText= findViewById(R.id.searchEt);//timkiem
+        editText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                String text = editText.getText().toString();
+                if (text.equals("")){
+                    category = null;
+                    authorName = null;
+                    getAllBooks();
+                    Toast.makeText(getApplicationContext(), ""+editText.getText(), Toast.LENGTH_SHORT).show();
+                }
+
+                try {
+                    adapterBook.getFilter().filter(s);
+                } catch (Exception e){
+
+                }
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
     }
 
     private void getAllBooks(){
@@ -123,6 +142,7 @@ public class SearchActivity extends AppCompatActivity {
         adapterBook = new AdapterBook(SearchActivity.this, bookArrayList);
         rcvSach.setAdapter(adapterBook);
     }
+
     public void Navigation_bar(){
         navigationView = findViewById(R.id.bottom_nav);
         navigationView.setSelectedItemId(R.id.nav_search);
