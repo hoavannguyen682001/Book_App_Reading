@@ -39,7 +39,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:fontFamily="sans-serif"
-            android:text="Sycamore Tree"
+            android:text=""
             android:textColor="@color/black"
             android:textSize="32sp"
             android:textStyle="bold" />
