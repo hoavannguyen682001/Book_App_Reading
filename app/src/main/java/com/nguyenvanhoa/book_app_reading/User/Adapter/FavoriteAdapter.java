@@ -78,8 +78,7 @@ public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.Holder
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         String booktitle = snapshot.child("title").getValue().toString();
-//                        String bookAuthor = snapshot.child("author").getValue().toString();
-                        String bookAuthor = "null";
+                        String bookAuthor = snapshot.child("author").getValue().toString();
 
                         String timestamp = snapshot.child("timestamp").getValue().toString();
                         String categoryId = snapshot.child("categoryId").getValue().toString();

@@ -72,7 +72,6 @@ public class SearchActivity extends AppCompatActivity {
                     category = null;
                     authorName = null;
                     getAllBooks();
-                    Toast.makeText(getApplicationContext(), ""+editText.getText(), Toast.LENGTH_SHORT).show();
                 }
 
                 try {
