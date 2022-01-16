@@ -84,16 +84,15 @@ public class PdfDetailActivity extends AppCompatActivity {
                     binding.readBtn.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                Intent i = new Intent(getApplication(), BookViewActivity.class);
-                i.putExtra("bookId", bookId);
-                i.putExtra("chapter","1");
-                MyApplication.addToReading( PdfDetailActivity.this, bookId);
-                startActivity(i);
+                            Intent i = new Intent(getApplication(), BookViewActivity.class);
+                            i.putExtra("bookId", bookId);
+                            i.putExtra("chapter","1");
+                            MyApplication.addToReading( PdfDetailActivity.this, bookId);
+                            startActivity(i);
                         }
                     });
                 }else{
-                    Toast.makeText(getApplication(), "Đang Cập Nhật", Toast.LENGTH_SHORT).show();
-                    binding.readBtn.setText("Đang Cập Nhật");
+                    binding.readBtn.setText("Updating");
                 }
             }
 

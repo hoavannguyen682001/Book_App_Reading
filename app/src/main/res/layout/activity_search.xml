@@ -65,7 +65,7 @@
                 android:textColorHint="#DFABCE"
                 android:textColor="#fa71cd"
                 android:background="@drawable/edit_edittext"
-                android:hint="Search..."
+                android:hint="Search author, book..."
                 android:singleLine="true"/>
 
             <ImageView
